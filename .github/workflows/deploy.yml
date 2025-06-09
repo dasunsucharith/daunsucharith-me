@@ -1,4 +1,4 @@
-name: 🚀 Deploy Laravel Public to A2 Hosting
+name: 🚀 Deploy Astro + Laravel to A2 Hosting
 
 on:
   push:
@@ -30,18 +30,31 @@ jobs:
           rm -rf laravel/public/portfolio
           cp -r frontend/dist laravel/public/portfolio
 
+      - name: 🛠 Setup PHP and Composer
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, bcmath, xml
+          tools: composer
+
+      - name: 📦 Install Laravel Dependencies
+        run: |
+          cd laravel
+          composer install --no-dev --optimize-autoloader
+          cd ..
+
       - name: 🗂 Prepare deploy_root
         run: |
           mkdir deploy_root
           cp -r laravel/public/* deploy_root/
-          cp -r laravel/vendor deploy_root/
-          cp -r laravel/bootstrap deploy_root/
-          cp -r laravel/storage deploy_root/
-          cp laravel/index.php deploy_root/
+          cp -r laravel/vendor deploy_root/vendor
+          cp -r laravel/bootstrap deploy_root/bootstrap
+          cp -r laravel/storage deploy_root/storage
+          cp laravel/index.php deploy_root/index.php
+          cp laravel/public/.htaccess deploy_root/.htaccess || true
           cp laravel/.env.example deploy_root/.env || true
-          cp laravel/.htaccess deploy_root/.htaccess || true
 
-      - name: 📤 FTP Deploy to A2 Hosting
+      - name: 📤 Deploy to A2 Hosting
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
