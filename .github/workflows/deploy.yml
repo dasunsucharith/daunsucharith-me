@@ -31,7 +31,7 @@ jobs:
           cp -r frontend/dist laravel/public/portfolio
 
       - name: 📤 Deploy to A2 Hosting (FTP)
-        uses: SamKirkland/FTP-Deploy-Action@v4
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
