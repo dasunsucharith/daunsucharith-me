@@ -30,24 +30,11 @@ jobs:
           rm -rf laravel/public/portfolio
           cp -r frontend/dist laravel/public/portfolio
 
-      - name: 🛠 Setup PHP and Composer
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          extensions: mbstring, bcmath, xml
-          tools: composer
-
-      - name: 📦 Install Laravel Dependencies
-        run: |
-          cd laravel
-          composer install --no-dev --optimize-autoloader
-          cd ..
-
-      - name: 🗂 Prepare deploy_root
+      - name: 🗂 Prepare deploy_root (without Composer)
         run: |
           mkdir deploy_root
           cp -r laravel/public/* deploy_root/
-          cp -r laravel/vendor deploy_root/vendor
+          cp -r laravel/vendor deploy_root/vendor || true
           cp -r laravel/bootstrap deploy_root/bootstrap
           cp -r laravel/storage deploy_root/storage
           cp laravel/public/index.php deploy_root/index.php
