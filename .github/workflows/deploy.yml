@@ -1,4 +1,4 @@
-name: 🚀 Deploy Astro + Laravel to A2 Hosting
+name: 🚀 Deploy Laravel Public to A2 Hosting
 
 on:
   push:
@@ -10,31 +10,42 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: 🛒 Checkout code
+      - name: 📦 Checkout code
         uses: actions/checkout@v3
 
-      - name: ⚙️ Set up Node.js
+      - name: ⚙️ Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
-      - name: 📦 Install & Build Astro
+      - name: 🚀 Build Astro frontend
         run: |
           cd frontend
           npm install
           npm run build
           cd ..
 
-      - name: 🚚 Move Astro output into Laravel
+      - name: 🧱 Inject Astro into Laravel public folder
         run: |
           rm -rf laravel/public/portfolio
           cp -r frontend/dist laravel/public/portfolio
 
-      - name: 📤 Deploy to A2 Hosting (FTP)
+      - name: 🗂 Prepare deploy_root
+        run: |
+          mkdir deploy_root
+          cp -r laravel/public/* deploy_root/
+          cp -r laravel/vendor deploy_root/
+          cp -r laravel/bootstrap deploy_root/
+          cp -r laravel/storage deploy_root/
+          cp laravel/index.php deploy_root/
+          cp laravel/.env.example deploy_root/.env || true
+          cp laravel/.htaccess deploy_root/.htaccess || true
+
+      - name: 📤 FTP Deploy to A2 Hosting
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /
-          local-dir: ./laravel/
+          local-dir: ./deploy_root/
