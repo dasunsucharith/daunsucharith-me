@@ -30,13 +30,13 @@ jobs:
           rm -rf laravel/public/portfolio
           cp -r frontend/dist laravel/public/portfolio
 
-      - name: 🗂 Prepare deploy_root (without Composer)
+      - name: 🗂 Prepare deploy_root (manual vendor mode)
         run: |
           mkdir deploy_root
           cp -r laravel/public/* deploy_root/
           cp -r laravel/vendor deploy_root/vendor || true
-          cp -r laravel/bootstrap deploy_root/bootstrap
-          cp -r laravel/storage deploy_root/storage
+          cp -r laravel/bootstrap deploy_root/bootstrap || true
+          cp -r laravel/storage deploy_root/storage || true
           cp laravel/public/index.php deploy_root/index.php
           cp laravel/public/.htaccess deploy_root/.htaccess || true
           cp laravel/.env.example deploy_root/.env || true
@@ -49,3 +49,13 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /
           local-dir: ./deploy_root/
+          exclude: |
+            **/.git*
+            **/node_modules/**
+            **/app/**
+            **/config/**
+            **/routes/**
+            **/resources/**
+            **/tests/**
+            **/database/**
+          dangerous-clean-slate: true
