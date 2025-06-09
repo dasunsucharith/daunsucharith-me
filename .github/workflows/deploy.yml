@@ -50,7 +50,7 @@ jobs:
           cp -r laravel/vendor deploy_root/vendor
           cp -r laravel/bootstrap deploy_root/bootstrap
           cp -r laravel/storage deploy_root/storage
-          cp laravel/index.php deploy_root/index.php
+          cp laravel/public/index.php deploy_root/index.php
           cp laravel/public/.htaccess deploy_root/.htaccess || true
           cp laravel/.env.example deploy_root/.env || true
 
