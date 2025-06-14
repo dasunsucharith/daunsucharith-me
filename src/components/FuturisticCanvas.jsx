@@ -201,7 +201,7 @@ const FuturisticCanvas = ({ onStartClick }) => {
 
     // Initialize particles
     particlesRef.current = [];
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 50; i++) {
       particlesRef.current.push(new Particle());
     }
 
