@@ -1,42 +1,51 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import FuturisticCanvas from '../components/FuturisticCanvas';
-import Terminal from '../components/Terminal';
 
 const LandingPage = () => {
-  const [showTerminal, setShowTerminal] = useState(false);
-  const [showCanvas, setShowCanvas] = useState(true);
   const navigate = useNavigate();
 
   const handleStartClick = () => {
-    setShowTerminal(true);
-  };
-
-  const handleTerminalClose = () => {
-    setShowTerminal(false);
-  };
-
-  const handleAnimationComplete = () => {
-    // Fade out terminal and canvas
-    setShowCanvas(false);
-    setTimeout(() => {
-      navigate('/dashboard/about');
-    }, 500);
+    navigate('/dashboard/about');
   };
 
   return (
-    <div className="w-full h-full relative">
-      {showCanvas && (
-        <div className={`transition-opacity duration-500 ${!showCanvas ? 'opacity-0' : 'opacity-100'}`}>
-          <FuturisticCanvas onStartClick={handleStartClick} />
-        </div>
-      )}
-      
-      <Terminal 
-        isVisible={showTerminal}
-        onClose={handleTerminalClose}
-        onAnimationComplete={handleAnimationComplete}
-      />
+    <div style={{
+      width: '100vw',
+      height: '100vh',
+      backgroundColor: '#000000',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center',
+      margin: 0,
+      padding: 0
+    }}>
+      <button
+        onClick={handleStartClick}
+        style={{
+          backgroundColor: 'transparent',
+          border: '2px solid #00ffff',
+          color: '#00ffff',
+          fontFamily: 'monospace',
+          fontSize: '24px',
+          fontWeight: 'bold',
+          padding: '20px 48px',
+          letterSpacing: '3px',
+          cursor: 'pointer',
+          borderRadius: '50px',
+          boxShadow: '0 0 20px rgba(0, 255, 255, 0.3)',
+          transition: 'all 0.3s ease'
+        }}
+        onMouseEnter={(e) => {
+          e.target.style.backgroundColor = 'rgba(0, 255, 255, 0.1)';
+          e.target.style.transform = 'scale(1.05)';
+        }}
+        onMouseLeave={(e) => {
+          e.target.style.backgroundColor = 'transparent';
+          e.target.style.transform = 'scale(1)';
+        }}
+      >
+        START
+      </button>
     </div>
   );
 };
