@@ -2,10 +2,12 @@ import './style.css'
 
 document.querySelector('#app').innerHTML = `
   <canvas id="futuristic-canvas"></canvas>
+  <button id="start-button">START</button>
 `
 
 const canvas = document.getElementById('futuristic-canvas');
 const ctx = canvas.getContext('2d');
+const startButton = document.getElementById('start-button');
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -14,6 +16,15 @@ const particles = [];
 const connections = [];
 let mouseX = 0;
 let mouseY = 0;
+
+// Button properties for collision detection
+const buttonRect = {
+  x: canvas.width / 2,
+  y: canvas.height / 2,
+  width: 150,
+  height: 60,
+  radius: 30
+};
 
 class Particle {
   constructor() {
@@ -37,11 +48,40 @@ class Particle {
     if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
     if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
 
+    // Mouse/touch repulsion
     const distToMouse = Math.sqrt((this.x - mouseX) ** 2 + (this.y - mouseY) ** 2);
-    if (distToMouse < 150) {
+    if (distToMouse < 150 && mouseX > 0 && mouseY > 0) {
       const force = (150 - distToMouse) / 150;
       this.vx += (this.x - mouseX) * force * 0.01;
       this.vy += (this.y - mouseY) * force * 0.01;
+    }
+
+    // Button collision detection (rounded rectangle)
+    const distToButtonCenter = Math.sqrt((this.x - buttonRect.x) ** 2 + (this.y - buttonRect.y) ** 2);
+    
+    // Check if particle is within button area
+    const dx = Math.abs(this.x - buttonRect.x);
+    const dy = Math.abs(this.y - buttonRect.y);
+    
+    if (dx <= (buttonRect.width / 2 + buttonRect.radius) && dy <= (buttonRect.height / 2 + buttonRect.radius)) {
+      // Handle collision with rounded corners
+      if (dx > buttonRect.width / 2 || dy > buttonRect.height / 2) {
+        const cornerDx = dx - buttonRect.width / 2;
+        const cornerDy = dy - buttonRect.height / 2;
+        if (cornerDx * cornerDx + cornerDy * cornerDy <= buttonRect.radius * buttonRect.radius) {
+          // Collision with rounded corner
+          const angle = Math.atan2(this.y - buttonRect.y, this.x - buttonRect.x);
+          this.vx = Math.cos(angle) * Math.abs(this.vx + this.vy) * 0.7;
+          this.vy = Math.sin(angle) * Math.abs(this.vx + this.vy) * 0.7;
+        }
+      } else {
+        // Collision with main rectangle
+        if (dx > dy) {
+          this.vx *= -0.8;
+        } else {
+          this.vy *= -0.8;
+        }
+      }
     }
 
     if (Math.random() < 0.01) {
@@ -199,6 +239,8 @@ canvas.addEventListener('touchend', (e) => {
 window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
+  buttonRect.x = canvas.width / 2;
+  buttonRect.y = canvas.height / 2;
 });
 
 animate();

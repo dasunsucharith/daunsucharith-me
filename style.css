@@ -21,3 +21,34 @@ body {
   background-color: #000000;
   cursor: none;
 }
+
+#start-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: transparent;
+  border: 2px solid #00ffff;
+  color: #00ffff;
+  font-family: 'Courier New', monospace;
+  font-size: 24px;
+  font-weight: bold;
+  padding: 20px 45px;
+  letter-spacing: 3px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  z-index: 10;
+  border-radius: 50px;
+}
+
+#start-button:hover {
+  background: rgba(0, 255, 255, 0.1);
+  box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+#start-button:active {
+  transform: translate(-50%, -50%) scale(0.95);
+}
