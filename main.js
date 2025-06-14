@@ -3,11 +3,30 @@ import './style.css'
 document.querySelector('#app').innerHTML = `
   <canvas id="futuristic-canvas"></canvas>
   <button id="start-button">START</button>
+  <div id="terminal" class="hidden">
+    <div id="terminal-header">
+      <span class="terminal-title">SYSTEM_TERMINAL_v2.0</span>
+      <div class="terminal-controls">
+        <span class="control-btn minimize">_</span>
+        <span class="control-btn maximize">□</span>
+        <span class="control-btn close">×</span>
+      </div>
+    </div>
+    <div id="terminal-content">
+      <div class="terminal-line">
+        <span class="prompt">root@system:~$</span>
+        <span class="cursor">|</span>
+      </div>
+    </div>
+  </div>
 `
 
 const canvas = document.getElementById('futuristic-canvas');
 const ctx = canvas.getContext('2d');
 const startButton = document.getElementById('start-button');
+const terminal = document.getElementById('terminal');
+const closeBtn = document.querySelector('.control-btn.close');
+const terminalContent = document.getElementById('terminal-content');
 
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
@@ -25,6 +44,185 @@ const buttonRect = {
   height: 60,
   radius: 30
 };
+
+// Shockwave properties
+let shockwaves = [];
+
+// Terminal typing animation
+const terminalText = `Hello,
+
+I'm Dasun Sucharith, a marketing-tech-driven developer and automation strategist helping brands grow smarter with SEO, web development, and AI-powered marketing systems.
+
+I specialize in creating digital experiences that not only look good—but work brilliantly behind the scenes too.
+
+Get in touch: sucharith.dasun@gmail.com
+LinkedIn: linkedin.com/in/dasun-sucharith`;
+
+let currentIndex = 0;
+let isTyping = false;
+
+function typeText() {
+  console.log('typeText called, currentIndex:', currentIndex, 'text length:', terminalText.length);
+  
+  if (currentIndex >= terminalText.length) {
+    console.log('Typing complete, making links clickable');
+    makeLinksClickable();
+    return;
+  }
+  
+  const currentChar = terminalText[currentIndex];
+  console.log('Typing character:', currentChar, 'at index:', currentIndex);
+  
+  // Get current content without the cursor
+  let currentContent = terminalContent.innerHTML.replace(/<span class="cursor">.*?<\/span>/g, '');
+  
+  if (currentChar === '\n') {
+    currentContent += '<br>';
+  } else {
+    currentContent += currentChar;
+  }
+  
+  // Add cursor back
+  terminalContent.innerHTML = currentContent + '<span class="cursor">|</span>';
+  
+  currentIndex++;
+  
+  // Variable typing speed for more realistic effect
+  const delay = currentChar === '\n' ? 500 : Math.random() * 50 + 50;
+  
+  setTimeout(() => {
+    typeText();
+  }, delay);
+}
+
+function makeLinksClickable() {
+  let content = terminalContent.innerHTML;
+  
+  // Make email clickable
+  content = content.replace(
+    'sucharith.dasun@gmail.com',
+    '<a href="mailto:sucharith.dasun@gmail.com" class="terminal-link">sucharith.dasun@gmail.com</a>'
+  );
+  
+  // Make LinkedIn clickable
+  content = content.replace(
+    'linkedin.com/in/dasun-sucharith',
+    '<a href="https://linkedin.com/in/dasun-sucharith" target="_blank" class="terminal-link">linkedin.com/in/dasun-sucharith</a>'
+  );
+  
+  terminalContent.innerHTML = content;
+}
+
+function startTyping() {
+  // Reset terminal content
+  currentIndex = 0;
+  isTyping = false;
+  
+  // Start typing after a short delay
+  setTimeout(() => {
+    // Start with empty content and cursor
+    terminalContent.innerHTML = '<span class="cursor">|</span>';
+    console.log('Starting typing animation...');
+    console.log('Text to type:', terminalText);
+    typeText();
+  }, 1000);
+}
+
+class Shockwave {
+  constructor(x, y) {
+    this.centerX = x;
+    this.centerY = y;
+    this.radius = 0;
+    this.maxRadius = Math.max(canvas.width, canvas.height) * 1.5;
+    this.opacity = 1;
+    this.speed = 20;
+    this.hexSize = 25;
+    this.hexagons = [];
+    this.generateHexGrid();
+  }
+
+  generateHexGrid() {
+    const hexWidth = this.hexSize * Math.sqrt(3);
+    const hexHeight = this.hexSize * 2;
+    const verticalSpacing = hexHeight * 0.75;
+    
+    for (let row = -Math.ceil(this.maxRadius / verticalSpacing); row <= Math.ceil(this.maxRadius / verticalSpacing); row++) {
+      for (let col = -Math.ceil(this.maxRadius / hexWidth); col <= Math.ceil(this.maxRadius / hexWidth); col++) {
+        const offsetX = (row % 2) * (hexWidth / 2);
+        const hexX = this.centerX + col * hexWidth + offsetX;
+        const hexY = this.centerY + row * verticalSpacing;
+        
+        const distFromCenter = Math.sqrt((hexX - this.centerX) ** 2 + (hexY - this.centerY) ** 2);
+        
+        this.hexagons.push({
+          x: hexX,
+          y: hexY,
+          distance: distFromCenter,
+          opacity: 0,
+          maxOpacity: Math.random() * 0.8 + 0.2
+        });
+      }
+    }
+  }
+
+  update() {
+    this.radius += this.speed;
+    
+    // Update hexagon opacities based on wave position
+    this.hexagons.forEach(hex => {
+      if (hex.distance <= this.radius) {
+        // Hex is within the wave - make it visible
+        const age = (this.radius - hex.distance) / this.speed;
+        if (age < 10) {
+          hex.opacity = Math.min(hex.maxOpacity, age / 10);
+        } else {
+          // Start fading out after being visible for a while
+          const fadeAge = age - 10;
+          hex.opacity = Math.max(0, hex.maxOpacity - (fadeAge / 20));
+        }
+      }
+    });
+  }
+
+  draw() {
+    ctx.save();
+    ctx.shadowColor = '#00ffff';
+    ctx.shadowBlur = 5;
+    
+    // Draw all visible hexagons
+    this.hexagons.forEach(hex => {
+      if (hex.opacity > 0) {
+        ctx.strokeStyle = `rgba(0, 255, 255, ${hex.opacity})`;
+        ctx.lineWidth = 1.5 * hex.opacity;
+        this.drawHexagon(hex.x, hex.y, this.hexSize);
+      }
+    });
+    
+    ctx.restore();
+  }
+
+  drawHexagon(x, y, size) {
+    ctx.beginPath();
+    for (let i = 0; i < 6; i++) {
+      const angle = (i * Math.PI) / 3;
+      const pointX = x + Math.cos(angle) * size;
+      const pointY = y + Math.sin(angle) * size;
+      
+      if (i === 0) {
+        ctx.moveTo(pointX, pointY);
+      } else {
+        ctx.lineTo(pointX, pointY);
+      }
+    }
+    ctx.closePath();
+    ctx.stroke();
+  }
+
+  isDead() {
+    // Check if all hexagons have faded out
+    return this.hexagons.every(hex => hex.opacity <= 0) && this.radius > this.maxRadius * 0.5;
+  }
+}
 
 class Particle {
   constructor() {
@@ -206,6 +404,14 @@ function animate() {
   });
   
   drawConnections();
+  
+  // Update and draw shockwaves
+  shockwaves = shockwaves.filter(shockwave => {
+    shockwave.update();
+    shockwave.draw();
+    return !shockwave.isDead();
+  });
+  
   drawCustomCursor();
   
   requestAnimationFrame(animate);
@@ -234,6 +440,27 @@ canvas.addEventListener('touchend', (e) => {
   e.preventDefault();
   mouseX = 0;
   mouseY = 0;
+});
+
+// Button click event
+startButton.addEventListener('click', (e) => {
+  e.preventDefault();
+  // Create shockwave at button center and show terminal immediately
+  shockwaves.push(new Shockwave(buttonRect.x, buttonRect.y));
+  startButton.classList.add('hidden');
+  terminal.classList.remove('hidden');
+  
+  // Start typing animation
+  startTyping();
+});
+
+// Terminal close button event
+closeBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  // Hide terminal
+  terminal.classList.add('hidden');
+  // Show start button again
+  startButton.classList.remove('hidden');
 });
 
 window.addEventListener('resize', () => {
