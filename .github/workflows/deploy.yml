@@ -1,4 +1,4 @@
-name: 🚀 Deploy Astro + Laravel to A2 Hosting
+name: 🚀 Deploy Vite Website to A2 Hosting
 
 on:
   push:
@@ -18,28 +18,11 @@ jobs:
         with:
           node-version: 18
 
-      - name: 🚀 Build Astro frontend
-        run: |
-          cd frontend
-          npm install
-          npm run build
-          cd ..
+      - name: 📦 Install dependencies
+        run: npm install
 
-      - name: 🧱 Inject Astro into Laravel public folder
-        run: |
-          rm -rf laravel/public/portfolio
-          cp -r frontend/dist laravel/public/portfolio
-
-      - name: 🗂 Prepare deploy_root (manual vendor mode)
-        run: |
-          mkdir deploy_root
-          cp -r laravel/public/* deploy_root/
-          cp -r laravel/vendor deploy_root/vendor || true
-          cp -r laravel/bootstrap deploy_root/bootstrap || true
-          cp -r laravel/storage deploy_root/storage || true
-          cp laravel/public/index.php deploy_root/index.php
-          cp laravel/public/.htaccess deploy_root/.htaccess || true
-          cp laravel/.env.example deploy_root/.env || true
+      - name: 🚀 Build Vite website
+        run: npm run build
 
       - name: 📤 Deploy to A2 Hosting
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
@@ -48,14 +31,9 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /
-          local-dir: ./deploy_root/
+          local-dir: ./dist/
           exclude: |
             **/.git*
             **/node_modules/**
-            **/app/**
-            **/config/**
-            **/routes/**
-            **/resources/**
-            **/tests/**
-            **/database/**
+            **/.github/**
           dangerous-clean-slate: true
