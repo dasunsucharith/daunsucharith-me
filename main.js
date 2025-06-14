@@ -176,6 +176,26 @@ canvas.addEventListener('mousemove', (e) => {
   mouseY = e.clientY;
 });
 
+canvas.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  const touch = e.touches[0];
+  mouseX = touch.clientX;
+  mouseY = touch.clientY;
+});
+
+canvas.addEventListener('touchmove', (e) => {
+  e.preventDefault();
+  const touch = e.touches[0];
+  mouseX = touch.clientX;
+  mouseY = touch.clientY;
+});
+
+canvas.addEventListener('touchend', (e) => {
+  e.preventDefault();
+  mouseX = 0;
+  mouseY = 0;
+});
+
 window.addEventListener('resize', () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
