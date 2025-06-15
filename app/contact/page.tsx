@@ -105,9 +105,9 @@ const ContactPage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+      <section className="py-20 bg-gradient-to-br from-primary to-accent text-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -117,11 +117,11 @@ const ContactPage = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Let's Work Together
             </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-background/80 max-w-3xl mx-auto mb-8">
               Have a project in mind? I'd love to hear about it. Let's discuss how we can 
               bring your vision to life with exceptional web solutions.
             </p>
-            <div className="flex items-center justify-center gap-8 text-blue-100">
+            <div className="flex items-center justify-center gap-8 text-background/80">
               <div className="flex items-center gap-2">
                 <MessageSquare className="w-5 h-5" />
                 <span>Quick Response</span>
@@ -136,7 +136,7 @@ const ContactPage = () => {
       </section>
 
       {/* Contact Information */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-surface">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -145,10 +145,10 @@ const ContactPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
               Get In Touch
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-text-secondary max-w-2xl mx-auto">
               Multiple ways to reach me. Choose whatever works best for you.
             </p>
           </motion.div>
@@ -157,28 +157,28 @@ const ContactPage = () => {
             {contactInfo.map((info, index) => (
               <motion.div
                 key={info.title}
-                className="text-center p-6 bg-gray-50 rounded-2xl hover:bg-white hover:shadow-lg transition-all duration-300"
+                className="text-center p-6 bg-background rounded-2xl hover:bg-surface hover:shadow-lg transition-all duration-300"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <info.icon className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mx-auto mb-4">
+                  <info.icon className="w-8 h-8 text-background" />
                 </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">{info.title}</h3>
+                <h3 className="text-lg font-semibold text-text-primary mb-2">{info.title}</h3>
                 {info.link ? (
                   <a
                     href={info.link}
-                    className="text-blue-600 font-medium hover:text-blue-700 transition-colors"
+                    className="text-accent font-medium hover:text-blue-700 transition-colors"
                   >
                     {info.value}
                   </a>
                 ) : (
-                  <p className="text-blue-600 font-medium">{info.value}</p>
+                  <p className="text-accent font-medium">{info.value}</p>
                 )}
-                <p className="text-gray-600 text-sm mt-2">{info.description}</p>
+                <p className="text-text-secondary text-sm mt-2">{info.description}</p>
               </motion.div>
             ))}
           </div>
@@ -186,7 +186,7 @@ const ContactPage = () => {
       </section>
 
       {/* Contact Form */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-background">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <motion.div
             className="text-center mb-12"
@@ -195,16 +195,16 @@ const ContactPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
               Start Your Project
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-text-secondary">
               Fill out the form below and I'll get back to you within 24 hours.
             </p>
           </motion.div>
 
           <motion.div
-            className="bg-white rounded-2xl shadow-sm p-8 lg:p-12"
+            className="bg-surface rounded-2xl shadow-sm p-8 lg:p-12"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -218,8 +218,8 @@ const ContactPage = () => {
                 transition={{ duration: 0.5 }}
               >
                 <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">Message Sent!</h3>
-                <p className="text-gray-600">
+                <h3 className="text-2xl font-bold text-text-primary mb-2">Message Sent!</h3>
+                <p className="text-text-secondary">
                   Thank you for reaching out. I'll get back to you within 24 hours.
                 </p>
               </motion.div>
@@ -227,7 +227,7 @@ const ContactPage = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-text-secondary mb-2">
                       Name *
                     </label>
                     <input
@@ -235,13 +235,13 @@ const ContactPage = () => {
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                      className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
                       placeholder="Your full name"
                       required
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-text-secondary mb-2">
                       Email *
                     </label>
                     <input
@@ -249,7 +249,7 @@ const ContactPage = () => {
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                      className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
                       placeholder="your.email@example.com"
                       required
                     />
@@ -257,7 +257,7 @@ const ContactPage = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-text-secondary mb-2">
                     Subject *
                   </label>
                   <input
@@ -265,7 +265,7 @@ const ContactPage = () => {
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
                     placeholder="What's your project about?"
                     required
                   />
@@ -273,14 +273,14 @@ const ContactPage = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-text-secondary mb-2">
                       Budget Range
                     </label>
                     <select
                       name="budget"
                       value={formData.budget}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                      className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
                     >
                       <option value="">Select budget range</option>
                       {budgetRanges.map((range) => (
@@ -291,14 +291,14 @@ const ContactPage = () => {
                     </select>
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-text-secondary mb-2">
                       Timeline
                     </label>
                     <select
                       name="timeline"
                       value={formData.timeline}
                       onChange={handleInputChange}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors"
+                      className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors"
                     >
                       <option value="">Select timeline</option>
                       {timelineOptions.map((option) => (
@@ -311,7 +311,7 @@ const ContactPage = () => {
                 </div>
 
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                  <label className="block text-sm font-medium text-text-secondary mb-2">
                     Project Details *
                   </label>
                   <textarea
@@ -319,7 +319,7 @@ const ContactPage = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     rows={6}
-                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-colors resize-none"
+                    className="w-full px-4 py-3 border border-border rounded-lg focus:ring-2 focus:ring-primary focus:border-transparent transition-colors resize-none"
                     placeholder="Tell me more about your project, goals, and any specific requirements..."
                     required
                   />
@@ -327,7 +327,7 @@ const ContactPage = () => {
 
                 <motion.button
                   type="submit"
-                  className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-4 rounded-lg font-semibold text-lg flex items-center justify-center gap-2 hover:shadow-lg transition-shadow"
+                  className="w-full bg-gradient-to-r from-primary to-accent text-background py-4 rounded-lg font-semibold text-lg flex items-center justify-center gap-2 hover:shadow-lg transition-shadow"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -341,7 +341,7 @@ const ContactPage = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-surface">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -350,10 +350,10 @@ const ContactPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
               Common Questions
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-text-secondary">
               Quick answers to questions you might have.
             </p>
           </motion.div>
@@ -362,14 +362,14 @@ const ContactPage = () => {
             {faqs.map((faq, index) => (
               <motion.div
                 key={faq.question}
-                className="bg-gray-50 rounded-2xl p-8"
+                className="bg-background rounded-2xl p-8"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
               >
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{faq.question}</h3>
-                <p className="text-gray-700">{faq.answer}</p>
+                <h3 className="text-xl font-bold text-text-primary mb-4">{faq.question}</h3>
+                <p className="text-text-secondary">{faq.answer}</p>
               </motion.div>
             ))}
           </div>

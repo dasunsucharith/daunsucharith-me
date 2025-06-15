@@ -24,19 +24,19 @@ const Navigation = () => {
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-gray-200/20">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <motion.div
-              className="w-10 h-10 bg-gradient-to-br from-blue-600 to-purple-600 rounded-lg flex items-center justify-center"
+              className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center glow-primary"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="text-white font-bold text-lg">DS</span>
+              <span className="text-background font-bold text-lg">DS</span>
             </motion.div>
-            <span className="text-xl font-bold text-gray-900">Dasun Sucharith</span>
+            <span className="text-xl font-bold text-text-primary">Dasun Sucharith</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -50,15 +50,15 @@ const Navigation = () => {
                 <span
                   className={`text-sm font-medium transition-colors ${
                     isActive(item.href)
-                      ? 'text-blue-600'
-                      : 'text-gray-700 hover:text-blue-600'
+                      ? 'text-primary'
+                      : 'text-text-secondary hover:text-primary'
                   }`}
                 >
                   {item.label}
                 </span>
                 {isActive(item.href) && (
                   <motion.div
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-blue-600 rounded-full"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
                     layoutId="activeTab"
                     initial={false}
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
@@ -72,7 +72,7 @@ const Navigation = () => {
           <div className="hidden md:block">
             <Link href="/contact">
               <motion.button
-                className="bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-2 rounded-full font-medium text-sm hover:shadow-lg transition-shadow"
+                className="bg-gradient-to-r from-primary to-accent text-background px-6 py-2 rounded-full font-medium text-sm hover:shadow-lg transition-all glow-primary hover:glow-accent"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -87,9 +87,9 @@ const Navigation = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
-              <X className="w-6 h-6 text-gray-700" />
+              <X className="w-6 h-6 text-text-primary" />
             ) : (
-              <Menu className="w-6 h-6 text-gray-700" />
+              <Menu className="w-6 h-6 text-text-primary" />
             )}
           </button>
         </div>
@@ -99,7 +99,7 @@ const Navigation = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="md:hidden bg-white border-t border-gray-200"
+            className="md:hidden bg-surface border-t border-border"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -112,8 +112,8 @@ const Navigation = () => {
                   href={item.href}
                   className={`block text-base font-medium ${
                     isActive(item.href)
-                      ? 'text-blue-600'
-                      : 'text-gray-700'
+                      ? 'text-primary'
+                      : 'text-text-secondary'
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -121,7 +121,7 @@ const Navigation = () => {
                 </Link>
               ))}
               <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
-                <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white px-6 py-3 rounded-full font-medium text-sm mt-4">
+                <button className="w-full bg-gradient-to-r from-primary to-accent text-background px-6 py-3 rounded-full font-medium text-sm mt-4 glow-primary">
                   Let's Talk
                 </button>
               </Link>

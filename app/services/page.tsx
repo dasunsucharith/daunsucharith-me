@@ -104,9 +104,9 @@ const ServicesPage = () => {
   ]
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+      <section className="py-20 bg-gradient-to-br from-primary to-accent text-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -116,13 +116,13 @@ const ServicesPage = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               Services That Drive Results
             </h1>
-            <p className="text-xl text-blue-100 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-background/80 max-w-3xl mx-auto mb-8">
               From concept to launch, I provide comprehensive web development services 
               that help businesses grow and succeed online.
             </p>
             <Link href="/contact">
               <motion.button
-                className="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-shadow"
+                className="bg-surface text-accent px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-shadow"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -134,7 +134,7 @@ const ServicesPage = () => {
       </section>
 
       {/* Services Grid */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-surface">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -143,10 +143,10 @@ const ServicesPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
               What I Can Do For You
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-text-secondary max-w-2xl mx-auto">
               Comprehensive web development services tailored to your business needs.
             </p>
           </motion.div>
@@ -155,7 +155,7 @@ const ServicesPage = () => {
             {services.map((service, index) => (
               <motion.div
                 key={service.title}
-                className={`relative bg-white rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-8 border-2 ${
+                className={`relative bg-surface rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 p-8 border-2 ${
                   service.popular ? 'border-blue-500' : 'border-gray-100'
                 }`}
                 initial={{ opacity: 0, y: 30 }}
@@ -166,32 +166,32 @@ const ServicesPage = () => {
               >
                 {service.popular && (
                   <div className="absolute -top-3 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-blue-500 text-white px-4 py-1 rounded-full text-sm font-semibold">
+                    <span className="bg-blue-500 text-background px-4 py-1 rounded-full text-sm font-semibold">
                       Most Popular
                     </span>
                   </div>
                 )}
                 
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center mb-6">
-                  <service.icon className="w-8 h-8 text-white" />
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mb-6">
+                  <service.icon className="w-8 h-8 text-background" />
                 </div>
                 
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{service.title}</h3>
-                <p className="text-gray-600 mb-6">{service.description}</p>
+                <h3 className="text-xl font-bold text-text-primary mb-4">{service.title}</h3>
+                <p className="text-text-secondary mb-6">{service.description}</p>
                 
                 <ul className="space-y-3 mb-8">
                   {service.features.map((feature) => (
                     <li key={feature} className="flex items-center gap-3">
                       <Check className="w-5 h-5 text-green-500 flex-shrink-0" />
-                      <span className="text-gray-700">{feature}</span>
+                      <span className="text-text-secondary">{feature}</span>
                     </li>
                   ))}
                 </ul>
                 
                 <div className="border-t border-gray-100 pt-6">
-                  <div className="text-2xl font-bold text-gray-900 mb-4">{service.price}</div>
+                  <div className="text-2xl font-bold text-text-primary mb-4">{service.price}</div>
                   <Link href="/contact">
-                    <button className="w-full bg-gradient-to-r from-blue-600 to-purple-600 text-white py-3 rounded-full font-semibold hover:shadow-lg transition-shadow flex items-center justify-center gap-2">
+                    <button className="w-full bg-gradient-to-r from-primary to-accent text-background py-3 rounded-full font-semibold hover:shadow-lg transition-shadow flex items-center justify-center gap-2">
                       Get Started
                       <ArrowRight className="w-4 h-4" />
                     </button>
@@ -204,7 +204,7 @@ const ServicesPage = () => {
       </section>
 
       {/* Process Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -213,10 +213,10 @@ const ServicesPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
               My Process
             </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-text-secondary max-w-2xl mx-auto">
               A proven methodology that ensures your project is delivered on time, 
               within budget, and exceeds expectations.
             </p>
@@ -232,11 +232,11 @@ const ServicesPage = () => {
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                  <span className="text-2xl font-bold text-white">{step.step}</span>
+                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-6">
+                  <span className="text-2xl font-bold text-background">{step.step}</span>
                 </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{step.title}</h3>
-                <p className="text-gray-600">{step.description}</p>
+                <h3 className="text-xl font-bold text-text-primary mb-4">{step.title}</h3>
+                <p className="text-text-secondary">{step.description}</p>
               </motion.div>
             ))}
           </div>
@@ -244,7 +244,7 @@ const ServicesPage = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-surface">
         <div className="max-w-4xl mx-auto px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -253,10 +253,10 @@ const ServicesPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
               Frequently Asked Questions
             </h2>
-            <p className="text-xl text-gray-600">
+            <p className="text-xl text-text-secondary">
               Got questions? Here are answers to some common inquiries.
             </p>
           </motion.div>
@@ -265,14 +265,14 @@ const ServicesPage = () => {
             {faqs.map((faq, index) => (
               <motion.div
                 key={faq.question}
-                className="bg-gray-50 rounded-2xl p-8"
+                className="bg-background rounded-2xl p-8"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
               >
-                <h3 className="text-xl font-bold text-gray-900 mb-4">{faq.question}</h3>
-                <p className="text-gray-700">{faq.answer}</p>
+                <h3 className="text-xl font-bold text-text-primary mb-4">{faq.question}</h3>
+                <p className="text-text-secondary">{faq.answer}</p>
               </motion.div>
             ))}
           </div>
@@ -280,7 +280,7 @@ const ServicesPage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-primary to-accent text-background">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -291,13 +291,13 @@ const ServicesPage = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Ready to Get Started?
             </h2>
-            <p className="text-xl text-blue-100 mb-8">
+            <p className="text-xl text-background/80 mb-8">
               Let's discuss your project and how I can help bring your vision to life.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/contact">
                 <motion.button
-                  className="bg-white text-blue-600 px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-shadow"
+                  className="bg-surface text-accent px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-shadow"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -306,7 +306,7 @@ const ServicesPage = () => {
               </Link>
               <Link href="/projects">
                 <motion.button
-                  className="border-2 border-white text-white px-8 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-blue-600 transition-colors"
+                  className="border-2 border-white text-background px-8 py-4 rounded-full font-semibold text-lg hover:bg-surface hover:text-accent transition-colors"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
