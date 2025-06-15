@@ -1,4 +1,4 @@
-name: 🚀 Deploy Vite Website to A2 Hosting
+name: 🚀 Deploy Next Website to A2 Hosting
 
 on:
   push:
