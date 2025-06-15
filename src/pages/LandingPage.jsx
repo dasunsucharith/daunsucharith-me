@@ -150,33 +150,26 @@ const LandingPage = () => {
     };
   }, []);
 
-  const handleCanvasClick = () => {
+  const handleStartClick = () => {
     navigate('/dashboard/about');
   };
 
   return (
-    <div className="relative w-full h-full bg-black overflow-hidden">
+    <div className="fixed inset-0 w-full h-full bg-black overflow-hidden">
       <canvas
         ref={canvasRef}
-        className="absolute inset-0 cursor-pointer"
-        onClick={handleCanvasClick}
+        className="absolute inset-0 w-full h-full"
       />
       
-      {/* Click anywhere text */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="text-center">
-          <h1 className="text-4xl md:text-6xl font-bold text-cyan-400 mb-4 font-mono tracking-wider">
-            DASUN SUCHARITH
-          </h1>
-          <p className="text-lg md:text-xl text-cyan-300 mb-8 font-mono">
-            Developer & Digital Strategist
-          </p>
-          <div className="animate-pulse">
-            <p className="text-sm text-cyan-500 font-mono">
-              Click anywhere to enter
-            </p>
-          </div>
-        </div>
+      {/* Start button */}
+      <div className="fixed inset-0 flex items-center justify-center z-50">
+        <button
+          onClick={handleStartClick}
+          className="bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-white font-bold py-6 px-12 rounded-full text-xl font-mono transition-all duration-300 transform hover:scale-110 hover:shadow-2xl hover:shadow-cyan-500/50 border-2 border-cyan-400/50 backdrop-blur-sm shadow-xl shadow-cyan-500/25 relative overflow-hidden group cursor-pointer"
+        >
+          <span className="relative z-10 tracking-wider">START</span>
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700"></div>
+        </button>
       </div>
     </div>
   );

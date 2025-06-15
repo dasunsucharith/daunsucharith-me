@@ -7,16 +7,44 @@ import Dashboard from './pages/Dashboard';
 
 const theme = createTheme({
   palette: {
-    mode: 'light',
+    mode: 'dark',
     primary: {
-      main: '#667eea',
+      main: '#00bcd4',
     },
     secondary: {
-      main: '#764ba2',
+      main: '#9c27b0',
+    },
+    background: {
+      default: '#0f0f23',
+      paper: '#1a1a2e',
+    },
+    text: {
+      primary: '#ffffff',
+      secondary: '#b0bec5',
     },
   },
   typography: {
     fontFamily: '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif',
+  },
+  components: {
+    MuiPaper: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgba(255, 255, 255, 0.08)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+        },
+      },
+    },
+    MuiCard: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'rgba(255, 255, 255, 0.08)',
+          backdropFilter: 'blur(20px)',
+          border: '1px solid rgba(255, 255, 255, 0.1)',
+        },
+      },
+    },
   },
 });
 
