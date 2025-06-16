@@ -5,7 +5,7 @@ A modern, responsive portfolio website built with Next.js 15, featuring sophisti
 ## 🌟 Features
 
 ### ✨ Design & Animation
-- **100vh Hero Section** - Full viewport homepage with no scrolling required
+- **Dynamic Hero Section** - Full viewport homepage that adapts to mobile browsers
 - **Sophisticated Animations** - Framer Motion powered micro-interactions
 - **Glassmorphism UI** - Modern frosted glass effects with backdrop blur
 - **Gradient Animations** - Dynamic color transitions and glowing effects
@@ -127,7 +127,7 @@ daunsucharith-me/
 ## 📱 Pages Overview
 
 ### 🏠 Homepage (`/`)
-- Full viewport hero section (100vh)
+- Full viewport hero section (dynamic viewport height)
 - Animated infinity symbols and geometric shapes
 - Gradient text animations
 - Social media links with glow effects
