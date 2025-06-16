@@ -6,6 +6,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        'josefin': ['var(--font-josefin)', 'sans-serif'],
+        'inter': ['var(--font-inter)', 'sans-serif'],
+      },
       colors: {
         brand: {
           base: "#161E2F",

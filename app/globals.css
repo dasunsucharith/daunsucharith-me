@@ -13,12 +13,17 @@ html {
 }
 
 body {
-  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-family: var(--font-inter), 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   background-color: #161E2F;
   color: #FFA586;
+}
+
+/* Heading styles with Josefin Sans */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-josefin), 'Josefin Sans', sans-serif;
 }
 
 /* Custom scrollbar */

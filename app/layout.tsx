@@ -1,9 +1,10 @@
 import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Inter, Josefin_Sans } from 'next/font/google'
 import './globals.css'
 import Navigation from '../components/Navigation'
 
 const inter = Inter({ subsets: ['latin'] })
+const josefinSans = Josefin_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Dasun Sucharith - Portfolio',
@@ -27,6 +28,7 @@ export default function RootLayout({
       <body 
         className={`${inter.className} antialiased bg-brand-base text-brand-accent`}
         suppressHydrationWarning={true}
+        style={{'--font-josefin': josefinSans.style.fontFamily, '--font-inter': inter.style.fontFamily} as React.CSSProperties}
       >
         <Navigation />
         <main className="pt-16">
