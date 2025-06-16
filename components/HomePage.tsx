@@ -16,8 +16,7 @@ const HomePage = () => {
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
-    layoutEffect: false,
-    smooth: true
+    layoutEffect: false
   })
 
   // Transition section scroll tracking for smooth fade effects
