@@ -46,9 +46,9 @@ const HomePage = () => {
 
 
   return (
-    <div className="relative w-full h-screen overflow-hidden">
+    <div className="relative w-full h-[100dvh] overflow-hidden">
       {/* Hero Section */}
-      <section className="relative w-full h-screen flex items-center justify-center bg-gradient-to-br from-brand-base via-brand-surface to-brand-base overflow-hidden">
+      <section className="relative w-full h-[100dvh] flex items-center justify-center bg-gradient-to-br from-brand-base via-brand-surface to-brand-base overflow-hidden">
         {/* Animated Background Gradients */}
         <div className="absolute inset-0 overflow-hidden">
           <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-brand-accent/5 via-transparent to-brand-strong/5 animate-pulse"></div>
