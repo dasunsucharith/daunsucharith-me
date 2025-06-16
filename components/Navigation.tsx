@@ -28,15 +28,14 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2">
-            <motion.div
-              className="w-10 h-10 bg-gradient-to-br from-brand-accent to-brand-strong rounded-lg flex items-center justify-center glow-primary"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+          <Link href="/">
+            <motion.span
+              className="text-xl font-bold text-white font-josefin"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
             >
-              <span className="text-brand-base font-bold text-lg">DS</span>
-            </motion.div>
-            <span className="text-xl font-bold text-white">Dasun Sucharith</span>
+              Dasun Sucharith
+            </motion.span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -51,7 +50,7 @@ const Navigation = () => {
                   className={`text-sm font-medium transition-colors ${
                     isActive(item.href)
                       ? 'text-brand-accent'
-                      : 'text-brand-muted hover:text-brand-accent'
+                      : 'text-white hover:text-brand-accent'
                   }`}
                 >
                   {item.label}
@@ -113,7 +112,7 @@ const Navigation = () => {
                   className={`block text-base font-medium ${
                     isActive(item.href)
                       ? 'text-brand-accent'
-                      : 'text-brand-muted'
+                      : 'text-white'
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >

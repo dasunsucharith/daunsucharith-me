@@ -1,11 +1,47 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect, useRef } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
-import { ArrowRight, Code, Palette, Zap, Users, Star, ChevronDown } from 'lucide-react'
+import { motion, useScroll, useTransform } from 'framer-motion'
+import { Code, Palette, Zap, Users, Star, Mail, Linkedin, Github } from 'lucide-react'
 
 const HomePage = () => {
+  const heroRef = useRef(null)
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+    layoutEffect: false
+  })
+  
+  // Smoother parallax transforms with reduced ranges
+  const y1 = useTransform(scrollYProgress, [0, 1], [0, -50], { clamp: false })
+  const y2 = useTransform(scrollYProgress, [0, 1], [0, -25], { clamp: false })
+  const y3 = useTransform(scrollYProgress, [0, 1], [0, -75], { clamp: false })
+  const rotate = useTransform(scrollYProgress, [0, 1], [0, 180], { clamp: false })
+
+  const InfinitySymbol = ({ className }: { className?: string }) => (
+    <svg 
+      viewBox="0 0 400 200" 
+      className={className}
+      fill="none"
+    >
+      <path
+        d="M100 100C100 44.77 144.77 0 200 0C255.23 0 300 44.77 300 100C300 155.23 255.23 200 200 200C144.77 200 100 155.23 100 100ZM200 100C200 44.77 155.23 0 100 0C44.77 0 0 44.77 0 100C0 155.23 44.77 200 100 200C155.23 200 200 155.23 200 100Z"
+        stroke="url(#gradient1)"
+        strokeWidth="2"
+        fill="none"
+        opacity="0.6"
+      />
+      <defs>
+        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#FFA586" />
+          <stop offset="50%" stopColor="#B51A2B" />
+          <stop offset="100%" stopColor="#FFA586" />
+        </linearGradient>
+      </defs>
+    </svg>
+  )
+
   const skills = [
     { icon: Code, title: 'Development', description: 'Modern web applications with React, Next.js, and TypeScript' },
     { icon: Palette, title: 'Design', description: 'Beautiful, user-centered interfaces and experiences' },
@@ -44,77 +80,314 @@ const HomePage = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-brand-base overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-brand-strong/20 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-glow"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-brand-accent/20 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-glow"></div>
+      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center bg-brand-base overflow-hidden">
+        {/* Infinity Background Animation */}
+        <div className="absolute inset-0 overflow-hidden will-change-transform">
+          {/* Multiple infinity symbols with optimized animations */}
+          <motion.div
+            style={{ 
+              y: y1,
+              rotate,
+              willChange: "transform"
+            }}
+            className="absolute top-10 left-10 opacity-60"
+            animate={{ 
+              scale: [1, 1.05, 1],
+            }}
+            transition={{ 
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+              repeatType: "reverse"
+            }}
+          >
+            <InfinitySymbol className="w-40 h-20" />
+          </motion.div>
+          
+          <motion.div
+            style={{ 
+              y: y2,
+              willChange: "transform"
+            }}
+            className="absolute top-1/4 right-20 opacity-50"
+            animate={{ 
+              rotate: [0, 360],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{ 
+              duration: 12,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          >
+            <InfinitySymbol className="w-56 h-28" />
+          </motion.div>
+
+          <motion.div
+            style={{ 
+              y: y3,
+              willChange: "transform"
+            }}
+            className="absolute bottom-20 left-1/4 opacity-55"
+            animate={{ 
+              rotate: [0, -360],
+              x: [-15, 15, -15],
+            }}
+            transition={{ 
+              duration: 16,
+              repeat: Infinity,
+              ease: "easeInOut",
+              repeatType: "reverse"
+            }}
+          >
+            <InfinitySymbol className="w-48 h-24" />
+          </motion.div>
+
+          <motion.div
+            style={{ 
+              y: y1,
+              willChange: "transform"
+            }}
+            className="absolute top-1/2 right-10 opacity-45"
+            animate={{ 
+              scale: [1, 0.9, 1.1, 1],
+              rotate: [0, 180, 360],
+            }}
+            transition={{ 
+              duration: 20,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          >
+            <InfinitySymbol className="w-64 h-32" />
+          </motion.div>
+
+          <motion.div
+            style={{ 
+              y: y2,
+              willChange: "transform"
+            }}
+            className="absolute bottom-10 right-1/3 opacity-50"
+            animate={{ 
+              rotate: [0, -180, -360],
+              scale: [1, 1.08, 1],
+            }}
+            transition={{ 
+              duration: 14,
+              repeat: Infinity,
+              ease: "easeInOut",
+              repeatType: "reverse"
+            }}
+          >
+            <InfinitySymbol className="w-44 h-22" />
+          </motion.div>
+
+          {/* Optimized Animated Emojis */}
+          <motion.div
+            style={{ 
+              y: y1,
+              willChange: "transform"
+            }}
+            className="absolute top-16 right-1/4 text-4xl"
+            animate={{ 
+              rotate: [0, 360],
+              scale: [1, 1.1, 1],
+            }}
+            transition={{ 
+              duration: 10,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          >
+            💻
+          </motion.div>
+
+          <motion.div
+            style={{ 
+              y: y2,
+              willChange: "transform"
+            }}
+            className="absolute top-1/3 left-16 text-3xl"
+            animate={{ 
+              rotate: [0, -360],
+            }}
+            transition={{ 
+              duration: 13,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          >
+            🚀
+          </motion.div>
+
+          <motion.div
+            style={{ 
+              y: y3,
+              willChange: "transform"
+            }}
+            className="absolute bottom-1/4 left-1/3 text-3xl"
+            animate={{ 
+              scale: [1, 1.15, 1],
+              rotate: [0, 180, 360],
+            }}
+            transition={{ 
+              duration: 11,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          >
+            ⚡
+          </motion.div>
+
+          <motion.div
+            style={{ 
+              y: y1,
+              willChange: "transform"
+            }}
+            className="absolute bottom-16 right-16 text-4xl"
+            animate={{ 
+              scale: [1, 0.9, 1.05, 1],
+            }}
+            transition={{ 
+              duration: 15,
+              repeat: Infinity,
+              ease: "easeInOut",
+              repeatType: "reverse"
+            }}
+          >
+            🎯
+          </motion.div>
+
+          <motion.div
+            style={{ 
+              y: y2,
+              willChange: "transform"
+            }}
+            className="absolute top-2/3 right-1/2 text-2xl"
+            animate={{ 
+              rotate: [0, -360],
+              scale: [1, 1.2, 1],
+            }}
+            transition={{ 
+              duration: 9,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          >
+            🌟
+          </motion.div>
+
+          <motion.div
+            style={{ 
+              y: y3,
+              willChange: "transform"
+            }}
+            className="absolute top-1/2 left-1/2 text-3xl"
+            animate={{ 
+              scale: [1, 1.1, 1],
+            }}
+            transition={{ 
+              duration: 12,
+              repeat: Infinity,
+              ease: "easeInOut",
+              repeatType: "reverse"
+            }}
+          >
+            💡
+          </motion.div>
+
+          {/* Static Gradient overlays for better performance */}
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-brand-accent/10 to-brand-strong/10 rounded-full filter blur-3xl"></div>
+          <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-gradient-to-br from-brand-strong/8 to-transparent rounded-full filter blur-2xl"></div>
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <motion.h1 
-              className="text-5xl md:text-7xl font-bold mb-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+        <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-left">
+          <div className="space-y-6">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+            >
+              <h1 className="text-4xl md:text-6xl font-bold text-white font-josefin">
+                Hello!
+              </h1>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="text-white">Hi, I'm </span>
-              <span className="gradient-text">
-                Dasun
-              </span>
-            </motion.h1>
-            
-            <motion.p 
-              className="text-xl md:text-2xl text-brand-muted mb-8 max-w-3xl mx-auto"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+              <p className="text-2xl md:text-4xl font-bold text-white font-josefin">
+                I am Dasun Sucharith
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              A passionate <span className="font-semibold text-brand-accent">Developer</span> & <span className="font-semibold text-brand-strong">Digital Strategist</span> who crafts exceptional web experiences that drive results.
-            </motion.p>
+              <p className="text-lg md:text-xl text-white font-normal leading-relaxed">
+                A marketing automation developer helping brands grow smarter with SEO, Web Development, and marketing automations.
+              </p>
+            </motion.div>
 
-            <motion.div 
-              className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <Link href="/contact">
-                <motion.button 
-                  className="bg-gradient-to-r from-brand-accent to-brand-strong text-brand-base px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2 hover:shadow-lg transition-all glow-primary hover:animate-glow"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  Let's Work Together
-                  <ArrowRight className="w-5 h-5" />
-                </motion.button>
-              </Link>
-              <Link href="/projects">
-                <motion.button 
-                  className="border-2 border-brand-muted text-brand-muted px-8 py-4 rounded-full font-semibold text-lg hover:border-brand-accent hover:text-brand-accent transition-all"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                >
-                  View My Work
-                </motion.button>
-              </Link>
+              <p className="text-lg md:text-xl text-white font-normal leading-relaxed">
+                I specialize in creating digital experiences that not only look good, but work brilliantly behind the scenes too.
+              </p>
             </motion.div>
 
-            <motion.div 
-              className="flex justify-center"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.8 }}
+              className="mt-8"
             >
-              <ChevronDown className="w-8 h-8 text-brand-muted animate-bounce" />
+              <div className="flex gap-6">
+                <motion.a
+                  href="mailto:sucharith.dasun@gmail.com"
+                  className="w-12 h-12 bg-brand-surface border border-brand-muted rounded-full flex items-center justify-center text-white hover:text-brand-accent hover:border-brand-accent transition-all glow-primary"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Mail className="w-5 h-5" />
+                </motion.a>
+
+                <motion.a
+                  href="https://www.linkedin.com/in/dasun-sucharith/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-brand-surface border border-brand-muted rounded-full flex items-center justify-center text-white hover:text-brand-accent hover:border-brand-accent transition-all glow-primary"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Linkedin className="w-5 h-5" />
+                </motion.a>
+
+                <motion.a
+                  href="https://github.com/dasunsucharith"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-brand-surface border border-brand-muted rounded-full flex items-center justify-center text-white hover:text-brand-accent hover:border-brand-accent transition-all glow-primary"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Github className="w-5 h-5" />
+                </motion.a>
+              </div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </section>
 

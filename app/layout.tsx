@@ -11,6 +11,11 @@ export const metadata: Metadata = {
   description: 'Developer & Digital Strategist Portfolio',
   keywords: 'web developer, digital strategist, portfolio, react, next.js',
   authors: [{ name: 'Dasun Sucharith' }],
+  icons: {
+    icon: '/assets/favicon.png',
+    shortcut: '/assets/favicon.png',
+    apple: '/assets/favicon.png',
+  },
 }
 
 export const viewport = {
