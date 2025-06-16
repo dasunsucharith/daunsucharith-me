@@ -7,14 +7,14 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'primary': '#00F5A0',
-        'accent': '#8F00FF',
-        'background': '#0B0F19',
-        'surface': '#161B27',
-        'text-primary': '#F5F5F7',
-        'text-secondary': '#A5ADC1',
-        'border': '#2A2E3C',
-        'error': '#FF5757',
+        brand: {
+          base: "#161E2F",
+          surface: "#242F49",
+          muted: "#384358",
+          accent: "#FFA586",
+          strong: "#B51A2B",
+          deep: "#541A2E"
+        }
       },
       animation: {
         'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
@@ -34,10 +34,10 @@ module.exports = {
         },
         glow: {
           '0%': {
-            'box-shadow': '0 0 20px rgba(0, 245, 160, 0.3)',
+            'box-shadow': '0 0 20px rgba(255, 165, 134, 0.3)',
           },
           '100%': {
-            'box-shadow': '0 0 30px rgba(0, 245, 160, 0.6), 0 0 40px rgba(143, 0, 255, 0.3)',
+            'box-shadow': '0 0 30px rgba(255, 165, 134, 0.6), 0 0 40px rgba(181, 26, 43, 0.3)',
           },
         }
       }

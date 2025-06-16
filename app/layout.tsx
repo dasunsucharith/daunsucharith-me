@@ -25,7 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body 
-        className={`${inter.className} antialiased bg-background text-text-primary`}
+        className={`${inter.className} antialiased bg-brand-base text-brand-accent`}
         suppressHydrationWarning={true}
       >
         <Navigation />

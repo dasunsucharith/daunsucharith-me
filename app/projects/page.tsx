@@ -110,9 +110,9 @@ const ProjectsPage = () => {
   const featuredProjects = projects.filter(project => project.featured)
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-brand-base">
       {/* Hero Section */}
-      <section className="py-20 bg-gradient-to-br from-primary to-accent text-background">
+      <section className="py-20 bg-gradient-to-br from-brand-accent to-brand-strong text-brand-base">
         <div className="max-w-7xl mx-auto px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -122,11 +122,11 @@ const ProjectsPage = () => {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
               My Work
             </h1>
-            <p className="text-xl text-background/80 max-w-3xl mx-auto mb-8">
+            <p className="text-xl text-brand-base/80 max-w-3xl mx-auto mb-8">
               Explore a collection of projects that showcase my expertise in web development, 
               design, and digital strategy.
             </p>
-            <div className="flex items-center justify-center gap-8 text-background/80">
+            <div className="flex items-center justify-center gap-8 text-brand-base/80">
               <div className="flex items-center gap-2">
                 <Star className="w-5 h-5" />
                 <span>50+ Projects</span>
@@ -141,7 +141,7 @@ const ProjectsPage = () => {
       </section>
 
       {/* Featured Projects */}
-      <section className="py-20 bg-surface">
+      <section className="py-20 bg-brand-surface">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -150,10 +150,10 @@ const ProjectsPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Featured Projects
             </h2>
-            <p className="text-xl text-text-secondary max-w-2xl mx-auto">
+            <p className="text-xl text-brand-muted max-w-2xl mx-auto">
               A selection of my most impactful and innovative projects.
             </p>
           </motion.div>
@@ -171,7 +171,7 @@ const ProjectsPage = () => {
                 transition={{ duration: 0.8, delay: index * 0.2 }}
               >
                 <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
-                  <div className="bg-gray-100 rounded-2xl aspect-video flex items-center justify-center text-text-secondary mb-4">
+                  <div className="bg-brand-muted/20 rounded-2xl aspect-video flex items-center justify-center text-brand-muted mb-4">
                     <div className="text-center">
                       <div className="text-6xl mb-2">🚀</div>
                       <div className="text-sm">Project Screenshot</div>
@@ -180,19 +180,19 @@ const ProjectsPage = () => {
                 </div>
                 
                 <div className={index % 2 === 1 ? 'lg:order-1' : ''}>
-                  <div className="flex items-center gap-2 text-accent mb-4">
+                  <div className="flex items-center gap-2 text-brand-strong mb-4">
                     <Star className="w-5 h-5" />
                     <span className="font-semibold">Featured Project</span>
                   </div>
-                  <h3 className="text-3xl font-bold text-text-primary mb-4">{project.title}</h3>
-                  <p className="text-text-secondary mb-6 text-lg">{project.description}</p>
+                  <h3 className="text-3xl font-bold text-white mb-4">{project.title}</h3>
+                  <p className="text-brand-muted mb-6 text-lg">{project.description}</p>
                   
                   <div className="mb-6">
-                    <h4 className="font-semibold text-text-primary mb-3">Key Results:</h4>
+                    <h4 className="font-semibold text-white mb-3">Key Results:</h4>
                     <ul className="space-y-2">
                       {project.results.map((result, i) => (
-                        <li key={i} className="flex items-center gap-2 text-text-secondary">
-                          <div className="w-2 h-2 bg-blue-600 rounded-full"></div>
+                        <li key={i} className="flex items-center gap-2 text-brand-muted">
+                          <div className="w-2 h-2 bg-brand-accent rounded-full"></div>
                           {result}
                         </li>
                       ))}
@@ -203,7 +203,7 @@ const ProjectsPage = () => {
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="bg-blue-50 text-blue-700 px-3 py-1 rounded-full text-sm font-medium"
+                        className="bg-brand-accent/10 text-brand-accent px-3 py-1 rounded-full text-sm font-medium"
                       >
                         {tech}
                       </span>
@@ -215,7 +215,7 @@ const ProjectsPage = () => {
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 bg-gradient-to-r from-primary to-accent text-background px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-shadow"
+                      className="flex items-center gap-2 bg-gradient-to-r from-brand-accent to-brand-strong text-brand-base px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-shadow"
                     >
                       <ExternalLink className="w-4 h-4" />
                       Live Demo
@@ -224,7 +224,7 @@ const ProjectsPage = () => {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-2 border-2 border-gray-300 text-text-secondary px-6 py-3 rounded-full font-semibold hover:border-gray-400 transition-colors"
+                      className="flex items-center gap-2 border-2 border-brand-muted text-brand-muted px-6 py-3 rounded-full font-semibold hover:border-brand-accent transition-colors"
                     >
                       <Github className="w-4 h-4" />
                       View Code
@@ -238,7 +238,7 @@ const ProjectsPage = () => {
       </section>
 
       {/* All Projects */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-brand-base">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div
             className="text-center mb-16"
@@ -247,10 +247,10 @@ const ProjectsPage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               All Projects
             </h2>
-            <p className="text-xl text-text-secondary max-w-2xl mx-auto mb-8">
+            <p className="text-xl text-brand-muted max-w-2xl mx-auto mb-8">
               Browse through my complete portfolio of work across different categories.
             </p>
             
@@ -262,8 +262,8 @@ const ProjectsPage = () => {
                   onClick={() => setFilter(category.id)}
                   className={`px-6 py-2 rounded-full font-medium transition-colors ${
                     filter === category.id
-                      ? 'bg-gradient-to-r from-primary to-accent text-background'
-                      : 'bg-surface text-text-secondary hover:bg-gray-100'
+                      ? 'bg-gradient-to-r from-brand-accent to-brand-strong text-brand-base'
+                      : 'bg-brand-surface text-brand-muted hover:bg-brand-surface'
                   }`}
                 >
                   {category.label}
@@ -284,13 +284,13 @@ const ProjectsPage = () => {
               {filteredProjects.map((project, index) => (
                 <motion.div
                   key={project.id}
-                  className="bg-surface rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
+                  className="bg-brand-surface rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden group"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: index * 0.1 }}
                   whileHover={{ y: -5 }}
                 >
-                  <div className="bg-gray-100 aspect-video flex items-center justify-center text-text-secondary relative overflow-hidden">
+                  <div className="bg-gray-100 aspect-video flex items-center justify-center text-brand-muted relative overflow-hidden">
                     <div className="text-center">
                       <div className="text-4xl mb-2">💻</div>
                       <div className="text-sm">Project Preview</div>
@@ -300,7 +300,7 @@ const ProjectsPage = () => {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-surface text-text-primary p-3 rounded-full hover:scale-110 transition-transform"
+                        className="bg-brand-surface text-white p-3 rounded-full hover:scale-110 transition-transform"
                       >
                         <ExternalLink className="w-5 h-5" />
                       </a>
@@ -308,7 +308,7 @@ const ProjectsPage = () => {
                         href={project.githubUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="bg-surface text-text-primary p-3 rounded-full hover:scale-110 transition-transform"
+                        className="bg-brand-surface text-white p-3 rounded-full hover:scale-110 transition-transform"
                       >
                         <Github className="w-5 h-5" />
                       </a>
@@ -317,23 +317,23 @@ const ProjectsPage = () => {
                   
                   <div className="p-6">
                     <div className="flex items-center justify-between mb-3">
-                      <span className="text-sm text-accent font-medium">{project.client}</span>
-                      <span className="text-sm text-text-secondary">{project.date}</span>
+                      <span className="text-sm text-brand-strong font-medium">{project.client}</span>
+                      <span className="text-sm text-brand-muted">{project.date}</span>
                     </div>
-                    <h3 className="text-xl font-bold text-text-primary mb-3">{project.title}</h3>
-                    <p className="text-text-secondary mb-4 line-clamp-2">{project.description}</p>
+                    <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
+                    <p className="text-brand-muted mb-4 line-clamp-2">{project.description}</p>
                     
                     <div className="flex flex-wrap gap-2 mb-4">
                       {project.technologies.slice(0, 3).map((tech) => (
                         <span
                           key={tech}
-                          className="bg-gray-100 text-text-secondary px-2 py-1 rounded text-xs"
+                          className="bg-brand-muted/20 text-brand-muted px-2 py-1 rounded text-xs"
                         >
                           {tech}
                         </span>
                       ))}
                       {project.technologies.length > 3 && (
-                        <span className="bg-gray-100 text-text-secondary px-2 py-1 rounded text-xs">
+                        <span className="bg-brand-muted/20 text-brand-muted px-2 py-1 rounded text-xs">
                           +{project.technologies.length - 3} more
                         </span>
                       )}
@@ -344,7 +344,7 @@ const ProjectsPage = () => {
                         href={project.liveUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-accent font-medium flex items-center gap-2 hover:gap-3 transition-all"
+                        className="text-brand-strong font-medium flex items-center gap-2 hover:gap-3 transition-all"
                       >
                         View Project
                         <ArrowRight className="w-4 h-4" />
@@ -370,12 +370,12 @@ const ProjectsPage = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-6">
               Like What You See?
             </h2>
-            <p className="text-xl text-background/80 mb-8">
+            <p className="text-xl text-brand-base/80 mb-8">
               Let's create something amazing together. I'd love to hear about your next project.
             </p>
             <Link href="/contact">
               <motion.button
-                className="bg-surface text-accent px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-shadow"
+                className="bg-brand-surface text-brand-strong px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-shadow"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >

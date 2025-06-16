@@ -24,19 +24,19 @@ const Navigation = () => {
   }
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/90 backdrop-blur-md border-b border-border/50">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-brand-base/90 backdrop-blur-md border-b border-brand-muted/50">
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center space-x-2">
             <motion.div
-              className="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-lg flex items-center justify-center glow-primary"
+              className="w-10 h-10 bg-gradient-to-br from-brand-accent to-brand-strong rounded-lg flex items-center justify-center glow-primary"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="text-background font-bold text-lg">DS</span>
+              <span className="text-brand-base font-bold text-lg">DS</span>
             </motion.div>
-            <span className="text-xl font-bold text-text-primary">Dasun Sucharith</span>
+            <span className="text-xl font-bold text-white">Dasun Sucharith</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -50,15 +50,15 @@ const Navigation = () => {
                 <span
                   className={`text-sm font-medium transition-colors ${
                     isActive(item.href)
-                      ? 'text-primary'
-                      : 'text-text-secondary hover:text-primary'
+                      ? 'text-brand-accent'
+                      : 'text-brand-muted hover:text-brand-accent'
                   }`}
                 >
                   {item.label}
                 </span>
                 {isActive(item.href) && (
                   <motion.div
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-accent rounded-full"
                     layoutId="activeTab"
                     initial={false}
                     transition={{ type: "spring", stiffness: 500, damping: 30 }}
@@ -72,7 +72,7 @@ const Navigation = () => {
           <div className="hidden md:block">
             <Link href="/contact">
               <motion.button
-                className="bg-gradient-to-r from-primary to-accent text-background px-6 py-2 rounded-full font-medium text-sm hover:shadow-lg transition-all glow-primary hover:glow-accent"
+                className="bg-gradient-to-r from-brand-accent to-brand-strong text-brand-base px-6 py-2 rounded-full font-medium text-sm hover:shadow-lg transition-all glow-primary hover:glow-accent"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
@@ -87,9 +87,9 @@ const Navigation = () => {
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? (
-              <X className="w-6 h-6 text-text-primary" />
+              <X className="w-6 h-6 text-white" />
             ) : (
-              <Menu className="w-6 h-6 text-text-primary" />
+              <Menu className="w-6 h-6 text-white" />
             )}
           </button>
         </div>
@@ -99,7 +99,7 @@ const Navigation = () => {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            className="md:hidden bg-surface border-t border-border"
+            className="md:hidden bg-brand-surface border-t border-brand-muted"
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
@@ -112,8 +112,8 @@ const Navigation = () => {
                   href={item.href}
                   className={`block text-base font-medium ${
                     isActive(item.href)
-                      ? 'text-primary'
-                      : 'text-text-secondary'
+                      ? 'text-brand-accent'
+                      : 'text-brand-muted'
                   }`}
                   onClick={() => setIsMenuOpen(false)}
                 >
@@ -121,7 +121,7 @@ const Navigation = () => {
                 </Link>
               ))}
               <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
-                <button className="w-full bg-gradient-to-r from-primary to-accent text-background px-6 py-3 rounded-full font-medium text-sm mt-4 glow-primary">
+                <button className="w-full bg-gradient-to-r from-brand-accent to-brand-strong text-brand-base px-6 py-3 rounded-full font-medium text-sm mt-4 glow-primary">
                   Let's Talk
                 </button>
               </Link>

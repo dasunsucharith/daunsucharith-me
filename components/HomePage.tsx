@@ -44,12 +44,12 @@ const HomePage = () => {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center bg-background overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center bg-brand-base overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute -top-40 -right-40 w-80 h-80 bg-accent/20 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-glow"></div>
-          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-primary/20 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-glow"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full filter blur-3xl"></div>
+          <div className="absolute -top-40 -right-40 w-80 h-80 bg-brand-strong/20 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-glow"></div>
+          <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-brand-accent/20 rounded-full mix-blend-screen filter blur-xl opacity-70 animate-glow"></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-gradient-to-r from-brand-accent/10 to-brand-strong/10 rounded-full filter blur-3xl"></div>
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center">
@@ -64,19 +64,19 @@ const HomePage = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <span className="text-text-primary">Hi, I'm </span>
+              <span className="text-white">Hi, I'm </span>
               <span className="gradient-text">
                 Dasun
               </span>
             </motion.h1>
             
             <motion.p 
-              className="text-xl md:text-2xl text-text-secondary mb-8 max-w-3xl mx-auto"
+              className="text-xl md:text-2xl text-brand-muted mb-8 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              A passionate <span className="font-semibold text-primary">Developer</span> & <span className="font-semibold text-accent">Digital Strategist</span> who crafts exceptional web experiences that drive results.
+              A passionate <span className="font-semibold text-brand-accent">Developer</span> & <span className="font-semibold text-brand-strong">Digital Strategist</span> who crafts exceptional web experiences that drive results.
             </motion.p>
 
             <motion.div 
@@ -87,7 +87,7 @@ const HomePage = () => {
             >
               <Link href="/contact">
                 <motion.button 
-                  className="bg-gradient-to-r from-primary to-accent text-background px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2 hover:shadow-lg transition-all glow-primary hover:animate-glow"
+                  className="bg-gradient-to-r from-brand-accent to-brand-strong text-brand-base px-8 py-4 rounded-full font-semibold text-lg flex items-center gap-2 hover:shadow-lg transition-all glow-primary hover:animate-glow"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -97,7 +97,7 @@ const HomePage = () => {
               </Link>
               <Link href="/projects">
                 <motion.button 
-                  className="border-2 border-border text-text-secondary px-8 py-4 rounded-full font-semibold text-lg hover:border-primary hover:text-primary transition-all"
+                  className="border-2 border-brand-muted text-brand-muted px-8 py-4 rounded-full font-semibold text-lg hover:border-brand-accent hover:text-brand-accent transition-all"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                 >
@@ -112,14 +112,14 @@ const HomePage = () => {
               animate={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.8 }}
             >
-              <ChevronDown className="w-8 h-8 text-text-secondary animate-bounce" />
+              <ChevronDown className="w-8 h-8 text-brand-muted animate-bounce" />
             </motion.div>
           </motion.div>
         </div>
       </section>
 
       {/* Skills Section */}
-      <section className="py-20 bg-surface">
+      <section className="py-20 bg-brand-surface">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div 
             className="text-center mb-16"
@@ -128,10 +128,10 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               What I Do Best
             </h2>
-            <p className="text-xl text-text-secondary max-w-2xl mx-auto">
+            <p className="text-xl text-brand-muted max-w-2xl mx-auto">
               I combine technical expertise with creative vision to deliver exceptional digital solutions.
             </p>
           </motion.div>
@@ -140,18 +140,18 @@ const HomePage = () => {
             {skills.map((skill, index) => (
               <motion.div
                 key={skill.title}
-                className="text-center p-6 rounded-2xl bg-background hover:bg-surface hover:glow-primary transition-all duration-300"
+                className="text-center p-6 rounded-2xl bg-brand-base hover:bg-brand-surface hover:glow-primary transition-all duration-300"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.1 }}
                 whileHover={{ y: -5 }}
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center mx-auto mb-4 glow-primary">
-                  <skill.icon className="w-8 h-8 text-background" />
+                <div className="w-16 h-16 bg-gradient-to-br from-brand-accent to-brand-strong rounded-2xl flex items-center justify-center mx-auto mb-4 glow-primary">
+                  <skill.icon className="w-8 h-8 text-brand-base" />
                 </div>
-                <h3 className="text-xl font-semibold text-text-primary mb-2">{skill.title}</h3>
-                <p className="text-text-secondary">{skill.description}</p>
+                <h3 className="text-xl font-semibold text-white mb-2">{skill.title}</h3>
+                <p className="text-brand-muted">{skill.description}</p>
               </motion.div>
             ))}
           </div>
@@ -159,7 +159,7 @@ const HomePage = () => {
       </section>
 
       {/* Stats Section */}
-      <section className="py-20 bg-gradient-to-r from-primary to-accent text-background">
+      <section className="py-20 bg-gradient-to-r from-brand-accent to-brand-strong text-brand-base">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div 
             className="text-center mb-16"
@@ -171,7 +171,7 @@ const HomePage = () => {
             <h2 className="text-3xl md:text-4xl font-bold mb-4">
               Proven Track Record
             </h2>
-            <p className="text-xl text-background/80 max-w-2xl mx-auto">
+            <p className="text-xl text-brand-base/80 max-w-2xl mx-auto">
               Numbers that showcase my commitment to delivering exceptional results.
             </p>
           </motion.div>
@@ -187,7 +187,7 @@ const HomePage = () => {
                 transition={{ duration: 0.8, delay: index * 0.1 }}
               >
                 <div className="text-4xl md:text-5xl font-bold mb-2">{stat.number}</div>
-                <div className="text-background/80">{stat.label}</div>
+                <div className="text-brand-base/80">{stat.label}</div>
               </motion.div>
             ))}
           </div>
@@ -195,7 +195,7 @@ const HomePage = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-background">
+      <section className="py-20 bg-brand-base">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <motion.div 
             className="text-center mb-16"
@@ -204,10 +204,10 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               What Clients Say
             </h2>
-            <p className="text-xl text-text-secondary max-w-2xl mx-auto">
+            <p className="text-xl text-brand-muted max-w-2xl mx-auto">
               Don't just take my word for it. Here's what my clients have to say about working with me.
             </p>
           </motion.div>
@@ -216,7 +216,7 @@ const HomePage = () => {
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={testimonial.name}
-                className="bg-surface p-8 rounded-2xl border border-border hover:glow-primary transition-all"
+                className="bg-brand-surface p-8 rounded-2xl border border-brand-muted hover:glow-primary transition-all"
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
@@ -224,13 +224,13 @@ const HomePage = () => {
               >
                 <div className="flex items-center mb-4">
                   {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-primary fill-current" />
+                    <Star key={i} className="w-5 h-5 text-brand-accent fill-current" />
                   ))}
                 </div>
-                <p className="text-text-secondary mb-6 italic">"{testimonial.content}"</p>
+                <p className="text-brand-muted mb-6 italic">"{testimonial.content}"</p>
                 <div>
-                  <div className="font-semibold text-text-primary">{testimonial.name}</div>
-                  <div className="text-text-secondary text-sm">{testimonial.role}</div>
+                  <div className="font-semibold text-white">{testimonial.name}</div>
+                  <div className="text-brand-muted text-sm">{testimonial.role}</div>
                 </div>
               </motion.div>
             ))}
@@ -239,7 +239,7 @@ const HomePage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-surface">
+      <section className="py-20 bg-brand-surface">
         <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -247,15 +247,15 @@ const HomePage = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-text-primary mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
               Ready to Start Your Next Project?
             </h2>
-            <p className="text-xl text-text-secondary mb-8">
+            <p className="text-xl text-brand-muted mb-8">
               Let's discuss how I can help bring your vision to life with exceptional web solutions.
             </p>
             <Link href="/contact">
               <motion.button
-                className="bg-gradient-to-r from-primary to-accent text-background px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all glow-primary hover:animate-glow"
+                className="bg-gradient-to-r from-brand-accent to-brand-strong text-brand-base px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all glow-primary hover:animate-glow"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
