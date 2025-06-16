@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Star, Mail, Linkedin, Github } from 'lucide-react'
+import { Mail, Linkedin, Github } from 'lucide-react'
 
 const HomePage = () => {
   const heroRef = useRef(null)
@@ -85,33 +85,6 @@ const HomePage = () => {
   )
 
 
-  const stats = [
-    { number: '50+', label: 'Projects Completed' },
-    { number: '25+', label: 'Happy Clients' },
-    { number: '5+', label: 'Years Experience' },
-    { number: '20+', label: 'Technologies' },
-  ]
-
-  const testimonials = [
-    {
-      name: 'Sarah Johnson',
-      role: 'CEO, TechStart',
-      content: 'Dasun delivered an exceptional website that exceeded our expectations. Professional, fast, and incredibly talented.',
-      rating: 5
-    },
-    {
-      name: 'Michael Chen',
-      role: 'Founder, DigitalFlow',
-      content: 'Working with Dasun was a game-changer for our business. The results speak for themselves.',
-      rating: 5
-    },
-    {
-      name: 'Emma Wilson',
-      role: 'Marketing Director, InnovateCorp',
-      content: 'Amazing attention to detail and excellent communication throughout the project.',
-      rating: 5
-    }
-  ]
 
   return (
     <div ref={containerRef} className="relative min-h-screen">
@@ -458,113 +431,8 @@ const HomePage = () => {
         </motion.div>
       </section>
 
-      {/* Stats Section */}
-      <section className="py-20 bg-gradient-to-r from-brand-accent to-brand-strong text-brand-base">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">
-              Proven Track Record
-            </h2>
-            <p className="text-xl text-brand-base/80 max-w-2xl mx-auto">
-              Numbers that showcase my commitment to delivering exceptional results.
-            </p>
-          </motion.div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                className="text-center"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-              >
-                <div className="text-4xl md:text-5xl font-bold mb-2">{stat.number}</div>
-                <div className="text-brand-base/80">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-brand-base">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              What Clients Say
-            </h2>
-            <p className="text-xl text-brand-muted max-w-2xl mx-auto">
-              Don't just take my word for it. Here's what my clients have to say about working with me.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.name}
-                className="bg-brand-surface p-8 rounded-2xl border border-brand-muted hover:glow-primary transition-all"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-              >
-                <div className="flex items-center mb-4">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="w-5 h-5 text-brand-accent fill-current" />
-                  ))}
-                </div>
-                <p className="text-brand-muted mb-6 italic">"{testimonial.content}"</p>
-                <div>
-                  <div className="font-semibold text-white">{testimonial.name}</div>
-                  <div className="text-brand-muted text-sm">{testimonial.role}</div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="py-20 bg-brand-surface">
-        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
-              Ready to Start Your Next Project?
-            </h2>
-            <p className="text-xl text-brand-muted mb-8">
-              Let's discuss how I can help bring your vision to life with exceptional web solutions.
-            </p>
-            <Link href="/contact">
-              <motion.button
-                className="bg-gradient-to-r from-brand-accent to-brand-strong text-brand-base px-8 py-4 rounded-full font-semibold text-lg hover:shadow-lg transition-all glow-primary hover:animate-glow"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
-              >
-                Get In Touch
-              </motion.button>
-            </Link>
-          </motion.div>
-        </div>
-      </section>
     </div>
   )
 }
