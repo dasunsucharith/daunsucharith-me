@@ -6,14 +6,17 @@ import { motion } from 'framer-motion'
 import { Mail, Linkedin, Github } from 'lucide-react'
 
 const HomePage = () => {
-  // Prevent scrolling on homepage
+  // Prevent scrolling on homepage only
   useEffect(() => {
-    document.body.style.overflow = 'hidden'
-    document.documentElement.style.overflow = 'hidden'
-    
-    return () => {
-      document.body.style.overflow = 'auto'
-      document.documentElement.style.overflow = 'auto'
+    // Only apply if we're on the homepage
+    if (typeof window !== 'undefined' && window.location.pathname === '/') {
+      document.body.style.overflow = 'hidden'
+      document.documentElement.style.overflow = 'hidden'
+      
+      return () => {
+        document.body.style.overflow = 'auto'
+        document.documentElement.style.overflow = 'auto'
+      }
     }
   }, [])
 
