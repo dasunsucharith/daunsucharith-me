@@ -36,7 +36,7 @@ export default function RootLayout({
         style={{'--font-josefin': josefinSans.style.fontFamily, '--font-inter': inter.style.fontFamily} as React.CSSProperties}
       >
         <Navigation />
-        <main className="pt-16">
+        <main>
           {children}
         </main>
       </body>
