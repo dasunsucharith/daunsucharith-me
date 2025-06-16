@@ -5,10 +5,30 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { ExternalLink, Github, Filter, Star, Calendar, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
+interface Category {
+  id: string
+  label: string
+}
+
+interface Project {
+  id: number
+  title: string
+  category: string
+  description: string
+  image: string
+  technologies: string[]
+  liveUrl: string
+  githubUrl: string
+  featured: boolean
+  date: string
+  client: string
+  results: string[]
+}
+
 const ProjectsPage = () => {
   const [filter, setFilter] = useState('all')
 
-  const categories = [
+  const categories: Category[] = [
     { id: 'all', label: 'All Projects' },
     { id: 'web', label: 'Web Apps' },
     { id: 'ecommerce', label: 'E-Commerce' },
@@ -16,7 +36,7 @@ const ProjectsPage = () => {
     { id: 'mobile', label: 'Mobile Apps' }
   ]
 
-  const projects = [
+  const projects: Project[] = [
     {
       id: 1,
       title: 'E-Commerce Platform',
