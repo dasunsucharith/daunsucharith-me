@@ -1,11 +1,21 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { Mail, Linkedin, Github } from 'lucide-react'
 
 const HomePage = () => {
+  // Prevent scrolling on homepage
+  useEffect(() => {
+    document.body.style.overflow = 'hidden'
+    document.documentElement.style.overflow = 'hidden'
+    
+    return () => {
+      document.body.style.overflow = 'auto'
+      document.documentElement.style.overflow = 'auto'
+    }
+  }, [])
 
   const InfinitySymbol = ({ className }: { className?: string }) => (
     <svg 
@@ -33,9 +43,9 @@ const HomePage = () => {
 
 
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div className="relative w-full h-screen overflow-hidden">
       {/* Hero Section */}
-      <section className="relative h-screen flex items-center justify-center bg-brand-base overflow-hidden">
+      <section className="relative w-full h-screen flex items-center justify-center bg-brand-base overflow-hidden">
         {/* Infinity Background Animation */}
         <div className="absolute inset-0 overflow-hidden will-change-transform">
           {/* Multiple infinity symbols with scroll-reactive animations */}
