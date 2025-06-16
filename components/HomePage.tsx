@@ -7,8 +7,6 @@ import { Mail, Linkedin, Github } from 'lucide-react'
 
 const HomePage = () => {
   const heroRef = useRef(null)
-  const aboutRef = useRef(null)
-  const transitionRef = useRef(null)
   const timelineRef = useRef(null)
   const containerRef = useRef(null)
   
@@ -16,13 +14,6 @@ const HomePage = () => {
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
-    layoutEffect: false
-  })
-
-  // Transition section scroll tracking for smooth fade effects
-  const { scrollYProgress: transitionProgress } = useScroll({
-    target: transitionRef,
-    offset: ["start end", "end start"],
     layoutEffect: false
   })
 
@@ -46,17 +37,6 @@ const HomePage = () => {
   const x1 = useTransform(scrollYProgress, [0, 1], [0, 8], { clamp: false })
   const x2 = useTransform(scrollYProgress, [0, 1], [0, -5], { clamp: false })
 
-  // Transition scroll effects
-  const heroContentOpacity = useTransform(transitionProgress, [0, 0.4, 0.8], [1, 0.6, 0], { clamp: false })
-  const heroContentScale = useTransform(transitionProgress, [0, 0.6, 1], [1, 0.96, 0.92], { clamp: false })
-  const heroContentY = useTransform(transitionProgress, [0, 1], [0, -80], { clamp: false })
-  
-  const aboutContentOpacity = useTransform(transitionProgress, [0.2, 0.5, 0.8], [0, 0.7, 1], { clamp: false })
-  const aboutContentScale = useTransform(transitionProgress, [0, 0.4, 0.8], [0.92, 0.96, 1], { clamp: false })
-  const aboutContentY = useTransform(transitionProgress, [0, 1], [60, 0], { clamp: false })
-  
-  // Growing line animation
-  const lineWidth = useTransform(transitionProgress, [0.1, 0.9], [0, 100], { clamp: false })
   
   // Timeline vertical line height based on scroll progress
   const timelineHeight = useTransform(timelineProgress, [0, 1], [0, 100], { clamp: false })
@@ -336,11 +316,6 @@ const HomePage = () => {
 
         <motion.div 
           className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-left"
-          style={{
-            opacity: heroContentOpacity,
-            scale: heroContentScale,
-            y: heroContentY
-          }}
         >
           <div className="space-y-6">
             <motion.div
