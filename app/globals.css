@@ -76,3 +76,38 @@ h1, h2, h3, h4, h5, h6 {
 .glow-accent {
   box-shadow: 0 0 20px rgba(181, 26, 43, 0.3);
 }
+
+/* iOS Safari compatibility fixes */
+@supports (-webkit-backdrop-filter: blur()) or (backdrop-filter: blur()) {
+  .backdrop-blur-fallback {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+
+/* Ensure buttons are visible on all iOS devices */
+@media screen and (-webkit-min-device-pixel-ratio: 1) {
+  .social-button {
+    background: rgba(36, 47, 73, 0.95) !important;
+    border: 2px solid rgba(255, 165, 134, 0.8) !important;
+    color: white !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    min-height: 48px !important;
+    min-width: 48px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+  }
+}
+
+/* Force visibility for iOS */
+.ios-safe {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform;
+}

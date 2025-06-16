@@ -389,7 +389,12 @@ const HomePage = () => {
               <div className="flex gap-6">
                 <motion.a
                   href="mailto:sucharith.dasun@gmail.com"
-                  className="relative w-12 h-12 bg-gradient-to-br from-brand-surface/80 to-brand-base/60 border-2 border-brand-accent/30 rounded-full flex items-center justify-center text-white hover:text-brand-accent backdrop-blur-sm shadow-lg"
+                  className="social-button ios-safe relative w-12 h-12 bg-brand-surface border-2 border-brand-accent rounded-full flex items-center justify-center text-white hover:text-brand-accent transition-all shadow-lg"
+                  style={{
+                    background: 'rgba(36, 47, 73, 0.9)',
+                    backdropFilter: 'blur(8px)',
+                    WebkitBackdropFilter: 'blur(8px)',
+                  }}
                   whileHover={{ 
                     scale: 1.1,
                     boxShadow: "0 0 25px rgba(255, 165, 134, 0.6)",
@@ -407,14 +412,19 @@ const HomePage = () => {
                     boxShadow: { duration: 2, repeat: Infinity, ease: "easeInOut" }
                   }}
                 >
-                  <Mail className="w-5 h-5" />
+                  <Mail className="w-5 h-5 relative z-10" />
                 </motion.a>
 
                 <motion.a
                   href="https://www.linkedin.com/in/dasun-sucharith/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative w-12 h-12 bg-gradient-to-br from-brand-surface/80 to-brand-base/60 border-2 border-brand-strong/30 rounded-full flex items-center justify-center text-white hover:text-brand-strong backdrop-blur-sm shadow-lg"
+                  className="social-button ios-safe relative w-12 h-12 bg-brand-surface border-2 border-brand-strong rounded-full flex items-center justify-center text-white hover:text-brand-strong transition-all shadow-lg"
+                  style={{
+                    background: 'rgba(36, 47, 73, 0.9)',
+                    backdropFilter: 'blur(8px)',
+                    WebkitBackdropFilter: 'blur(8px)',
+                  }}
                   whileHover={{ 
                     scale: 1.1,
                     boxShadow: "0 0 25px rgba(181, 26, 43, 0.6)",
@@ -432,14 +442,19 @@ const HomePage = () => {
                     boxShadow: { duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
                   }}
                 >
-                  <Linkedin className="w-5 h-5" />
+                  <Linkedin className="w-5 h-5 relative z-10" />
                 </motion.a>
 
                 <motion.a
                   href="https://github.com/dasunsucharith"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="relative w-12 h-12 bg-gradient-to-br from-brand-surface/80 to-brand-base/60 border-2 border-brand-accent/30 rounded-full flex items-center justify-center text-white hover:text-brand-accent backdrop-blur-sm shadow-lg"
+                  className="social-button ios-safe relative w-12 h-12 bg-brand-surface border-2 border-brand-accent rounded-full flex items-center justify-center text-white hover:text-brand-accent transition-all shadow-lg"
+                  style={{
+                    background: 'rgba(36, 47, 73, 0.9)',
+                    backdropFilter: 'blur(8px)',
+                    WebkitBackdropFilter: 'blur(8px)',
+                  }}
                   whileHover={{ 
                     scale: 1.1,
                     boxShadow: "0 0 25px rgba(255, 165, 134, 0.6)",
@@ -457,7 +472,7 @@ const HomePage = () => {
                     boxShadow: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }
                   }}
                 >
-                  <Github className="w-5 h-5" />
+                  <Github className="w-5 h-5 relative z-10" />
                 </motion.a>
               </div>
             </motion.div>
