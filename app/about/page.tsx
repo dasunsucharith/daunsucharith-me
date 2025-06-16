@@ -2,18 +2,44 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Download, MapPin, Calendar, Mail, Phone, Globe, Award, Book, Coffee } from 'lucide-react'
+import { Download, MapPin, Calendar, Mail, Phone, Globe, Award, Book, Coffee, type LucideIcon } from 'lucide-react'
 import Link from 'next/link'
 
+interface Technology {
+  category: string
+  skills: string[]
+}
+
+interface Experience {
+  title: string
+  company: string
+  period: string
+  description: string
+  achievements: string[]
+}
+
+interface Education {
+  degree: string
+  school: string
+  period: string
+  description: string
+}
+
+interface PersonalStat {
+  icon: LucideIcon
+  label: string
+  value: string
+}
+
 const AboutPage = () => {
-  const technologies = [
+  const technologies: Technology[] = [
     { category: 'Frontend', skills: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion'] },
     { category: 'Backend', skills: ['Node.js', 'Express', 'PostgreSQL', 'MongoDB', 'REST APIs'] },
     { category: 'Tools', skills: ['Git', 'Docker', 'VS Code', 'Figma', 'Adobe Creative Suite'] },
     { category: 'Cloud', skills: ['AWS', 'Vercel', 'Netlify', 'Firebase', 'DigitalOcean'] },
   ]
 
-  const experience = [
+  const experience: Experience[] = [
     {
       title: 'Senior Full-Stack Developer',
       company: 'TechCorp Solutions',
@@ -37,7 +63,7 @@ const AboutPage = () => {
     }
   ]
 
-  const education = [
+  const education: Education[] = [
     {
       degree: 'Bachelor of Computer Science',
       school: 'University of Technology',
@@ -52,7 +78,7 @@ const AboutPage = () => {
     }
   ]
 
-  const personalStats = [
+  const personalStats: PersonalStat[] = [
     { icon: Coffee, label: 'Cups of Coffee', value: '1000+' },
     { icon: Book, label: 'Projects Completed', value: '50+' },
     { icon: Award, label: 'Happy Clients', value: '25+' },
