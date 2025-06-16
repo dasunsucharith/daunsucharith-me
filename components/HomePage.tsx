@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Code, Palette, Zap, Users, Star, Mail, Linkedin, Github } from 'lucide-react'
+import { Star, Mail, Linkedin, Github } from 'lucide-react'
 
 const HomePage = () => {
   const heroRef = useRef(null)
@@ -42,12 +42,6 @@ const HomePage = () => {
     </svg>
   )
 
-  const skills = [
-    { icon: Code, title: 'Development', description: 'Modern web applications with React, Next.js, and TypeScript' },
-    { icon: Palette, title: 'Design', description: 'Beautiful, user-centered interfaces and experiences' },
-    { icon: Zap, title: 'Performance', description: 'Fast, optimized websites that rank well on search engines' },
-    { icon: Users, title: 'Strategy', description: 'Digital strategies that drive growth and engagement' },
-  ]
 
   const stats = [
     { number: '50+', label: 'Projects Completed' },
@@ -391,45 +385,6 @@ const HomePage = () => {
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section className="py-20 bg-brand-surface">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              What I Do Best
-            </h2>
-            <p className="text-xl text-brand-muted max-w-2xl mx-auto">
-              I combine technical expertise with creative vision to deliver exceptional digital solutions.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {skills.map((skill, index) => (
-              <motion.div
-                key={skill.title}
-                className="text-center p-6 rounded-2xl bg-brand-base hover:bg-brand-surface hover:glow-primary transition-all duration-300"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
-              >
-                <div className="w-16 h-16 bg-gradient-to-br from-brand-accent to-brand-strong rounded-2xl flex items-center justify-center mx-auto mb-4 glow-primary">
-                  <skill.icon className="w-8 h-8 text-brand-base" />
-                </div>
-                <h3 className="text-xl font-semibold text-white mb-2">{skill.title}</h3>
-                <p className="text-brand-muted">{skill.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* Stats Section */}
       <section className="py-20 bg-gradient-to-r from-brand-accent to-brand-strong text-brand-base">
