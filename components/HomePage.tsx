@@ -1,45 +1,11 @@
 'use client'
 
-import React, { useEffect, useRef } from 'react'
+import React from 'react'
 import Link from 'next/link'
-import { motion, useScroll, useTransform } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { Mail, Linkedin, Github } from 'lucide-react'
 
 const HomePage = () => {
-  const heroRef = useRef(null)
-  const timelineRef = useRef(null)
-  const containerRef = useRef(null)
-  
-  // Hero section scroll tracking
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-    layoutEffect: false
-  })
-
-  // Global scroll progress for timeline animation
-  const { scrollYProgress: timelineProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end end"],
-    layoutEffect: false
-  })
-  
-  // Subtle scroll-reactive transforms to prevent flickering
-  const y1 = useTransform(scrollYProgress, [0, 1], [0, -15], { clamp: false })
-  const y2 = useTransform(scrollYProgress, [0, 1], [0, -8], { clamp: false })
-  const y3 = useTransform(scrollYProgress, [0, 1], [0, -20], { clamp: false })
-  const rotate = useTransform(scrollYProgress, [0, 1], [0, 45], { clamp: false })
-  const rotateReverse = useTransform(scrollYProgress, [0, 1], [0, -45], { clamp: false })
-  const scale1 = useTransform(scrollYProgress, [0, 0.5, 1], [1, 1.05, 0.95], { clamp: false })
-  const scale2 = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [1, 0.98, 1.08, 1], { clamp: false })
-  const opacity1 = useTransform(scrollYProgress, [0, 0.5, 1], [0.7, 0.8, 0.6], { clamp: false })
-  const opacity2 = useTransform(scrollYProgress, [0, 0.4, 0.8, 1], [0.6, 0.7, 0.65, 0.5], { clamp: false })
-  const x1 = useTransform(scrollYProgress, [0, 1], [0, 8], { clamp: false })
-  const x2 = useTransform(scrollYProgress, [0, 1], [0, -5], { clamp: false })
-
-  
-  // Timeline vertical line height based on scroll progress
-  const timelineHeight = useTransform(timelineProgress, [0, 1], [0, 100], { clamp: false })
 
   const InfinitySymbol = ({ className }: { className?: string }) => (
     <svg 
@@ -67,24 +33,17 @@ const HomePage = () => {
 
 
   return (
-    <div ref={containerRef} className="relative min-h-screen">
+    <div className="relative h-screen overflow-hidden">
       {/* Hero Section */}
-      <section ref={heroRef} className="relative min-h-screen flex items-center justify-center bg-brand-base overflow-hidden">
+      <section className="relative h-screen flex items-center justify-center bg-brand-base overflow-hidden">
         {/* Infinity Background Animation */}
         <div className="absolute inset-0 overflow-hidden will-change-transform">
           {/* Multiple infinity symbols with scroll-reactive animations */}
           <motion.div
-            style={{ 
-              y: y1,
-              rotate: rotate,
-              scale: scale1,
-              opacity: opacity1,
-              x: x1,
-              willChange: "transform"
-            }}
-            className="absolute top-10 left-10"
+            className="absolute top-10 left-10 opacity-60"
             animate={{ 
               scale: [1, 1.05, 1],
+              rotate: [0, 45, 0],
             }}
             transition={{ 
               duration: 8,
@@ -97,15 +56,10 @@ const HomePage = () => {
           </motion.div>
           
           <motion.div
-            style={{ 
-              y: y2,
-              scale: scale2,
-              opacity: opacity2,
-              willChange: "transform"
-            }}
-            className="absolute top-1/4 right-20"
+            className="absolute top-1/4 right-20 opacity-50"
             animate={{ 
               rotate: [0, 360],
+              scale: [1, 1.1, 1],
             }}
             transition={{ 
               duration: 12,
@@ -117,16 +71,11 @@ const HomePage = () => {
           </motion.div>
 
           <motion.div
-            style={{ 
-              y: y3,
-              rotate: rotateReverse,
-              scale: scale1,
-              x: x2,
-              willChange: "transform"
-            }}
             className="absolute bottom-20 left-1/4 opacity-55"
             animate={{ 
               scale: [1, 1.08, 1],
+              rotate: [0, -45, 0],
+              x: [-15, 15, -15],
             }}
             transition={{ 
               duration: 16,
@@ -139,15 +88,10 @@ const HomePage = () => {
           </motion.div>
 
           <motion.div
-            style={{ 
-              y: y1,
-              scale: scale2,
-              opacity: opacity1,
-              willChange: "transform"
-            }}
-            className="absolute top-1/2 right-10"
+            className="absolute top-1/2 right-10 opacity-45"
             animate={{ 
               rotate: [0, 180, 360],
+              scale: [1, 0.9, 1.1, 1],
             }}
             transition={{ 
               duration: 20,
@@ -159,17 +103,10 @@ const HomePage = () => {
           </motion.div>
 
           <motion.div
-            style={{ 
-              y: y2,
-              rotate: rotate,
-              scale: scale1,
-              opacity: opacity2,
-              x: x1,
-              willChange: "transform"
-            }}
-            className="absolute bottom-10 right-1/3"
+            className="absolute bottom-10 right-1/3 opacity-50"
             animate={{ 
               scale: [1, 1.1, 1],
+              rotate: [0, 45, 0],
             }}
             transition={{ 
               duration: 14,
@@ -183,60 +120,39 @@ const HomePage = () => {
 
           {/* Scroll-Reactive Animated Emojis */}
           <motion.div
-            style={{ 
-              y: y1,
-              scale: scale1,
-              opacity: opacity1,
-              willChange: "transform"
-            }}
             className="absolute top-20 right-1/3 text-4xl"
             animate={{ 
-              y: [-3, 3, -3],
+              rotate: [0, 360],
+              scale: [1, 1.1, 1],
             }}
             transition={{ 
               duration: 10,
               repeat: Infinity,
-              ease: "easeInOut",
-              repeatType: "reverse"
+              ease: "linear"
             }}
           >
             💻
           </motion.div>
 
           <motion.div
-            style={{ 
-              y: y2,
-              scale: scale2,
-              rotate: rotateReverse,
-              opacity: opacity2,
-              willChange: "transform"
-            }}
             className="absolute top-1/3 left-16 text-3xl"
             animate={{ 
-              y: [-5, 5, -5],
+              rotate: [0, -360],
             }}
             transition={{ 
               duration: 13,
               repeat: Infinity,
-              ease: "easeInOut",
-              repeatType: "reverse"
+              ease: "linear"
             }}
           >
             🚀
           </motion.div>
 
           <motion.div
-            style={{ 
-              y: y3,
-              scale: scale1,
-              rotate: rotate,
-              opacity: opacity1,
-              x: x2,
-              willChange: "transform"
-            }}
             className="absolute bottom-1/4 left-1/3 text-3xl"
             animate={{ 
               rotateZ: [0, 180, 360],
+              scale: [1, 1.15, 1],
             }}
             transition={{ 
               duration: 11,
@@ -248,35 +164,25 @@ const HomePage = () => {
           </motion.div>
 
           <motion.div
-            style={{ 
-              y: y1,
-              scale: scale2,
-              opacity: opacity2,
-              willChange: "transform"
-            }}
             className="absolute bottom-20 right-20 text-4xl"
             animate={{ 
-              rotate: [0, 360],
+              scale: [1, 0.9, 1.05, 1],
             }}
             transition={{ 
               duration: 15,
               repeat: Infinity,
-              ease: "linear"
+              ease: "easeInOut",
+              repeatType: "reverse"
             }}
           >
             🎯
           </motion.div>
 
           <motion.div
-            style={{ 
-              y: y2,
-              scale: scale1,
-              opacity: opacity1,
-              willChange: "transform"
-            }}
-            className="absolute top-2/3 right-1/2 text-3xl"
+            className="absolute top-2/3 right-1/2 text-2xl"
             animate={{ 
-              rotate: [0, 360],
+              rotate: [0, -360],
+              scale: [1, 1.2, 1],
             }}
             transition={{ 
               duration: 9,
@@ -288,16 +194,9 @@ const HomePage = () => {
           </motion.div>
 
           <motion.div
-            style={{ 
-              y: y3,
-              scale: scale2,
-              opacity: opacity2,
-              willChange: "transform"
-            }}
-            className="absolute top-1/3 left-1/2 text-3xl"
+            className="absolute top-1/2 left-1/2 text-3xl"
             animate={{ 
-              y: [-4, 4, -4],
-              scale: [1, 1.08, 1],
+              scale: [1, 1.1, 1],
             }}
             transition={{ 
               duration: 12,
