@@ -2,11 +2,31 @@
 
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Code, Palette, Zap, Search, Globe, Shield, ArrowRight, Check } from 'lucide-react'
+import { Code, Palette, Zap, Search, Globe, Shield, ArrowRight, Check, type LucideIcon } from 'lucide-react'
 import Link from 'next/link'
 
+interface Service {
+  icon: LucideIcon
+  title: string
+  description: string
+  features: string[]
+  price: string
+  popular: boolean
+}
+
+interface ProcessStep {
+  step: string
+  title: string
+  description: string
+}
+
+interface FAQ {
+  question: string
+  answer: string
+}
+
 const ServicesPage = () => {
-  const services = [
+  const services: Service[] = [
     {
       icon: Code,
       title: 'Web Development',
@@ -57,7 +77,7 @@ const ServicesPage = () => {
     }
   ]
 
-  const process = [
+  const process: ProcessStep[] = [
     {
       step: '01',
       title: 'Discovery & Strategy',
@@ -80,7 +100,7 @@ const ServicesPage = () => {
     }
   ]
 
-  const faqs = [
+  const faqs: FAQ[] = [
     {
       question: 'How long does a typical project take?',
       answer: 'Project timelines vary based on complexity, but most websites take 4-8 weeks from start to finish. I\'ll provide a detailed timeline during our initial consultation.'
