@@ -3,15 +3,35 @@
 import React, { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import { Code, Palette, Zap, Users, Star, Mail, Linkedin, Github } from 'lucide-react'
+import { Star, Mail, Linkedin, Github } from 'lucide-react'
 
 const HomePage = () => {
   const heroRef = useRef(null)
+  const aboutRef = useRef(null)
+  const transitionRef = useRef(null)
+  const timelineRef = useRef(null)
+  const containerRef = useRef(null)
+  
+  // Hero section scroll tracking
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ["start start", "end start"],
     layoutEffect: false,
     smooth: true
+  })
+
+  // Transition section scroll tracking for smooth fade effects
+  const { scrollYProgress: transitionProgress } = useScroll({
+    target: transitionRef,
+    offset: ["start end", "end start"],
+    layoutEffect: false
+  })
+
+  // Global scroll progress for timeline animation
+  const { scrollYProgress: timelineProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end end"],
+    layoutEffect: false
   })
   
   // Subtle scroll-reactive transforms to prevent flickering
@@ -26,6 +46,21 @@ const HomePage = () => {
   const opacity2 = useTransform(scrollYProgress, [0, 0.4, 0.8, 1], [0.6, 0.7, 0.65, 0.5], { clamp: false })
   const x1 = useTransform(scrollYProgress, [0, 1], [0, 8], { clamp: false })
   const x2 = useTransform(scrollYProgress, [0, 1], [0, -5], { clamp: false })
+
+  // Transition scroll effects
+  const heroContentOpacity = useTransform(transitionProgress, [0, 0.4, 0.8], [1, 0.6, 0], { clamp: false })
+  const heroContentScale = useTransform(transitionProgress, [0, 0.6, 1], [1, 0.96, 0.92], { clamp: false })
+  const heroContentY = useTransform(transitionProgress, [0, 1], [0, -80], { clamp: false })
+  
+  const aboutContentOpacity = useTransform(transitionProgress, [0.2, 0.5, 0.8], [0, 0.7, 1], { clamp: false })
+  const aboutContentScale = useTransform(transitionProgress, [0, 0.4, 0.8], [0.92, 0.96, 1], { clamp: false })
+  const aboutContentY = useTransform(transitionProgress, [0, 1], [60, 0], { clamp: false })
+  
+  // Growing line animation
+  const lineWidth = useTransform(transitionProgress, [0.1, 0.9], [0, 100], { clamp: false })
+  
+  // Timeline vertical line height based on scroll progress
+  const timelineHeight = useTransform(timelineProgress, [0, 1], [0, 100], { clamp: false })
 
   const InfinitySymbol = ({ className }: { className?: string }) => (
     <svg 
@@ -50,12 +85,6 @@ const HomePage = () => {
     </svg>
   )
 
-  const skills = [
-    { icon: Code, title: 'Development', description: 'Modern web applications with React, Next.js, and TypeScript' },
-    { icon: Palette, title: 'Design', description: 'Beautiful, user-centered interfaces and experiences' },
-    { icon: Zap, title: 'Performance', description: 'Fast, optimized websites that rank well on search engines' },
-    { icon: Users, title: 'Strategy', description: 'Digital strategies that drive growth and engagement' },
-  ]
 
   const stats = [
     { number: '50+', label: 'Projects Completed' },
@@ -86,7 +115,7 @@ const HomePage = () => {
   ]
 
   return (
-    <div className="min-h-screen">
+    <div ref={containerRef} className="relative min-h-screen">
       {/* Hero Section */}
       <section ref={heroRef} className="relative min-h-screen flex items-center justify-center bg-brand-base overflow-hidden">
         {/* Infinity Background Animation */}
@@ -333,7 +362,14 @@ const HomePage = () => {
           <div className="absolute top-1/4 right-1/4 w-64 h-64 bg-gradient-to-br from-brand-strong/8 to-transparent rounded-full filter blur-2xl"></div>
         </div>
 
-        <div className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-left">
+        <motion.div 
+          className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-left"
+          style={{
+            opacity: heroContentOpacity,
+            scale: heroContentScale,
+            y: heroContentY
+          }}
+        >
           <div className="space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -420,48 +456,399 @@ const HomePage = () => {
               </div>
             </motion.div>
           </div>
-        </div>
+        </motion.div>
       </section>
 
-      {/* Skills Section */}
-      <section className="py-20 bg-brand-surface">
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          <motion.div 
-            className="text-center mb-16"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              What I Do Best
-            </h2>
-            <p className="text-xl text-brand-muted max-w-2xl mx-auto">
-              I combine technical expertise with creative vision to deliver exceptional digital solutions.
-            </p>
-          </motion.div>
+      {/* Timeline Container */}
+      <div ref={timelineRef} className="relative bg-gradient-to-b from-brand-base to-brand-surface">
+        {/* Vertical Timeline Line */}
+        <motion.div
+          className="absolute left-8 top-0 w-1 bg-gradient-to-b from-brand-accent to-brand-strong origin-top z-30"
+          style={{
+            height: `${timelineHeight}%`
+          }}
+        />
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {skills.map((skill, index) => (
+        {/* Timeline Sections */}
+        <div className="relative pl-20">
+          {/* About Section */}
+          <section className="min-h-screen flex items-center py-20">
+            <div className="max-w-4xl mx-auto px-6 lg:px-8 relative">
+              {/* Timeline Dot */}
               <motion.div
-                key={skill.title}
-                className="text-center p-6 rounded-2xl bg-brand-base hover:bg-brand-surface hover:glow-primary transition-all duration-300"
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.8, delay: index * 0.1 }}
-                whileHover={{ y: -5 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="absolute -left-24 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-gradient-to-r from-brand-accent to-brand-strong rounded-full border-4 border-brand-base shadow-lg z-40"
+              />
+              
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
               >
-                <div className="w-16 h-16 bg-gradient-to-br from-brand-accent to-brand-strong rounded-2xl flex items-center justify-center mx-auto mb-4 glow-primary">
-                  <skill.icon className="w-8 h-8 text-brand-base" />
+
+                <div className="space-y-8">
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                  >
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-josefin">
+                      About Me
+                    </h2>
+                    <div className="w-24 h-1 bg-gradient-to-r from-brand-accent to-brand-strong mb-8"></div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="space-y-6"
+                  >
+                    <p className="text-lg md:text-xl text-white leading-relaxed">
+                      With over 5 years of experience in digital marketing and web development, I specialize in creating 
+                      comprehensive solutions that bridge the gap between beautiful design and powerful functionality.
+                    </p>
+                    
+                    <p className="text-lg md:text-xl text-white font-normal leading-relaxed">
+                      My journey began with a passion for understanding how technology can drive business growth. 
+                      Today, I help brands automate their marketing processes, optimize their web presence, and 
+                      create digital experiences that convert visitors into loyal customers.
+                    </p>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                  >
+                    <h3 className="text-xl md:text-2xl font-bold text-white mb-4 font-josefin">
+                      Core Expertise
+                    </h3>
+                    <div className="space-y-3">
+                      {['Web Development & Automation', 'SEO Optimization & Strategy', 'Marketing Automation Systems', 'UI/UX Design & Development'].map((skill, index) => (
+                        <motion.div
+                          key={skill}
+                          initial={{ opacity: 0, x: 20 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: 0.7 + index * 0.1 }}
+                          className="flex items-center space-x-3"
+                        >
+                          <div className="w-2 h-2 bg-gradient-to-r from-brand-accent to-brand-strong rounded-full flex-shrink-0"></div>
+                          <span className="text-white font-medium text-lg">{skill}</span>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                    className="grid grid-cols-2 gap-6 pt-6"
+                  >
+                    <div className="p-4 bg-brand-base/50 rounded-xl backdrop-blur-sm">
+                      <div className="text-2xl font-bold text-brand-accent mb-1">5+</div>
+                      <div className="text-sm text-brand-muted">Years Experience</div>
+                    </div>
+                    
+                    <div className="p-4 bg-brand-base/50 rounded-xl backdrop-blur-sm">
+                      <div className="text-2xl font-bold text-brand-accent mb-1">50+</div>
+                      <div className="text-sm text-brand-muted">Projects Completed</div>
+                    </div>
+                  </div>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-2">{skill.title}</h3>
-                <p className="text-brand-muted">{skill.description}</p>
               </motion.div>
-            ))}
-          </div>
+            </div>
+          </section>
+
+          {/* Services Section */}
+          <section className="min-h-screen flex items-center py-20">
+            <div className="max-w-4xl mx-auto px-6 lg:px-8 relative">
+              {/* Timeline Dot */}
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="absolute -left-24 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-gradient-to-r from-brand-accent to-brand-strong rounded-full border-4 border-brand-base shadow-lg z-40"
+              />
+              
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+
+                <div className="space-y-8">
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                  >
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-josefin">
+                      Services
+                    </h2>
+                    <div className="w-24 h-1 bg-gradient-to-r from-brand-accent to-brand-strong mb-8"></div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="grid grid-cols-1 md:grid-cols-2 gap-8"
+                  >
+                    {[
+                      { title: 'Web Development', desc: 'Custom websites and web applications built with modern technologies' },
+                      { title: 'SEO Optimization', desc: 'Boost your search rankings and drive organic traffic' },
+                      { title: 'Marketing Automation', desc: 'Streamline your marketing processes with smart automation' },
+                      { title: 'UI/UX Design', desc: 'Beautiful, user-friendly interfaces that convert' }
+                    ].map((service, index) => (
+                      <motion.div
+                        key={service.title}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+                        className="p-6 bg-brand-base/50 rounded-xl backdrop-blur-sm border border-brand-muted/30 hover:border-brand-accent/50 transition-colors"
+                      >
+                        <h3 className="text-xl font-bold text-white mb-3 font-josefin">{service.title}</h3>
+                        <p className="text-brand-muted leading-relaxed">{service.desc}</p>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                    className="pt-4"
+                  >
+                    <Link href="/contact">
+                      <motion.button
+                        className="bg-gradient-to-r from-brand-accent to-brand-strong text-brand-base px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all glow-primary"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        Get Started
+                      </motion.button>
+                    </Link>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Projects Section */}
+          <section className="min-h-screen flex items-center py-20">
+            <div className="max-w-4xl mx-auto px-6 lg:px-8 relative">
+              {/* Timeline Dot */}
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="absolute -left-24 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-gradient-to-r from-brand-accent to-brand-strong rounded-full border-4 border-brand-base shadow-lg z-40"
+              />
+              
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+
+                <div className="space-y-8">
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                  >
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-josefin">
+                      Featured Projects
+                    </h2>
+                    <div className="w-24 h-1 bg-gradient-to-r from-brand-accent to-brand-strong mb-8"></div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="space-y-6"
+                  >
+                    <p className="text-lg md:text-xl text-white leading-relaxed">
+                      Take a look at some of my recent work that showcases my expertise in web development, 
+                      marketing automation, and digital strategy.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-8">
+                      {[
+                        { name: 'E-commerce Platform', tech: 'Next.js, Stripe, MongoDB' },
+                        { name: 'Marketing Dashboard', tech: 'React, D3.js, Node.js' },
+                        { name: 'SaaS Application', tech: 'TypeScript, PostgreSQL' },
+                        { name: 'Portfolio Website', tech: 'Next.js, Tailwind CSS' }
+                      ].map((project, index) => (
+                        <motion.div
+                          key={project.name}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ duration: 0.6, delay: 0.5 + index * 0.1 }}
+                          className="p-4 bg-brand-base/50 rounded-xl backdrop-blur-sm border border-brand-muted/30"
+                        >
+                          <h4 className="text-lg font-bold text-white mb-2">{project.name}</h4>
+                          <p className="text-sm text-brand-muted">{project.tech}</p>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                    className="pt-4"
+                  >
+                    <Link href="/projects">
+                      <motion.button
+                        className="bg-gradient-to-r from-brand-accent to-brand-strong text-brand-base px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all glow-primary"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        View All Projects
+                      </motion.button>
+                    </Link>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Contact Section */}
+          <section className="min-h-screen flex items-center py-20">
+            <div className="max-w-4xl mx-auto px-6 lg:px-8 relative">
+              {/* Timeline Dot */}
+              <motion.div
+                initial={{ scale: 0 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.3 }}
+                className="absolute -left-24 top-1/2 transform -translate-y-1/2 w-6 h-6 bg-gradient-to-r from-brand-accent to-brand-strong rounded-full border-4 border-brand-base shadow-lg z-40"
+              />
+              
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+              >
+
+                <div className="space-y-8">
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.2 }}
+                  >
+                    <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 font-josefin">
+                      Let's Work Together
+                    </h2>
+                    <div className="w-24 h-1 bg-gradient-to-r from-brand-accent to-brand-strong mb-8"></div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                    className="space-y-6"
+                  >
+                    <p className="text-lg md:text-xl text-white leading-relaxed">
+                      Ready to transform your digital presence? I'd love to hear about your project and discuss how we can bring your vision to life.
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.5 }}
+                        className="space-y-4"
+                      >
+                        <h3 className="text-xl font-bold text-white mb-4 font-josefin">Get In Touch</h3>
+                        <div className="space-y-3">
+                          <a href="mailto:sucharith.dasun@gmail.com" className="flex items-center space-x-3 text-brand-muted hover:text-brand-accent transition-colors">
+                            <Mail className="w-5 h-5" />
+                            <span>sucharith.dasun@gmail.com</span>
+                          </a>
+                          <a href="https://www.linkedin.com/in/dasun-sucharith/" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 text-brand-muted hover:text-brand-accent transition-colors">
+                            <Linkedin className="w-5 h-5" />
+                            <span>LinkedIn Profile</span>
+                          </a>
+                          <a href="https://github.com/dasunsucharith" target="_blank" rel="noopener noreferrer" className="flex items-center space-x-3 text-brand-muted hover:text-brand-accent transition-colors">
+                            <Github className="w-5 h-5" />
+                            <span>GitHub Profile</span>
+                          </a>
+                        </div>
+                      </motion.div>
+
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.6, delay: 0.6 }}
+                        className="space-y-4"
+                      >
+                        <h3 className="text-xl font-bold text-white mb-4 font-josefin">What's Next?</h3>
+                        <div className="space-y-3 text-brand-muted">
+                          <p>• Free consultation call</p>
+                          <p>• Project scope & timeline</p>
+                          <p>• Custom proposal</p>
+                          <p>• Let's build something amazing</p>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </motion.div>
+
+                  <motion.div
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.8, delay: 0.8 }}
+                    className="pt-4"
+                  >
+                    <Link href="/contact">
+                      <motion.button
+                        className="bg-gradient-to-r from-brand-accent to-brand-strong text-brand-base px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all glow-primary"
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                      >
+                        Start Your Project
+                      </motion.button>
+                    </Link>
+                  </motion.div>
+                </div>
+              </motion.div>
+            </div>
+          </section>
         </div>
-      </section>
+      </div>
+
 
       {/* Stats Section */}
       <section className="py-20 bg-gradient-to-r from-brand-accent to-brand-strong text-brand-base">
