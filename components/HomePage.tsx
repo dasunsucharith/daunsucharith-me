@@ -6,14 +6,17 @@ import { motion } from 'framer-motion'
 import { Mail, Linkedin, Github } from 'lucide-react'
 
 const HomePage = () => {
-  // Prevent scrolling on homepage
+  // Prevent scrolling on homepage only
   useEffect(() => {
-    document.body.style.overflow = 'hidden'
-    document.documentElement.style.overflow = 'hidden'
-    
-    return () => {
-      document.body.style.overflow = 'auto'
-      document.documentElement.style.overflow = 'auto'
+    // Only apply if we're on the homepage
+    if (typeof window !== 'undefined' && window.location.pathname === '/') {
+      document.body.style.overflow = 'hidden'
+      document.documentElement.style.overflow = 'hidden'
+      
+      return () => {
+        document.body.style.overflow = 'auto'
+        document.documentElement.style.overflow = 'auto'
+      }
     }
   }, [])
 
@@ -45,15 +48,69 @@ const HomePage = () => {
   return (
     <div className="relative w-full h-screen overflow-hidden">
       {/* Hero Section */}
-      <section className="relative w-full h-screen flex items-center justify-center bg-brand-base overflow-hidden">
-        {/* Infinity Background Animation */}
+      <section className="relative w-full h-screen flex items-center justify-center bg-gradient-to-br from-brand-base via-brand-surface to-brand-base overflow-hidden">
+        {/* Animated Background Gradients */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-brand-accent/5 via-transparent to-brand-strong/5 animate-pulse"></div>
+          <div className="absolute top-0 right-0 w-2/3 h-2/3 bg-gradient-to-bl from-brand-primary/10 via-brand-accent/5 to-transparent rounded-full blur-3xl animate-bounce" style={{animationDuration: '6s'}}></div>
+          <div className="absolute bottom-0 left-0 w-1/2 h-1/2 bg-gradient-to-tr from-brand-strong/10 via-brand-secondary/5 to-transparent rounded-full blur-2xl animate-bounce" style={{animationDuration: '8s', animationDelay: '2s'}}></div>
+        </div>
+
+        {/* Floating Geometric Shapes */}
+        <div className="absolute inset-0 overflow-hidden will-change-transform">
+          <motion.div
+            className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-br from-brand-accent/20 to-brand-strong/20 rounded-3xl backdrop-blur-sm"
+            animate={{
+              rotate: [0, 360],
+              scale: [1, 1.1, 1],
+              x: [0, 50, 0],
+              y: [0, -30, 0],
+            }}
+            transition={{
+              duration: 20,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute top-1/3 right-1/3 w-24 h-24 bg-gradient-to-tl from-brand-primary/20 to-brand-accent/20 rounded-full backdrop-blur-sm"
+            animate={{
+              rotate: [0, -360],
+              scale: [1, 0.8, 1.2, 1],
+              x: [0, -40, 0],
+              y: [0, 40, 0],
+            }}
+            transition={{
+              duration: 25,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+          <motion.div
+            className="absolute bottom-1/4 right-1/4 w-20 h-20 bg-gradient-to-tr from-brand-strong/20 to-brand-secondary/20 rounded-2xl backdrop-blur-sm"
+            animate={{
+              rotate: [0, 180, 360],
+              scale: [1, 1.3, 0.9, 1],
+              x: [0, -25, 25, 0],
+              y: [0, -50, 0],
+            }}
+            transition={{
+              duration: 18,
+              repeat: Infinity,
+              ease: "easeInOut"
+            }}
+          />
+        </div>
+
+        {/* Enhanced Infinity Background Animation */}
         <div className="absolute inset-0 overflow-hidden will-change-transform">
           {/* Multiple infinity symbols with scroll-reactive animations */}
           <motion.div
-            className="absolute top-10 left-10 opacity-60"
+            className="absolute top-10 left-10 opacity-60 drop-shadow-2xl"
             animate={{ 
               scale: [1, 1.05, 1],
               rotate: [0, 45, 0],
+              filter: ["drop-shadow(0 0 20px rgba(255, 165, 134, 0.3))", "drop-shadow(0 0 40px rgba(255, 165, 134, 0.6))", "drop-shadow(0 0 20px rgba(255, 165, 134, 0.3))"]
             }}
             transition={{ 
               duration: 8,
@@ -66,10 +123,11 @@ const HomePage = () => {
           </motion.div>
           
           <motion.div
-            className="absolute top-1/4 right-20 opacity-50"
+            className="absolute top-1/4 right-20 opacity-50 drop-shadow-xl"
             animate={{ 
               rotate: [0, 360],
               scale: [1, 1.1, 1],
+              filter: ["drop-shadow(0 0 15px rgba(181, 26, 43, 0.4))", "drop-shadow(0 0 30px rgba(181, 26, 43, 0.7))", "drop-shadow(0 0 15px rgba(181, 26, 43, 0.4))"]
             }}
             transition={{ 
               duration: 12,
@@ -81,11 +139,12 @@ const HomePage = () => {
           </motion.div>
 
           <motion.div
-            className="absolute bottom-20 left-1/4 opacity-55"
+            className="absolute bottom-20 left-1/4 opacity-55 drop-shadow-lg"
             animate={{ 
               scale: [1, 1.08, 1],
               rotate: [0, -45, 0],
               x: [-15, 15, -15],
+              filter: ["drop-shadow(0 0 25px rgba(255, 165, 134, 0.5))", "drop-shadow(0 0 50px rgba(255, 165, 134, 0.8))", "drop-shadow(0 0 25px rgba(255, 165, 134, 0.5))"]
             }}
             transition={{ 
               duration: 16,
@@ -225,17 +284,36 @@ const HomePage = () => {
 
         <motion.div 
           className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-left"
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
         >
-          <div className="space-y-6">
+          <div className="relative space-y-6 p-8 rounded-3xl bg-gradient-to-br from-brand-surface/20 via-brand-base/30 to-brand-surface/20 backdrop-blur-xl border border-brand-accent/10 shadow-2xl">
+            {/* Animated border glow */}
+            <div className="absolute inset-0 rounded-3xl bg-gradient-to-r from-brand-accent/20 via-brand-strong/20 to-brand-accent/20 blur-xl animate-pulse"></div>
+            <div className="relative space-y-6">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-4xl md:text-6xl font-bold text-white font-josefin">
+              <motion.h1 
+                className="text-4xl md:text-6xl font-bold text-white font-josefin bg-gradient-to-r from-brand-accent via-white to-brand-strong bg-clip-text text-transparent"
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                style={{
+                  backgroundSize: "200% 200%",
+                }}
+              >
                 Hello!
-              </h1>
+              </motion.h1>
             </motion.div>
 
             <motion.div
@@ -244,9 +322,23 @@ const HomePage = () => {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <p className="text-2xl md:text-4xl font-bold text-white font-josefin">
+              <motion.p 
+                className="text-2xl md:text-4xl font-bold font-josefin bg-gradient-to-r from-white via-brand-accent to-brand-strong bg-clip-text text-transparent"
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1
+                }}
+                style={{
+                  backgroundSize: "200% 200%",
+                }}
+              >
                 I am Dasun Sucharith
-              </p>
+              </motion.p>
             </motion.div>
 
             <motion.div
@@ -255,9 +347,25 @@ const HomePage = () => {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              <p className="text-lg md:text-xl text-white font-normal leading-relaxed">
+              <motion.p 
+                className="text-lg md:text-xl text-white font-normal leading-relaxed drop-shadow-lg"
+                initial={{ opacity: 0.8 }}
+                animate={{ 
+                  opacity: [0.8, 1, 0.8],
+                  textShadow: [
+                    "0 0 10px rgba(255, 255, 255, 0.3)",
+                    "0 0 20px rgba(255, 165, 134, 0.4)",
+                    "0 0 10px rgba(255, 255, 255, 0.3)"
+                  ]
+                }}
+                transition={{ 
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
                 A marketing automation developer helping brands grow smarter with SEO, Web Development, and marketing automations.
-              </p>
+              </motion.p>
             </motion.div>
 
             <motion.div
@@ -281,9 +389,23 @@ const HomePage = () => {
               <div className="flex gap-6">
                 <motion.a
                   href="mailto:sucharith.dasun@gmail.com"
-                  className="w-12 h-12 bg-brand-surface border border-brand-muted rounded-full flex items-center justify-center text-white hover:text-brand-accent hover:border-brand-accent transition-all glow-primary"
-                  whileHover={{ scale: 1.05 }}
+                  className="relative w-12 h-12 bg-gradient-to-br from-brand-surface/80 to-brand-base/60 border-2 border-brand-accent/30 rounded-full flex items-center justify-center text-white hover:text-brand-accent backdrop-blur-sm shadow-lg"
+                  whileHover={{ 
+                    scale: 1.1,
+                    boxShadow: "0 0 25px rgba(255, 165, 134, 0.6)",
+                    borderColor: "rgba(255, 165, 134, 0.8)"
+                  }}
                   whileTap={{ scale: 0.95 }}
+                  animate={{
+                    boxShadow: [
+                      "0 0 10px rgba(255, 165, 134, 0.2)",
+                      "0 0 20px rgba(255, 165, 134, 0.4)",
+                      "0 0 10px rgba(255, 165, 134, 0.2)"
+                    ]
+                  }}
+                  transition={{
+                    boxShadow: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+                  }}
                 >
                   <Mail className="w-5 h-5" />
                 </motion.a>
@@ -292,9 +414,23 @@ const HomePage = () => {
                   href="https://www.linkedin.com/in/dasun-sucharith/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-brand-surface border border-brand-muted rounded-full flex items-center justify-center text-white hover:text-brand-accent hover:border-brand-accent transition-all glow-primary"
-                  whileHover={{ scale: 1.05 }}
+                  className="relative w-12 h-12 bg-gradient-to-br from-brand-surface/80 to-brand-base/60 border-2 border-brand-strong/30 rounded-full flex items-center justify-center text-white hover:text-brand-strong backdrop-blur-sm shadow-lg"
+                  whileHover={{ 
+                    scale: 1.1,
+                    boxShadow: "0 0 25px rgba(181, 26, 43, 0.6)",
+                    borderColor: "rgba(181, 26, 43, 0.8)"
+                  }}
                   whileTap={{ scale: 0.95 }}
+                  animate={{
+                    boxShadow: [
+                      "0 0 10px rgba(181, 26, 43, 0.2)",
+                      "0 0 20px rgba(181, 26, 43, 0.4)",
+                      "0 0 10px rgba(181, 26, 43, 0.2)"
+                    ]
+                  }}
+                  transition={{
+                    boxShadow: { duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }
+                  }}
                 >
                   <Linkedin className="w-5 h-5" />
                 </motion.a>
@@ -303,14 +439,29 @@ const HomePage = () => {
                   href="https://github.com/dasunsucharith"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 bg-brand-surface border border-brand-muted rounded-full flex items-center justify-center text-white hover:text-brand-accent hover:border-brand-accent transition-all glow-primary"
-                  whileHover={{ scale: 1.05 }}
+                  className="relative w-12 h-12 bg-gradient-to-br from-brand-surface/80 to-brand-base/60 border-2 border-brand-accent/30 rounded-full flex items-center justify-center text-white hover:text-brand-accent backdrop-blur-sm shadow-lg"
+                  whileHover={{ 
+                    scale: 1.1,
+                    boxShadow: "0 0 25px rgba(255, 165, 134, 0.6)",
+                    borderColor: "rgba(255, 165, 134, 0.8)"
+                  }}
                   whileTap={{ scale: 0.95 }}
+                  animate={{
+                    boxShadow: [
+                      "0 0 10px rgba(255, 165, 134, 0.2)",
+                      "0 0 20px rgba(255, 165, 134, 0.4)",
+                      "0 0 10px rgba(255, 165, 134, 0.2)"
+                    ]
+                  }}
+                  transition={{
+                    boxShadow: { duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1 }
+                  }}
                 >
                   <Github className="w-5 h-5" />
                 </motion.a>
               </div>
             </motion.div>
+            </div>
           </div>
         </motion.div>
       </section>
