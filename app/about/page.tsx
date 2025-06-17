@@ -134,13 +134,13 @@ const AboutPage = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="w-80 h-80 bg-brand-surface/10 backdrop-blur-md rounded-3xl mx-auto flex items-center justify-center">
-                <div className="w-64 h-64 bg-gradient-to-br from-brand-accent to-brand-strong rounded-2xl flex items-center justify-center overflow-hidden">
+              <div className="w-100 h-100 bg-brand-surface/10 backdrop-blur-md rounded-3xl mx-auto flex items-center justify-center">
+                <div className="w-80 h-80 bg-gradient-to-br from-brand-accent to-brand-strong rounded-2xl flex items-center justify-center overflow-hidden">
                   <Image
                     src="/assets/dasun.png"
                     alt="Dasun"
-                    width={256}
-                    height={256}
+                    width={320}
+                    height={320}
                     className="rounded-2xl object-cover"
                   />
                 </div>
