@@ -134,8 +134,18 @@ const AboutPage = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              <div className="w-100 h-100 bg-brand-surface/10 backdrop-blur-md rounded-3xl mx-auto flex items-center justify-center">
-                <div className="w-80 h-80 bg-gradient-to-br from-brand-accent to-brand-strong rounded-2xl flex items-center justify-center overflow-hidden">
+              <motion.div
+                className="w-100 h-100 bg-brand-surface/20 backdrop-blur-lg rounded-3xl mx-auto flex items-center justify-center"
+                initial={{ opacity: 0, scale: 0.95 }}
+                animate={{ opacity: 1, scale: [1, 1.01, 1], y: [0, -4, 0] }}
+                transition={{ duration: 0.5, ease: "easeOut", scale: { repeat: Infinity, duration: 7, ease: "easeInOut" }, y: { repeat: Infinity, duration: 7, ease: "easeInOut", delay: 3.5 } }}
+              >
+                <motion.div
+                  className="w-80 h-80 bg-gradient-to-br from-brand-accent to-brand-strong rounded-2xl flex items-center justify-center overflow-hidden"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: [1, 1.005, 1], y: [0, 2, 0] }}
+                  transition={{ delay: 0.2, duration: 0.5, ease: "easeOut", scale: { repeat: Infinity, duration: 5, ease: "easeInOut" }, y: { repeat: Infinity, duration: 5, ease: "easeInOut", delay: 2.5 } }}
+                >
                   <Image
                     src="/assets/dasun.png"
                     alt="Dasun"
