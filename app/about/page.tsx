@@ -153,8 +153,8 @@ const AboutPage = () => {
                     height={320}
                     className="rounded-2xl object-cover"
                   />
-                </div>
-              </div>
+                </motion.div>
+              </motion.div>
             </motion.div>
           </div>
         </div>
