@@ -88,7 +88,7 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-brand-base">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-brand-accent to-brand-strong text-brand-base overflow-hidden">
+      <section className="relative py-20 min-h-screen bg-gradient-to-br from-brand-accent to-brand-strong text-brand-base overflow-hidden flex items-center">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -97,29 +97,28 @@ const AboutPage = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
                 About Me
               </h1>
-              <p className="text-xl mb-8 text-brand-base/80">
-                I'm a passionate developer and digital strategist with over 5 years of experience 
-                creating exceptional web experiences that drive business growth.
+              <p className="text-[16px] mb-6 text-white">
+                I'm currently working as a Marketing Automation Developer at Wavenet Pvt Ltd since October 2022.
+                So yes, you could say I’m a developer with a marketer’s mindset, combining code and strategy to solve real business problems.
               </p>
-              <div className="space-y-4 text-brand-base/80">
-                <div className="flex items-center gap-3">
-                  <MapPin className="w-5 h-5" />
-                  <span>Colombo, Sri Lanka</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Calendar className="w-5 h-5" />
-                  <span>5+ Years Experience</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <Mail className="w-5 h-5" />
-                  <span>hello@dasunsucharith.com</span>
-                </div>
-              </div>
+              <p className="text-[16px] mb-6 text-white">
+                With a background in marketing automation, SEO, and web development, I help brands create seamless digital systems, from high-converting email flows to fast, scalable websites and search-first content strategies.
+              </p>
+              <p className="text-[16px] mb-6 text-white">
+                I work with a wide range of tools across marketing, SEO, AI, and web development, giving me the flexibility to plug into any part of a digital growth engine, technical or creative.
+              </p>
+              <p className="text-[16px] mb-6 text-white">
+                I believe great digital experiences aren’t just beautiful, they’re purposeful, measurable, and built to evolve.
+              </p>
+              <p className="text-[16px] mb-8 text-white">
+                If you're looking for someone who can bridge the gap between marketing and tech, I'm your guy.
+              </p>
+              {/* Additional personal details removed per design update */}
               <motion.button
-                className="mt-8 bg-brand-base text-brand-accent px-6 py-3 rounded-full font-semibold flex items-center gap-2 hover:shadow-lg transition-shadow glow-primary"
+                className="mt-8 bg-brand-base text-white px-6 py-3 rounded-full font-semibold flex items-center gap-2 hover:shadow-lg transition-shadow glow-primary"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
               >
