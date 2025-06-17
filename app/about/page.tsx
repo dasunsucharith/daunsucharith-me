@@ -89,18 +89,184 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-brand-base">
       {/* Hero Section */}
-      <section className="relative py-20 min-h-screen bg-gradient-to-b from-brand-accent to-brand-strong text-brand-base overflow-hidden flex items-center">
-        <div className="absolute inset-0 bg-black/30"></div>
+      <section className="relative py-20 min-h-screen bg-gradient-to-br from-brand-base via-brand-surface to-brand-base text-brand-base overflow-hidden flex items-center">
+        {/* Animated Background Gradients */}
+        <motion.div 
+          className="absolute inset-0 bg-gradient-to-br from-brand-accent/20 via-transparent to-brand-strong/20"
+          animate={{ opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        
+        {/* Floating Geometric Shapes */}
+        <motion.div
+          className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-r from-brand-accent/30 to-brand-strong/30 rounded-2xl backdrop-blur-sm"
+          animate={{ 
+            rotate: [0, 360],
+            scale: [1, 1.1, 1],
+            x: [0, 20, 0],
+            y: [0, -10, 0]
+          }}
+          transition={{ 
+            duration: 12, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            times: [0, 0.5, 1]
+          }}
+        />
+        
+        <motion.div
+          className="absolute top-60 right-20 w-24 h-24 bg-gradient-to-r from-brand-surface/40 to-brand-accent/40 rounded-full backdrop-blur-sm"
+          animate={{ 
+            rotate: [360, 0],
+            scale: [1, 0.8, 1],
+            x: [0, -15, 0],
+            y: [0, 15, 0]
+          }}
+          transition={{ 
+            duration: 10, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            delay: 2
+          }}
+        />
+        
+        <motion.div
+          className="absolute bottom-40 left-1/4 w-20 h-20 bg-gradient-to-r from-brand-strong/30 to-brand-accent/30 rounded-xl backdrop-blur-sm"
+          animate={{ 
+            rotate: [0, -180, 0],
+            scale: [1, 1.2, 1],
+            x: [0, 10, 0],
+            y: [0, -20, 0]
+          }}
+          transition={{ 
+            duration: 14, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            delay: 4
+          }}
+        />
+        
+        {/* Animated Infinity Symbols */}
+        <motion.div
+          className="absolute top-32 right-1/3 text-6xl opacity-20 select-none pointer-events-none"
+          animate={{ 
+            rotate: [0, 360],
+            scale: [1, 1.3, 1],
+            opacity: [0.2, 0.4, 0.2]
+          }}
+          transition={{ 
+            duration: 16, 
+            repeat: Infinity, 
+            ease: "easeInOut"
+          }}
+          style={{ color: '#FFA586' }}
+        >
+          ∞
+        </motion.div>
+        
+        <motion.div
+          className="absolute bottom-20 right-10 text-4xl opacity-15 select-none pointer-events-none"
+          animate={{ 
+            rotate: [360, 0],
+            scale: [1, 0.7, 1],
+            opacity: [0.15, 0.3, 0.15],
+            filter: ['drop-shadow(0 0 10px rgba(255, 165, 134, 0.3))', 'drop-shadow(0 0 20px rgba(255, 165, 134, 0.6))', 'drop-shadow(0 0 10px rgba(255, 165, 134, 0.3))']
+          }}
+          transition={{ 
+            duration: 12, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            delay: 3
+          }}
+          style={{ color: '#B51A2B' }}
+        >
+          ∞
+        </motion.div>
+        
+        {/* Animated Tech Emojis */}
+        <motion.div
+          className="absolute top-16 left-1/3 text-3xl opacity-30 select-none pointer-events-none"
+          animate={{ 
+            rotate: [0, 15, -15, 0],
+            scale: [1, 1.1, 0.9, 1],
+            y: [0, -5, 5, 0]
+          }}
+          transition={{ 
+            duration: 8, 
+            repeat: Infinity, 
+            ease: "easeInOut"
+          }}
+        >
+          💻
+        </motion.div>
+        
+        <motion.div
+          className="absolute bottom-32 left-20 text-2xl opacity-25 select-none pointer-events-none"
+          animate={{ 
+            rotate: [0, -20, 20, 0],
+            scale: [1, 0.8, 1.2, 1],
+            x: [0, 3, -3, 0]
+          }}
+          transition={{ 
+            duration: 10, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            delay: 2
+          }}
+        >
+          🚀
+        </motion.div>
+        
+        <motion.div
+          className="absolute top-80 right-1/4 text-2xl opacity-20 select-none pointer-events-none"
+          animate={{ 
+            rotate: [0, 25, -25, 0],
+            scale: [1, 1.3, 0.7, 1],
+            y: [0, -8, 8, 0]
+          }}
+          transition={{ 
+            duration: 12, 
+            repeat: Infinity, 
+            ease: "easeInOut",
+            delay: 4
+          }}
+        >
+          ⚡
+        </motion.div>
+        
+        {/* Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-brand-base/60 via-transparent to-brand-base/40"></div>
+        <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
+              className="bg-white/5 backdrop-blur-xl rounded-3xl p-8 border border-white/10"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
+                backdropFilter: 'blur(20px)',
+                boxShadow: '0 0 40px rgba(255, 165, 134, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+              }}
             >
-              <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
+              <motion.h1 
+                className="text-5xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-white via-brand-accent to-white bg-clip-text text-transparent"
+                style={{
+                  backgroundSize: '200% 100%',
+                  animation: 'gradient-x 6s ease infinite'
+                }}
+                animate={{
+                  backgroundPosition: ['0% 50%', '100% 50%', '0% 50%']
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              >
                 About Me
-              </h1>
+              </motion.h1>
               <p className="text-[16px] mb-6 text-white leading-relaxed">
                 I'm currently working as a Marketing Automation Developer at Wavenet Pvt Ltd since October 2022.
                 So yes, you could say I’m a developer with a marketer’s mindset, combining code and strategy to solve real business problems.
@@ -119,12 +285,50 @@ const AboutPage = () => {
               </p>
               {/* Additional personal details removed per design update */}
               <motion.button
-                className="mt-8 bg-brand-base text-white px-6 py-3 rounded-full font-semibold flex items-center gap-2 hover:shadow-lg transition-shadow glow-primary"
-                whileHover={{ scale: 1.02 }}
-                whileTap={{ scale: 0.98 }}
+                onClick={() => {
+                  const link = document.createElement('a');
+                  link.href = '/assets/files/dasun sucharith CV 6172025.pdf';
+                  link.download = 'dasun sucharith CV 6172025.pdf';
+                  document.body.appendChild(link);
+                  link.click();
+                  document.body.removeChild(link);
+                }}
+                className="mt-8 bg-gradient-to-r from-brand-accent to-brand-strong text-white px-6 py-3 rounded-full font-semibold flex items-center gap-2 backdrop-blur-xl border border-white/20 relative overflow-hidden group"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                animate={{
+                  boxShadow: [
+                    '0 0 20px rgba(255, 165, 134, 0.3)',
+                    '0 0 30px rgba(255, 165, 134, 0.5)',
+                    '0 0 20px rgba(255, 165, 134, 0.3)'
+                  ]
+                }}
+                transition={{
+                  boxShadow: {
+                    duration: 3,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }
+                }}
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 165, 134, 0.8) 0%, rgba(181, 26, 43, 0.8) 100%)',
+                  backdropFilter: 'blur(20px)'
+                }}
               >
-                <Download className="w-5 h-5" />
-                Download Resume
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  animate={{
+                    x: ['-100%', '100%']
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    ease: "linear",
+                    repeatDelay: 3
+                  }}
+                />
+                <Download className="w-5 h-5 relative z-10" />
+                <span className="relative z-10">Download Resume</span>
               </motion.button>
             </motion.div>
 
@@ -135,23 +339,76 @@ const AboutPage = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <motion.div
-                className="w-100 h-100 bg-brand-surface/20 backdrop-blur-xl rounded-3xl mx-auto flex items-center justify-center"
+                className="relative w-[500px] h-[500px] mx-auto"
                 initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: [1, 1.01, 1], y: [0, -4, 0] }}
-                transition={{ duration: 0.5, ease: "easeOut", scale: { repeat: Infinity, duration: 7, ease: "easeInOut" }, y: { repeat: Infinity, duration: 7, ease: "easeInOut", delay: 3.5 } }}
+                animate={{ 
+                  opacity: 1, 
+                  scale: [1, 1.01, 1], 
+                  y: [0, -4, 0]
+                }}
+                transition={{ 
+                  duration: 0.5, 
+                  ease: "easeOut", 
+                  scale: { repeat: Infinity, duration: 7, ease: "easeInOut" }, 
+                  y: { repeat: Infinity, duration: 7, ease: "easeInOut", delay: 3.5 }
+                }}
               >
+                {/* Outer glow ring */}
                 <motion.div
-                  className="w-80 h-80 bg-gradient-to-br from-brand-accent to-brand-strong rounded-2xl flex items-center justify-center overflow-hidden border border-brand-base/20"
+                  className="absolute inset-0 rounded-full bg-gradient-to-br from-brand-accent/20 to-brand-strong/20 blur-2xl"
+                  animate={{
+                    scale: [1, 1.1, 1],
+                    opacity: [0.2, 0.4, 0.2]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    ease: "easeInOut"
+                  }}
+                />
+                
+                {/* Direct image container - no visible background */}
+                <motion.div
+                  className="relative w-full h-full rounded-full overflow-hidden"
                   initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: [1, 1.005, 1], y: [0, 2, 0] }}
-                  transition={{ delay: 0.2, duration: 0.5, ease: "easeOut", scale: { repeat: Infinity, duration: 5, ease: "easeInOut" }, y: { repeat: Infinity, duration: 5, ease: "easeInOut", delay: 2.5 } }}
+                  animate={{ 
+                    opacity: 1, 
+                    scale: [1, 1.005, 1], 
+                    y: [0, 2, 0],
+                    boxShadow: [
+                      '0 0 40px rgba(255, 165, 134, 0.3)',
+                      '0 0 60px rgba(255, 165, 134, 0.5)',
+                      '0 0 40px rgba(255, 165, 134, 0.3)'
+                    ]
+                  }}
+                  transition={{ 
+                    delay: 0.2, 
+                    duration: 0.5, 
+                    ease: "easeOut", 
+                    scale: { repeat: Infinity, duration: 5, ease: "easeInOut" }, 
+                    y: { repeat: Infinity, duration: 5, ease: "easeInOut", delay: 2.5 },
+                    boxShadow: { duration: 4, repeat: Infinity, ease: "easeInOut" }
+                  }}
                 >
                   <Image
                     src="/assets/dasun.png"
                     alt="Dasun"
-                    width={320}
-                    height={320}
-                    className="rounded-2xl object-cover"
+                    width={500}
+                    height={500}
+                    className="w-full h-full object-cover object-center"
+                  />
+                  
+                  {/* Subtle inner border glow */}
+                  <motion.div
+                    className="absolute inset-0 rounded-full border-2 border-white/10"
+                    animate={{
+                      borderColor: ['rgba(255, 255, 255, 0.1)', 'rgba(255, 165, 134, 0.3)', 'rgba(255, 255, 255, 0.1)']
+                    }}
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
                   />
                 </motion.div>
               </motion.div>
