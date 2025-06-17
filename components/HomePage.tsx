@@ -2,7 +2,7 @@
 
 import React, { useEffect } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, useReducedMotion } from 'framer-motion'
 import { Mail, Linkedin, Github } from 'lucide-react'
 
 const HomePage = () => {
@@ -21,8 +21,8 @@ const HomePage = () => {
   }, [])
 
   const InfinitySymbol = ({ className }: { className?: string }) => (
-    <svg 
-      viewBox="0 0 400 200" 
+    <svg
+      viewBox="0 0 400 200"
       className={className}
       fill="none"
     >
@@ -43,6 +43,8 @@ const HomePage = () => {
     </svg>
   )
 
+  const shouldReduceMotion = useReducedMotion()
+
 
 
   return (
@@ -60,42 +62,42 @@ const HomePage = () => {
         <div className="absolute inset-0 overflow-hidden will-change-transform">
           <motion.div
             className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-br from-brand-accent/20 to-brand-strong/20 rounded-3xl backdrop-blur-sm"
-            animate={{
+            animate={shouldReduceMotion ? {} : {
               rotate: [0, 360],
               scale: [1, 1.1, 1],
               x: [0, 50, 0],
               y: [0, -30, 0],
             }}
-            transition={{
-              duration: 20,
+            transition={shouldReduceMotion ? { duration: 0 } : {
+              duration: 15,
               repeat: Infinity,
               ease: "easeInOut"
             }}
           />
           <motion.div
             className="absolute top-1/3 right-1/3 w-24 h-24 bg-gradient-to-tl from-brand-primary/20 to-brand-accent/20 rounded-full backdrop-blur-sm"
-            animate={{
+            animate={shouldReduceMotion ? {} : {
               rotate: [0, -360],
               scale: [1, 0.8, 1.2, 1],
               x: [0, -40, 0],
               y: [0, 40, 0],
             }}
-            transition={{
-              duration: 25,
+            transition={shouldReduceMotion ? { duration: 0 } : {
+              duration: 18,
               repeat: Infinity,
               ease: "easeInOut"
             }}
           />
           <motion.div
             className="absolute bottom-1/4 right-1/4 w-20 h-20 bg-gradient-to-tr from-brand-strong/20 to-brand-secondary/20 rounded-2xl backdrop-blur-sm"
-            animate={{
+            animate={shouldReduceMotion ? {} : {
               rotate: [0, 180, 360],
               scale: [1, 1.3, 0.9, 1],
               x: [0, -25, 25, 0],
               y: [0, -50, 0],
             }}
-            transition={{
-              duration: 18,
+            transition={shouldReduceMotion ? { duration: 0 } : {
+              duration: 14,
               repeat: Infinity,
               ease: "easeInOut"
             }}
@@ -107,13 +109,13 @@ const HomePage = () => {
           {/* Multiple infinity symbols with scroll-reactive animations */}
           <motion.div
             className="absolute top-10 left-10 opacity-60 drop-shadow-2xl"
-            animate={{ 
+            animate={shouldReduceMotion ? {} : {
               scale: [1, 1.05, 1],
               rotate: [0, 45, 0],
               filter: ["drop-shadow(0 0 20px rgba(255, 165, 134, 0.3))", "drop-shadow(0 0 40px rgba(255, 165, 134, 0.6))", "drop-shadow(0 0 20px rgba(255, 165, 134, 0.3))"]
             }}
-            transition={{ 
-              duration: 8,
+            transition={shouldReduceMotion ? { duration: 0 } : {
+              duration: 6,
               repeat: Infinity,
               ease: "easeInOut",
               repeatType: "reverse"
@@ -124,13 +126,13 @@ const HomePage = () => {
           
           <motion.div
             className="absolute top-1/4 right-20 opacity-50 drop-shadow-xl"
-            animate={{ 
+            animate={shouldReduceMotion ? {} : {
               rotate: [0, 360],
               scale: [1, 1.1, 1],
               filter: ["drop-shadow(0 0 15px rgba(181, 26, 43, 0.4))", "drop-shadow(0 0 30px rgba(181, 26, 43, 0.7))", "drop-shadow(0 0 15px rgba(181, 26, 43, 0.4))"]
             }}
-            transition={{ 
-              duration: 12,
+            transition={shouldReduceMotion ? { duration: 0 } : {
+              duration: 9,
               repeat: Infinity,
               ease: "linear"
             }}
@@ -140,14 +142,14 @@ const HomePage = () => {
 
           <motion.div
             className="absolute bottom-20 left-1/4 opacity-55 drop-shadow-lg"
-            animate={{ 
+            animate={shouldReduceMotion ? {} : {
               scale: [1, 1.08, 1],
               rotate: [0, -45, 0],
               x: [-15, 15, -15],
               filter: ["drop-shadow(0 0 25px rgba(255, 165, 134, 0.5))", "drop-shadow(0 0 50px rgba(255, 165, 134, 0.8))", "drop-shadow(0 0 25px rgba(255, 165, 134, 0.5))"]
             }}
-            transition={{ 
-              duration: 16,
+            transition={shouldReduceMotion ? { duration: 0 } : {
+              duration: 12,
               repeat: Infinity,
               ease: "easeInOut",
               repeatType: "reverse"
@@ -158,12 +160,12 @@ const HomePage = () => {
 
           <motion.div
             className="absolute top-1/2 right-10 opacity-45"
-            animate={{ 
+            animate={shouldReduceMotion ? {} : {
               rotate: [0, 180, 360],
               scale: [1, 0.9, 1.1, 1],
             }}
-            transition={{ 
-              duration: 20,
+            transition={shouldReduceMotion ? { duration: 0 } : {
+              duration: 15,
               repeat: Infinity,
               ease: "linear"
             }}
@@ -173,12 +175,12 @@ const HomePage = () => {
 
           <motion.div
             className="absolute bottom-10 right-1/3 opacity-50"
-            animate={{ 
+            animate={shouldReduceMotion ? {} : {
               scale: [1, 1.1, 1],
               rotate: [0, 45, 0],
             }}
-            transition={{ 
-              duration: 14,
+            transition={shouldReduceMotion ? { duration: 0 } : {
+              duration: 10,
               repeat: Infinity,
               ease: "easeInOut",
               repeatType: "reverse"
