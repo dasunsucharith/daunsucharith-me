@@ -339,7 +339,7 @@ const AboutPage = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <motion.div
-                className="relative w-[500px] h-[500px] mx-auto"
+                className="relative w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 lg:w-[500px] lg:h-[500px] mx-auto"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ 
                   opacity: 1, 
