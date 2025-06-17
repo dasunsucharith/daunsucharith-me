@@ -285,7 +285,7 @@ const HomePage = () => {
         </div>
 
         <motion.div 
-          className="relative z-10 max-w-4xl mx-auto px-6 lg:px-8 text-left"
+          className="relative z-10 max-w-3xl mx-auto px-6 lg:px-8 text-left"
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
@@ -350,7 +350,7 @@ const HomePage = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
             >
               <motion.p 
-                className="text-lg md:text-xl text-white font-normal leading-relaxed drop-shadow-lg"
+                className="text-[16px] text-white font-normal leading-relaxed drop-shadow-lg"
                 initial={{ opacity: 0.8 }}
                 animate={{ 
                   opacity: [0.8, 1, 0.8],
@@ -376,7 +376,7 @@ const HomePage = () => {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.8, delay: 0.6 }}
             >
-              <p className="text-lg md:text-xl text-white font-normal leading-relaxed">
+              <p className="text-[16px] text-white font-normal leading-relaxed">
                 I specialize in creating digital experiences that not only look good, but work brilliantly behind the scenes too.
               </p>
             </motion.div>
