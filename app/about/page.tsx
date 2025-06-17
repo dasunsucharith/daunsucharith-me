@@ -88,7 +88,7 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-brand-base">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-br from-brand-accent to-brand-strong text-brand-base overflow-hidden">
+      <section className="relative py-20 min-h-screen bg-gradient-to-br from-brand-accent to-brand-strong text-brand-base overflow-hidden flex items-center">
         <div className="absolute inset-0 bg-black/20"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
@@ -100,9 +100,21 @@ const AboutPage = () => {
               <h1 className="text-4xl md:text-5xl font-bold mb-6">
                 About Me
               </h1>
+              <p className="text-xl mb-6 text-brand-base/80">
+                I'm currently working as a Marketing Automation Developer at Wavenet Pvt Ltd since October 2022.
+                So yes, you could say I’m a developer with a marketer’s mindset, combining code and strategy to solve real business problems.
+              </p>
+              <p className="text-xl mb-6 text-brand-base/80">
+                With a background in marketing automation, SEO, and web development, I help brands create seamless digital systems, from high-converting email flows to fast, scalable websites and search-first content strategies.
+              </p>
+              <p className="text-xl mb-6 text-brand-base/80">
+                I work with a wide range of tools across marketing, SEO, AI, and web development, giving me the flexibility to plug into any part of a digital growth engine, technical or creative.
+              </p>
+              <p className="text-xl mb-6 text-brand-base/80">
+                I believe great digital experiences aren’t just beautiful, they’re purposeful, measurable, and built to evolve.
+              </p>
               <p className="text-xl mb-8 text-brand-base/80">
-                I'm a passionate developer and digital strategist with over 5 years of experience 
-                creating exceptional web experiences that drive business growth.
+                If you're looking for someone who can bridge the gap between marketing and tech, I'm your guy.
               </p>
               <div className="space-y-4 text-brand-base/80">
                 <div className="flex items-center gap-3">
