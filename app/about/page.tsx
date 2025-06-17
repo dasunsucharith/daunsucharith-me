@@ -100,20 +100,20 @@ const AboutPage = () => {
               <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
                 About Me
               </h1>
-              <p className="text-[18px] mb-6 text-white">
+              <p className="text-[16px] mb-6 text-white">
                 I'm currently working as a Marketing Automation Developer at Wavenet Pvt Ltd since October 2022.
                 So yes, you could say I’m a developer with a marketer’s mindset, combining code and strategy to solve real business problems.
               </p>
-              <p className="text-[18px] mb-6 text-white">
+              <p className="text-[16px] mb-6 text-white">
                 With a background in marketing automation, SEO, and web development, I help brands create seamless digital systems, from high-converting email flows to fast, scalable websites and search-first content strategies.
               </p>
-              <p className="text-[18px] mb-6 text-white">
+              <p className="text-[16px] mb-6 text-white">
                 I work with a wide range of tools across marketing, SEO, AI, and web development, giving me the flexibility to plug into any part of a digital growth engine, technical or creative.
               </p>
-              <p className="text-[18px] mb-6 text-white">
+              <p className="text-[16px] mb-6 text-white">
                 I believe great digital experiences aren’t just beautiful, they’re purposeful, measurable, and built to evolve.
               </p>
-              <p className="text-[18px] mb-8 text-white">
+              <p className="text-[16px] mb-8 text-white">
                 If you're looking for someone who can bridge the gap between marketing and tech, I'm your guy.
               </p>
               {/* Additional personal details removed per design update */}
