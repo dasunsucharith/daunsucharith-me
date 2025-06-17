@@ -89,8 +89,8 @@ const AboutPage = () => {
   return (
     <div className="min-h-screen bg-brand-base">
       {/* Hero Section */}
-      <section className="relative py-20 min-h-screen bg-gradient-to-br from-brand-accent to-brand-strong text-brand-base overflow-hidden flex items-center">
-        <div className="absolute inset-0 bg-black/20"></div>
+      <section className="relative py-20 min-h-screen bg-gradient-to-b from-brand-accent to-brand-strong text-brand-base overflow-hidden flex items-center">
+        <div className="absolute inset-0 bg-black/30"></div>
         <div className="relative z-10 max-w-7xl mx-auto px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div
@@ -98,23 +98,23 @@ const AboutPage = () => {
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
             >
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+              <h1 className="text-5xl md:text-6xl font-bold mb-6 text-white">
                 About Me
               </h1>
-              <p className="text-[16px] mb-6 text-white">
+              <p className="text-[16px] mb-6 text-white leading-relaxed">
                 I'm currently working as a Marketing Automation Developer at Wavenet Pvt Ltd since October 2022.
                 So yes, you could say I’m a developer with a marketer’s mindset, combining code and strategy to solve real business problems.
               </p>
-              <p className="text-[16px] mb-6 text-white">
+              <p className="text-[16px] mb-6 text-white leading-relaxed">
                 With a background in marketing automation, SEO, and web development, I help brands create seamless digital systems, from high-converting email flows to fast, scalable websites and search-first content strategies.
               </p>
-              <p className="text-[16px] mb-6 text-white">
+              <p className="text-[16px] mb-6 text-white leading-relaxed">
                 I work with a wide range of tools across marketing, SEO, AI, and web development, giving me the flexibility to plug into any part of a digital growth engine, technical or creative.
               </p>
-              <p className="text-[16px] mb-6 text-white">
+              <p className="text-[16px] mb-6 text-white leading-relaxed">
                 I believe great digital experiences aren’t just beautiful, they’re purposeful, measurable, and built to evolve.
               </p>
-              <p className="text-[16px] mb-8 text-white">
+              <p className="text-[16px] mb-8 text-white leading-relaxed">
                 If you're looking for someone who can bridge the gap between marketing and tech, I'm your guy.
               </p>
               {/* Additional personal details removed per design update */}
@@ -135,13 +135,13 @@ const AboutPage = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
             >
               <motion.div
-                className="w-100 h-100 bg-brand-surface/20 backdrop-blur-lg rounded-3xl mx-auto flex items-center justify-center"
+                className="w-100 h-100 bg-brand-surface/20 backdrop-blur-xl rounded-3xl mx-auto flex items-center justify-center"
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: [1, 1.01, 1], y: [0, -4, 0] }}
                 transition={{ duration: 0.5, ease: "easeOut", scale: { repeat: Infinity, duration: 7, ease: "easeInOut" }, y: { repeat: Infinity, duration: 7, ease: "easeInOut", delay: 3.5 } }}
               >
                 <motion.div
-                  className="w-80 h-80 bg-gradient-to-br from-brand-accent to-brand-strong rounded-2xl flex items-center justify-center overflow-hidden"
+                  className="w-80 h-80 bg-gradient-to-br from-brand-accent to-brand-strong rounded-2xl flex items-center justify-center overflow-hidden border border-brand-base/20"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: [1, 1.005, 1], y: [0, 2, 0] }}
                   transition={{ delay: 0.2, duration: 0.5, ease: "easeOut", scale: { repeat: Infinity, duration: 5, ease: "easeInOut" }, y: { repeat: Infinity, duration: 5, ease: "easeInOut", delay: 2.5 } }}
