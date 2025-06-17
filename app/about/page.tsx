@@ -141,7 +141,7 @@ const AboutPage = () => {
                     alt="Dasun"
                     width={256}
                     height={256}
-                    className="rounded-full object-cover"
+                    className="rounded-2xl object-cover"
                   />
                 </div>
               </div>
