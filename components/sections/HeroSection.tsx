@@ -9,23 +9,17 @@ import styles from '../../styles/HeroSection.module.css'
 const HeroSection = () => {
   return (
     <>
-      {/* Canvas section for Rive animation */}
+      {/* Hero section with Rive background */}
       <section
-        id="canvas"
-        className="w-screen h-screen relative overflow-hidden"
+        id="hero"
+        className="relative w-full h-screen flex items-center overflow-hidden"
+        style={{ backgroundColor: '#08080D' }}
       >
         {/* Rive animation */}
         <div className={styles.riveContainer}>
           <RiveHero />
         </div>
-      </section>
 
-      {/* Hero section */}
-      <section
-        id="hero"
-        className="w-full flex items-center relative"
-        style={{ backgroundColor: '#08080D' }}
-      >
         {/* Hero content */}
         <div className="max-w-3xl mx-auto px-6 space-y-6 text-left relative z-10">
           <motion.h1
