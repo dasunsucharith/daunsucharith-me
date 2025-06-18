@@ -2,26 +2,20 @@
 
 import React, { useState } from 'react'
 import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X } from 'lucide-react'
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const pathname = usePathname()
 
   const navItems = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About' },
-    { href: '/services', label: 'Services' },
-    { href: '/projects', label: 'Projects' },
-    { href: '/contact', label: 'Contact' },
+    { href: '#hero', label: 'Home' },
+    { href: '#about', label: 'About' },
+    { href: '#projects', label: 'Projects' },
+    { href: '#contact', label: 'Contact' },
   ]
 
-  const isActive = (href: string) => {
-    if (href === '/') return pathname === '/'
-    return pathname.startsWith(href)
-  }
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-brand-base/80 via-brand-surface/70 to-brand-base/80 backdrop-blur-xl border-b border-white/10 shadow-2xl">
@@ -67,32 +61,16 @@ const Navigation = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className="relative group"
+                className="relative group text-white hover:text-brand-accent text-sm font-medium transition-colors"
               >
-                <span
-                  className={`text-sm font-medium transition-colors ${
-                    isActive(item.href)
-                      ? 'text-brand-accent'
-                      : 'text-white hover:text-brand-accent'
-                  }`}
-                >
-                  {item.label}
-                </span>
-                {isActive(item.href) && (
-                  <motion.div
-                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-brand-accent rounded-full"
-                    layoutId="activeTab"
-                    initial={false}
-                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                  />
-                )}
+                {item.label}
               </Link>
             ))}
           </div>
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Link href="/contact">
+            <Link href="#contact">
               <motion.button
                 className="bg-gradient-to-r from-brand-accent to-brand-strong text-white px-6 py-2 rounded-full font-semibold text-sm backdrop-blur-xl border border-white/20 relative overflow-hidden group"
                 whileHover={{ 
@@ -286,42 +264,16 @@ const Navigation = () => {
                       onClick={() => setIsMenuOpen(false)}
                     >
                       <motion.div
-                        className={`relative px-4 py-3 rounded-xl bg-gradient-to-r backdrop-blur-sm border transition-all duration-300 ${
-                          isActive(item.href)
-                            ? 'from-brand-accent/20 to-brand-strong/20 border-brand-accent/30 shadow-lg'
-                            : 'from-white/5 to-transparent border-white/10 hover:from-brand-accent/10 hover:to-brand-strong/10 hover:border-brand-accent/20'
-                        }`}
-                        whileHover={{ 
+                        className="relative px-4 py-3 rounded-xl bg-gradient-to-r from-white/5 to-transparent backdrop-blur-sm border border-white/10 hover:from-brand-accent/10 hover:to-brand-strong/10 hover:border-brand-accent/20 transition-all duration-300"
+                        whileHover={{
                           scale: 1.02,
                           boxShadow: "0 0 20px rgba(255, 165, 134, 0.2)"
                         }}
                         whileTap={{ scale: 0.98 }}
                       >
-                        <span
-                          className={`text-base font-medium transition-colors ${
-                            isActive(item.href)
-                              ? 'text-brand-accent'
-                              : 'text-white group-hover:text-brand-accent'
-                          }`}
-                        >
+                        <span className="text-base font-medium transition-colors text-white group-hover:text-brand-accent">
                           {item.label}
                         </span>
-                        
-                        {/* Active indicator */}
-                        {isActive(item.href) && (
-                          <motion.div
-                            className="absolute right-3 top-1/2 transform -translate-y-1/2 w-2 h-2 bg-brand-accent rounded-full"
-                            animate={{
-                              scale: [1, 1.2, 1],
-                              opacity: [0.7, 1, 0.7]
-                            }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              ease: "easeInOut"
-                            }}
-                          />
-                        )}
                         
                         {/* Hover shine effect */}
                         <motion.div
@@ -352,7 +304,7 @@ const Navigation = () => {
                   }}
                   className="pt-4"
                 >
-                  <Link href="/contact" onClick={() => setIsMenuOpen(false)}>
+                  <Link href="#contact" onClick={() => setIsMenuOpen(false)}>
                     <motion.button
                       className="w-full bg-gradient-to-r from-brand-accent to-brand-strong text-white px-6 py-4 rounded-2xl font-semibold text-base backdrop-blur-xl border border-white/20 relative overflow-hidden group shadow-lg"
                       whileHover={{ 
