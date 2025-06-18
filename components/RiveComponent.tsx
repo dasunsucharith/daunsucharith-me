@@ -35,7 +35,7 @@ export default function RiveHero() {
   }, [rive]);
 
   return (
-    <div ref={containerRef} className="absolute inset-0 w-screen h-full">
+    <div ref={containerRef} className="absolute inset-0 w-full h-full">
       <RiveComponent className="w-full h-full" />
     </div>
   );
