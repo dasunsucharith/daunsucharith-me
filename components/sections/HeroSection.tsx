@@ -22,7 +22,7 @@ const HeroSection = () => {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="text-2xl md:text-4xl font-bold text-white font-josefin"
         >
-          I am Dasun Sucharith
+          I'm Dasun Sucharith
         </motion.p>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
