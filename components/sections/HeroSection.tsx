@@ -1,21 +1,74 @@
 'use client'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Mail, Linkedin, Github } from 'lucide-react'
 import { motion } from 'framer-motion'
 import styles from '../../styles/HeroSection.module.css'
 
 const HeroSection = () => {
+  useEffect(() => {
+    const svg = document.getElementById('hero-bg-svg')
+    const orb = document.getElementById('bg-orb')
+    if (!svg || !orb) return
+    const handleMove = (e: MouseEvent) => {
+      const { innerWidth, innerHeight } = window
+      const x = e.clientX / innerWidth
+      const y = e.clientY / innerHeight
+      const cx = 960 + (x - 0.5) * 300
+      const cy = 540 + (y - 0.5) * 200
+      orb.setAttribute('cx', cx.toString())
+      orb.setAttribute('cy', cy.toString())
+    }
+    window.addEventListener('mousemove', handleMove)
+    return () => window.removeEventListener('mousemove', handleMove)
+  }, [])
+
   return (
     <>
       {/* Hero section with Rive background */}
       <section
         id="hero"
-        className="w-screen h-screen flex items-center relative overflow-hidden"
-        style={{ backgroundColor: 'var(--primary-color)', overflow: 'hidden' }}
+        className="w-screen h-screen flex items-center relative overflow-x-hidden group"
+        style={{ backgroundColor: 'var(--primary-color)', position: 'relative' }}
       >
+        {/* Animated interactive background */}
+        <div className="absolute inset-0 z-0 pointer-events-none">
+          <svg
+            id="hero-bg-svg"
+            width="100%"
+            height="100%"
+            viewBox="0 0 1920 1080"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            style={{ width: '100%', height: '100%' }}
+          >
+            <defs>
+              <radialGradient
+                id="bg-grad"
+                cx="50%"
+                cy="50%"
+                r="80%"
+                fx="50%"
+                fy="50%"
+              >
+                <stop offset="0%" stopColor="#ffa586" stopOpacity="0.25" />
+                <stop offset="100%" stopColor="#161e2f" stopOpacity="0" />
+              </radialGradient>
+            </defs>
+            <circle
+              id="bg-orb"
+              cx="960"
+              cy="540"
+              r="400"
+              fill="url(#bg-grad)"
+              style={{
+                transition: 'all 0.5s cubic-bezier(.4,2,.6,1)',
+              }}
+            />
+          </svg>
+        </div>
         {/* Hero content */}
-        <div className="max-w-3xl mx-auto px-6 space-y-6 text-left relative z-10">
+        <div className="max-w-3xl mx-auto px-6 space-y-6 text-left relative z-10 h-full flex flex-col justify-center">
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
