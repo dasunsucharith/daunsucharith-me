@@ -3,7 +3,6 @@
 import React from 'react'
 import { Mail, Linkedin, Github } from 'lucide-react'
 import { motion } from 'framer-motion'
-import RiveHero from '../RiveComponent'
 import styles from '../../styles/HeroSection.module.css'
 
 const HeroSection = () => {
@@ -12,14 +11,9 @@ const HeroSection = () => {
       {/* Hero section with Rive background */}
       <section
         id="hero"
-        className="relative w-full h-screen flex items-center overflow-hidden"
-        style={{ backgroundColor: '#08080D' }}
+        className="w-screen h-screen flex items-center relative overflow-hidden"
+        style={{ backgroundColor: 'var(--primary-color)', overflow: 'hidden' }}
       >
-        {/* Rive animation */}
-        <div className={styles.riveContainer}>
-          <RiveHero />
-        </div>
-
         {/* Hero content */}
         <div className="max-w-3xl mx-auto px-6 space-y-6 text-left relative z-10">
           <motion.h1
