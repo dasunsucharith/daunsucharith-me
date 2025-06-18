@@ -1,24 +1,11 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React from 'react'
 import Link from 'next/link'
 import { motion, useReducedMotion } from 'framer-motion'
 import { Mail, Linkedin, Github } from 'lucide-react'
 
-const HomePage = () => {
-  // Prevent scrolling on homepage only
-  useEffect(() => {
-    // Only apply if we're on the homepage
-    if (typeof window !== 'undefined' && window.location.pathname === '/') {
-      document.body.style.overflow = 'hidden'
-      document.documentElement.style.overflow = 'hidden'
-      
-      return () => {
-        document.body.style.overflow = 'auto'
-        document.documentElement.style.overflow = 'auto'
-      }
-    }
-  }, [])
+const HeroSection = () => {
 
   const InfinitySymbol = ({ className }: { className?: string }) => (
     <svg
@@ -48,7 +35,7 @@ const HomePage = () => {
 
 
   return (
-    <div className="relative w-full h-[100dvh] overflow-hidden">
+    <div className="relative w-full h-[100dvh] overflow-hidden" id="hero">
       {/* Hero Section */}
       <section className="relative w-full h-[100dvh] flex items-center justify-center bg-gradient-to-br from-brand-base via-brand-surface to-brand-base overflow-hidden">
         {/* Animated Background Gradients */}
@@ -489,4 +476,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage
+export default HeroSection
