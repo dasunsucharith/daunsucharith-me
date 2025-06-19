@@ -5,9 +5,20 @@ import { motion } from 'framer-motion'
 
 const projects = [
 	{
-		title: 'E-Commerce Platform',
-		description: 'A modern e-commerce platform built with Next.js and Stripe integration.',
-		url: 'https://example.com',
+		title: 'Wavenet Website',
+		description: `Overview:
+As part of Wavenet’s in-house marketing team, I led the revamp of the official GlobalWavenet website—a core digital asset representing multiple global business units in telecom software.
+
+What I Worked On:
+- Planned and executed a complete site redesign on webflow focused on performance, accessibility, and lead generation.
+- Migrated content and restructured pages for improved SEO and user navigation.
+- Integrated GA4 and Google Tag Manager to track user interactions and conversion events.
+- Optimized all media, forms, and landing pages to support marketing campaigns.
+- Worked closely with designers and content creators to maintain brand consistency.
+
+Impact:
+Significantly improved page load times, enhanced SEO visibility, and boosted marketing campaign performance through data-driven iteration.`,
+		url: 'https://www.globalwavenet.com/',
 	},
 	{
 		title: 'SaaS Dashboard',
@@ -47,7 +58,7 @@ const ProjectsSection = () => {
 				<div className="relative flex items-center justify-center">
 					<button
 						onClick={prevSlide}
-						className="absolute left-[-5rem] z-10 bg-[#FEA485] text-white rounded-full w-12 h-12 flex items-center justify-center shadow-md hover:bg-[#ff8c5a] transition-colors duration-300"
+						className="absolute left-[-6rem] z-10 bg-[#FEA485] text-white rounded-full w-14 h-14 flex items-center justify-center shadow-md hover:bg-[#ff8c5a] transition-colors duration-300"
 					>
 						&#8592;
 					</button>
@@ -57,13 +68,13 @@ const ProjectsSection = () => {
 							href={projects[current].url}
 							target="_blank"
 							rel="noopener noreferrer"
-							className="flex flex-col md:flex-row bg-brand-surface rounded-2xl p-10 w-full max-w-3xl items-center shadow-lg transition-shadow min-h-[340px]"
+							className="flex flex-col md:flex-row bg-brand-surface rounded-2xl p-12 w-full max-w-4xl items-center shadow-lg transition-shadow min-h-[425px]"
 							initial={{ opacity: 0, y: 20 }}
 							animate={{ opacity: 1, y: 0 }}
 							transition={{ duration: 0.6 }}
 						>
 							{/* Image placeholder */}
-							<div className="w-64 h-64 bg-gray-700 rounded-2xl flex-shrink-0 mb-6 md:mb-0 md:mr-10 flex items-center justify-center">
+							<div className="w-80 h-80 bg-gray-700 rounded-2xl flex-shrink-0 mb-8 md:mb-0 md:mr-12 flex items-center justify-center">
 								<span className="text-gray-400 text-lg">Image</span>
 							</div>
 							{/* Content */}
@@ -71,7 +82,7 @@ const ProjectsSection = () => {
 								<h3 className="text-2xl font-semibold mb-4">
 									{projects[current].title}
 								</h3>
-								<p className="text-brand-muted text-base leading-relaxed mb-4">
+								<p className="text-white text-xs leading-relaxed whitespace-pre-line mb-4">
 									{projects[current].description}
 								</p>
 								<span className="text-sm text-brand-accent">
@@ -82,7 +93,7 @@ const ProjectsSection = () => {
 					</div>
 					<button
 						onClick={nextSlide}
-						className="absolute right-[-5rem] z-10 bg-[#FEA485] text-white rounded-full w-12 h-12 flex items-center justify-center shadow-md hover:bg-[#ff8c5a] transition-colors duration-300"
+						className="absolute right-[-6rem] z-10 bg-[#FEA485] text-white rounded-full w-14 h-14 flex items-center justify-center shadow-md hover:bg-[#ff8c5a] transition-colors duration-300"
 					>
 						&#8594;
 					</button>
