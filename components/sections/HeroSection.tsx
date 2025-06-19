@@ -28,8 +28,8 @@ const HeroSection = () => {
       {/* Hero section with Rive background */}
       <section
         id="hero"
-        className="w-screen h-screen flex items-center relative overflow-x-hidden group"
-        style={{ backgroundColor: 'var(--primary-color)', position: 'relative' }}
+        className="w-screen flex items-center relative overflow-x-hidden group"
+        style={{ backgroundColor: 'var(--primary-color)', position: 'relative', minHeight: '600px', paddingTop: '5rem', paddingBottom: '5rem' }}
       >
         {/* Animated interactive background */}
         <div className="absolute inset-0 z-0 pointer-events-none">
@@ -68,51 +68,50 @@ const HeroSection = () => {
           </svg>
         </div>
         {/* Hero content */}
-        <div className="max-w-3xl mx-auto px-6 space-y-6 text-left relative z-10 h-full flex flex-col justify-center">
-          <motion.h1
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="max-w-3xl mx-auto px-6 space-y-6 text-center relative z-10 h-full flex flex-col justify-center"
+        >
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="text-4xl md:text-6xl font-bold text-brand-accent font-josefin"
+            className="text-2xl md:text-3xl font-bold text-white font-josefin mb-2"
           >
             Hello!
+          </motion.h2>
+          <motion.h1
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-4xl md:text-6xl font-bold text-brand-accent font-josefin mb-4"
+          >
+            Marketing Automation Developer
           </motion.h1>
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-2xl md:text-4xl font-bold text-white font-josefin"
-          >
-            I'm Dasun Sucharith
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-base md:text-lg text-white"
+            className="text-base md:text-lg text-white mb-6"
           >
-            A marketing automation developer helping brands grow smarter with SEO, Web Development, and marketing automations.
-          </motion.p>
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-base md:text-lg text-white"
-          >
-            I specialize in creating digital experiences that not only look good, but work brilliantly behind the scenes too.
+            helping brands grow with smarter SEO, web development, and automation.<br />
+            Crafting digital experiences that look great and perform even better.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
             className="mt-8"
           >
-            <div className="flex gap-6">
+            <div className="flex gap-6 justify-center">
               <motion.a
                 href="mailto:sucharith.dasun@gmail.com"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(255, 165, 134, 0.5)" }}
                 whileTap={{ scale: 0.95 }}
-                className="social-button ios-safe w-12 h-12 bg-brand-surface border-2 border-brand-accent rounded-full flex items-center justify-center text-white"
+                className="bg-gradient-to-r from-brand-accent to-brand-strong text-white w-12 h-12 rounded-full border border-white/20 flex items-center justify-center relative overflow-hidden group shadow-md"
+                style={{ background: 'linear-gradient(135deg, rgba(255, 165, 134, 0.9) 0%, rgba(181, 26, 43, 0.9) 100%)', backdropFilter: 'blur(20px)' }}
               >
                 <Mail className="w-5 h-5" />
               </motion.a>
@@ -120,9 +119,10 @@ const HeroSection = () => {
                 href="https://www.linkedin.com/in/dasun-sucharith/"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(255, 165, 134, 0.5)" }}
                 whileTap={{ scale: 0.95 }}
-                className="social-button ios-safe w-12 h-12 bg-brand-surface border-2 border-brand-strong rounded-full flex items-center justify-center text-white"
+                className="bg-gradient-to-r from-brand-accent to-brand-strong text-white w-12 h-12 rounded-full border border-white/20 flex items-center justify-center relative overflow-hidden group shadow-md"
+                style={{ background: 'linear-gradient(135deg, rgba(255, 165, 134, 0.9) 0%, rgba(181, 26, 43, 0.9) 100%)', backdropFilter: 'blur(20px)' }}
               >
                 <Linkedin className="w-5 h-5" />
               </motion.a>
@@ -130,15 +130,16 @@ const HeroSection = () => {
                 href="https://github.com/dasunsucharith"
                 target="_blank"
                 rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
+                whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(255, 165, 134, 0.5)" }}
                 whileTap={{ scale: 0.95 }}
-                className="social-button ios-safe w-12 h-12 bg-brand-surface border-2 border-brand-accent rounded-full flex items-center justify-center text-white"
+                className="bg-gradient-to-r from-brand-accent to-brand-strong text-white w-12 h-12 rounded-full border border-white/20 flex items-center justify-center relative overflow-hidden group shadow-md"
+                style={{ background: 'linear-gradient(135deg, rgba(255, 165, 134, 0.9) 0%, rgba(181, 26, 43, 0.9) 100%)', backdropFilter: 'blur(20px)' }}
               >
                 <Github className="w-5 h-5" />
               </motion.a>
             </div>
           </motion.div>
-        </div>
+        </motion.div>
       </section>
     </>
   )
