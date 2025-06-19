@@ -11,6 +11,7 @@
     "deploy": "npm run build && echo 'Static files generated in ./out/ directory'"
   },
   "dependencies": {
+    "@rive-app/react-canvas": "^4.21.3",
     "@tailwindcss/typography": "^0.5.16",
     "autoprefixer": "^10.4.21",
     "framer-motion": "^12.18.1",
