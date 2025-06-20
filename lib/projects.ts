@@ -4,15 +4,16 @@ export interface Project {
   shortDescription: string;
   description: string;
   image: string;
+  url: string;
 }
 
 export const projects: Project[] = [
   {
-    slug: "wavenet-website",
+    slug: "Wavenet",
     title: "Wavenet Website",
     shortDescription: "Corporate site redesign with SEO focus",
     description: `Overview:
-As part of Wavenet’s in-house marketing team, I led the revamp of the official GlobalWavenet website—a core digital asset representing multiple global business units in telecom software.
+As part of Wavenet’s in-house marketing team, I did the revamp of the official GlobalWavenet website a core digital asset representing multiple global business units in telecom software.
 
 What I Worked On:
 - Planned and executed a complete site redesign on webflow focused on performance, accessibility, and lead generation.
@@ -23,15 +24,27 @@ What I Worked On:
 
 Impact:
 Significantly improved page load times, enhanced SEO visibility, and boosted marketing campaign performance through data-driven iteration.`,
-    image: "/assets/projects/wavenet-website.svg",
+    image: "/assets/projects/globalwavenet.png",
+    url: "https://globalwavenet.com",
   },
   {
-    slug: "saas-dashboard",
-    title: "SaaS Dashboard",
-    shortDescription: "Analytics and billing dashboard",
-    description:
-      "A comprehensive dashboard for SaaS businesses with analytics and billing integration.",
-    image: "/assets/projects/saas-dashboard.svg",
+    slug: "Mediwave",
+    title: "Mediwave Website",
+    shortDescription: "Healthcare tech company website",
+    description: `Overview:
+Mediwave is a healthcare tech platform, and the website serves as a key digital interface for both enterprise clients and partners. My role involved full ownership of the site's design, development, and performance optimization.
+
+What I Worked On:
+- Built and customized the entire site using WordPress + Elementor for rapid iteration and ease of content management.
+- Focused on clean UX, mobile responsiveness, and accessibility for a diverse user base.
+- Integrated SEO best practices including schema, meta tags, performance tuning, and content structure.
+- Collaborated closely with marketing and product teams to align messaging and visuals with business goals.
+- Set up analytics tracking, goal completions, and marketing landing pages using GA4 and GTM.
+
+Impact:
+Improved site performance and SEO visibility, increased user engagement, and streamlined content workflows for the marketing team.`,
+    image: "/assets/projects/mediwave-mock.png",
+    url: "https://mediwave.io",
   },
   {
     slug: "learning-management-system",
@@ -40,6 +53,7 @@ Significantly improved page load times, enhanced SEO visibility, and boosted mar
     description:
       "A full featured LMS with video streaming and interactive quizzes.",
     image: "/assets/projects/lms.svg",
+    url: "https://example.com",
   },
 ];
 
