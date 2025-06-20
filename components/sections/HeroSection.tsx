@@ -28,7 +28,7 @@ const HeroSection = () => {
       {/* Hero section with Rive background */}
       <section
         id="hero"
-        className="w-screen flex items-center relative overflow-x-hidden group"
+        className="w-screen flex items-center justify-center relative overflow-x-hidden group"
         style={{ backgroundColor: 'var(--primary-color)', position: 'relative', minHeight: '600px', paddingTop: '5rem', paddingBottom: '5rem' }}
       >
         {/* Animated interactive background */}
@@ -141,6 +141,18 @@ const HeroSection = () => {
           </motion.div>
         </motion.div>
       </section>
+      {/* Curved SVG divider between Hero and About sections */}
+      <div className="w-full overflow-hidden leading-none" style={{ lineHeight: 0 }}>
+        <svg viewBox="0 0 1440 120" width="100%" height="80" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style={{ display: 'block' }}>
+          <defs>
+            <linearGradient id="heroToAbout" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="var(--primary-color)" />
+              <stop offset="100%" stopColor="var(--brand-surface, #181f2f)" />
+            </linearGradient>
+          </defs>
+          <path d="M0,80 C360,160 1080,0 1440,80 L1440,120 L0,120 Z" fill="url(#heroToAbout)" />
+        </svg>
+      </div>
     </>
   )
 }

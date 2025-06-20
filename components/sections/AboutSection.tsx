@@ -22,6 +22,11 @@ const AboutSection = () => {
         >
           About Me
         </motion.h2>
+        <img
+          src="/assets/dasun.png"
+          alt="Dasun Sucharith"
+          className="mx-auto rounded-full w-40 h-40 object-cover border-4 border-[#FEA485] shadow-lg mb-4"
+        />
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
