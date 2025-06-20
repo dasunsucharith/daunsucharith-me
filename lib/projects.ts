@@ -138,6 +138,59 @@ The final site effectively positions 3rd Eye Media as a premium creative partner
 		image: "/assets/projects/3rdeyemedia-mock.png",
 		url: "https://www.3rdeyemedia.com.au",
 	},
+  {
+    slug: "the-best-of-moi",
+    title: "The Best of Moi Website",
+    shortDescription: "Shopify site for eco-conscious supplement brand",
+    description: `Overview:
+The Best of Moi is an Australian plastic-free, carbon-neutral wellness brand offering clean health supplements. I contributed to the Shopify site by supporting frontend development and custom feature integration during the website’s build phase.
+
+What I Worked On:
+- Developed and customized sections within a Shopify theme to match the brand’s design and UX needs.
+- Assisted in implementing custom layout components and product display features using Liquid and CSS.
+- Worked collaboratively with the lead developer and design team to align functionality with brand visuals.
+- Ensured mobile responsiveness and cross-browser consistency.
+
+Impact:
+Helped deliver a polished, high-conversion storefront that supports The Best of Moi’s clean, conscious product experience.`,
+    image: "/assets/projects/thebestofmoi-mock.png",
+    url: "https://thebestofmoi.com",
+  },
+  {
+    slug: "olive-oil-skincare",
+    title: "Olive Oil Skincare Company Website",
+    shortDescription: "Shopify site for natural skincare brand",
+    description: `Overview:
+Olive Oil Skincare Company is a natural skincare brand based in Australia, known for products made with 100% Australian olive oil. I was involved in the development of their Shopify website, focusing on frontend adjustments and custom section work.
+
+What I Worked On:
+- Assisted with theme customization and layout updates using Shopify Liquid, HTML/CSS, and JavaScript.
+- Implemented minor design tweaks and reusable content blocks to improve UI consistency.
+- Collaborated with the main development team to ensure brand alignment and responsive layout execution.
+
+Impact:
+Supported the evolution of a clean, customer-friendly storefront that reflects the brand’s natural and minimalist philosophy.`,
+    image: "/assets/projects/oliveoilskincare-mock.png",
+    url: "https://www.oliveoilskincare.com.au",
+  },
+  {
+    slug: "lumiere-beauty-clinic",
+    title: "Lumiere Beauty Clinic Website",
+    shortDescription: "WordPress site for a premium beauty clinic",
+    description: `Overview:
+Lumiere Beauty Clinic is a premium cosmetic and skincare service provider based in Sydney, offering advanced beauty treatments. I supported the team with the development of landing pages and various frontend enhancements on their WordPress website.
+
+What I Worked On:
+- Developed custom landing pages for promotional campaigns and service highlights using WordPress + Elementor.
+- Implemented layout tweaks and responsive design adjustments to improve mobile performance.
+- Integrated smooth-scroll anchors, forms, and content blocks to enhance user experience and lead generation.
+- Worked closely with content and design teams to ensure visual and brand consistency.
+
+Impact:
+Helped optimize the site for marketing campaigns while elevating the overall user experience with targeted development support.`,
+    image: "/assets/projects/lumierebeautyclinic-mock.png",
+    url: "https://www.lumierebeautyclinic.com.au",
+  },
 ];
 
 export function getProject(slug: string): Project | undefined {
