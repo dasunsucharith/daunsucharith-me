@@ -31,12 +31,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body 
-        className={`${inter.className} antialiased bg-brand-base text-brand-accent`}
+        className={`${inter.className} antialiased bg-brand-base text-brand-accent overflow-x-hidden`}
         suppressHydrationWarning={true}
         style={{'--font-josefin': josefinSans.style.fontFamily, '--font-inter': inter.style.fontFamily} as React.CSSProperties}
       >
         <Navigation />
-        <main>
+        <main className="overflow-x-hidden">
           {children}
         </main>
       </body>
