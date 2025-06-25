@@ -1,9 +1,77 @@
 'use client'
 
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Mail, Linkedin, Github } from 'lucide-react'
 import { motion } from 'framer-motion'
 import styles from '../../styles/HeroSection.module.css'
+
+const AnimatedTitle = () => {
+  const [isExpanded, setIsExpanded] = useState(false);
+  
+  const words = [
+    { initial: 'M', full: 'Marketing' },
+    { initial: 'A', full: 'Automation' },
+    { initial: 'D', full: 'Developer' }
+  ];
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsExpanded(true);
+    }, 1500); // Wait 1.5 seconds before expanding
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  const AnimatedWord = ({ word, index }: { word: { initial: string; full: string }, index: number }) => {
+    const [displayText, setDisplayText] = useState(word.initial);
+    
+    useEffect(() => {
+      if (isExpanded) {
+        const fullText = word.full;
+        let currentIndex = 1; // Start from 1 since we already have the first letter
+        
+        const typeTimer = setInterval(() => {
+          if (currentIndex <= fullText.length) {
+            setDisplayText(fullText.substring(0, currentIndex));
+            currentIndex++;
+          } else {
+            clearInterval(typeTimer);
+          }
+        }, 100); // Typing speed
+        
+        return () => clearInterval(typeTimer);
+      }
+    }, [isExpanded, word.full]);
+
+    return (
+      <motion.span
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6, delay: index * 0.1 }}
+        className="inline-block mr-4"
+      >
+        {displayText}
+      </motion.span>
+    );
+  };
+
+  return (
+    <motion.h1
+      initial={{ opacity: 0, y: 30 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, delay: 0.1 }}
+      className="text-3xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-white to-brand-strong font-josefin mb-6 leading-tight"
+      style={{
+        textShadow: '0 0 30px rgba(255, 165, 134, 0.3)',
+        filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))'
+      }}
+    >
+      {words.map((word, index) => (
+        <AnimatedWord key={index} word={word} index={index} />
+      ))}
+    </motion.h1>
+  );
+};
 
 const HeroSection = () => {
   useEffect(() => {
@@ -172,20 +240,9 @@ const HeroSection = () => {
               transition={{ duration: 0.6 }}
               className="text-2xl md:text-3xl font-bold text-white/90 font-josefin mb-4 tracking-wide"
             >
-              Hello!
+              Hello, I'm Dasun,
             </motion.h2>
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-3xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-white to-brand-strong font-josefin mb-6 leading-tight"
-              style={{
-                textShadow: '0 0 30px rgba(255, 165, 134, 0.3)',
-                filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))'
-              }}
-            >
-              Marketing Automation Developer
-            </motion.h1>
+            <AnimatedTitle />
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
