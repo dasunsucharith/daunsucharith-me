@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { Mail, Linkedin, Github } from 'lucide-react'
 import { motion } from 'framer-motion'
 import styles from '../../styles/HeroSection.module.css'
+import { SubtleWave } from '../ui/WaveDivider'
 
 const AnimatedTitle = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -311,28 +312,12 @@ const HeroSection = () => {
           </motion.div>
         </motion.div>
       </section>
-      {/* Seamless color transition from hero to about */}
-      <div className="relative h-24 overflow-hidden">
-        {/* Smooth gradient blend between hero and about backgrounds */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[var(--primary-color)] to-[var(--brand-surface)]"></div>
-        
-        {/* Subtle animated accent line */}
-        <div className="absolute inset-0 flex items-center justify-center">
-          <motion.div
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1, delay: 0.5 }}
-            className="relative"
-          >
-            <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: 150 }}
-              transition={{ duration: 1.5, delay: 0.8 }}
-              className="h-px bg-gradient-to-r from-transparent via-brand-accent/40 to-transparent mx-auto"
-            ></motion.div>
-          </motion.div>
-        </div>
-      </div>
+      {/* Wave transition from hero to about */}
+      <SubtleWave 
+        fromColor="#0f1419"
+        toColor="#242F49"
+        className="relative -mt-1"
+      />
     </>
   )
 }
