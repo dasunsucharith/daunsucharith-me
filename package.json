@@ -8,7 +8,8 @@
     "start": "next start",
     "lint": "next lint",
     "export": "next build",
-    "deploy": "npm run build && echo 'Static files generated in ./out/ directory'"
+    "deploy": "npm run build && echo 'Static files generated in ./out/ directory'",
+    "check-env": "node scripts/check-env.js"
   },
   "dependencies": {
     "@rive-app/react-canvas": "^4.21.3",
@@ -27,6 +28,7 @@
     "@types/node": "24.0.1",
     "@types/nodemailer": "^6.4.14",
     "@types/react": "^18.2.79",
+    "dotenv": "^16.3.1",
     "typescript": "5.8.3"
   }
 }
