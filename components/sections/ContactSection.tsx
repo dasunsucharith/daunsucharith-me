@@ -8,22 +8,43 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({ name: '', email: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
   const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value })
+    // Clear error when user starts typing
+    if (error) setError('')
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     setIsLoading(true)
+    setError('')
     
-    // Simulate API call
-    setTimeout(() => {
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+
+      const data = await response.json()
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message')
+      }
+
       setSubmitted(true)
-      setIsLoading(false)
       setFormData({ name: '', email: '', message: '' })
-      setTimeout(() => setSubmitted(false), 4000)
-    }, 1500)
+      setTimeout(() => setSubmitted(false), 6000)
+    } catch (error) {
+      console.error('Error sending message:', error)
+      setError(error instanceof Error ? error.message : 'Failed to send message')
+    } finally {
+      setIsLoading(false)
+    }
   }
 
   return (
@@ -271,6 +292,19 @@ const ContactSection = () => {
                   >
                     <p className="text-green-400 font-medium" style={{ fontSize: '16px' }}>
                       ✨ Thanks for reaching out! I'll get back to you soon.
+                    </p>
+                  </motion.div>
+                )}
+                
+                {error && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.9 }}
+                    className="text-center p-4 bg-red-500/20 border border-red-500/30 rounded-xl backdrop-blur-sm"
+                  >
+                    <p className="text-red-400 font-medium" style={{ fontSize: '16px' }}>
+                      ⚠️ {error}
                     </p>
                   </motion.div>
                 )}

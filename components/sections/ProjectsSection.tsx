@@ -247,7 +247,7 @@ const ProjectsSection = () => {
                       style={{
                         transformStyle: 'preserve-3d',
                         zIndex: isCenter ? 10 : 5,
-                        filter: isCenter ? 'brightness(1)' : 'brightness(0.7)',
+                        opacity: isCenter ? 1 : 0.7,
                       }}
                     >
                       <Link
@@ -257,8 +257,7 @@ const ProjectsSection = () => {
                         <motion.div
                           whileHover={{ 
                             y: isCenter ? -12 : -8,
-                            scale: isCenter ? 1.05 : 0.85,
-                            filter: 'brightness(1)'
+                            scale: isCenter ? 1.05 : 0.85
                           }}
                           transition={{ type: "spring", stiffness: 300, damping: 20 }}
                           className={`relative rounded-2xl overflow-hidden bg-gradient-to-br from-light-surface to-light-muted/50 dark:from-brand-surface dark:to-brand-base/50 backdrop-blur-sm border border-gray-200/20 dark:border-white/10 shadow-2xl group-hover:shadow-light-accent/20 dark:group-hover:shadow-brand-accent/20 transition-all duration-500 ${
