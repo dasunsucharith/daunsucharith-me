@@ -1,8 +1,10 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
+  darkMode: 'class',
   content: [
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./contexts/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
     extend: {
@@ -18,6 +20,14 @@ module.exports = {
           accent: "#FFA586",
           strong: "#B51A2B",
           deep: "#541A2E"
+        },
+        light: {
+          base: "#F8FAFC",
+          surface: "#FFFFFF",
+          muted: "#F1F5F9",
+          accent: "#3B82F6",
+          strong: "#1E40AF",
+          deep: "#1E3A8A"
         }
       },
       animation: {

@@ -6,7 +6,7 @@ import { Play, ExternalLink } from 'lucide-react'
 const PodcastSection = () => {
   return (
     <>
-      <section id="podcast" className="relative py-24 bg-gradient-to-br from-brand-base to-brand-surface text-white overflow-hidden">
+      <section id="podcast" className="relative py-24 bg-gradient-to-br from-light-base to-light-surface dark:from-brand-base dark:to-brand-surface text-gray-800 dark:text-white overflow-hidden">
         {/* Enhanced background with floating elements */}
         <div className="absolute inset-0 z-0 pointer-events-none">
           {/* Floating background orbs */}
@@ -48,7 +48,7 @@ const PodcastSection = () => {
               >
                 <div className="relative group">
                   {/* Glow effect behind image */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 rounded-2xl blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-500" 
+                  <div className="absolute inset-0 bg-gradient-to-r from-light-accent to-light-strong dark:from-green-400 dark:to-blue-500 rounded-2xl blur-xl opacity-40 group-hover:opacity-60 transition-opacity duration-500" 
                        style={{ transform: 'scale(1.1)' }}></div>
                   
                   {/* Podcast banner image */}
@@ -57,7 +57,7 @@ const PodcastSection = () => {
                     alt="Ehema Wenne AI Podcast"
                     whileHover={{ scale: 1.05, rotate: 1 }}
                     transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    className="relative w-72 h-auto md:w-80 md:h-auto object-contain rounded-2xl border-2 border-green-400/40 shadow-2xl"
+                    className="relative w-72 h-auto md:w-80 md:h-auto object-contain rounded-2xl border-2 border-light-accent/40 dark:border-green-400/40 shadow-2xl"
                     style={{ 
                       boxShadow: '0 25px 50px rgba(0, 0, 0, 0.4), 0 0 40px rgba(34, 197, 94, 0.2)' 
                     }}
@@ -79,7 +79,7 @@ const PodcastSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.4 }}
-                    className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-white to-blue-400 font-josefin mb-2"
+                    className="text-3xl md:text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-light-accent via-gray-800 to-light-strong dark:from-green-400 dark:via-white dark:to-blue-400 font-josefin mb-2"
                     style={{ textShadow: '0 0 20px rgba(34, 197, 94, 0.3)' }}
                   >
                     Ehema Wenne AI?
@@ -90,7 +90,7 @@ const PodcastSection = () => {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                     transition={{ duration: 0.8, delay: 0.5 }}
-                    className="text-green-300/80 font-medium text-lg mb-2"
+                    className="text-light-accent/80 dark:text-green-300/80 font-medium text-lg mb-2"
                   >
                     The Sinhala Podcast Exploring the Future of Artificial Intelligence
                   </motion.p>
@@ -101,7 +101,7 @@ const PodcastSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.8, delay: 0.6 }}
-                  className="text-white/90 leading-relaxed mb-8 max-w-lg mx-auto md:mx-0"
+                  className="text-gray-700 dark:text-white/90 leading-relaxed mb-8 max-w-lg mx-auto md:mx-0"
                   style={{ 
                     fontSize: '16px',
                     textShadow: '0 1px 2px rgba(0, 0, 0, 0.3)' 
@@ -125,19 +125,17 @@ const PodcastSection = () => {
                     rel="noopener noreferrer"
                     whileHover={{ 
                       scale: 1.05,
-                      boxShadow: "0 15px 35px rgba(34, 197, 94, 0.4)"
+                      boxShadow: "0 15px 35px rgba(59, 130, 246, 0.4)"
                     }}
                     whileTap={{ scale: 0.95 }}
                     transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                    className="relative inline-block px-8 py-4 rounded-full font-semibold text-sm text-white border-2 border-green-400/30 group overflow-hidden"
+                    className="relative inline-block px-8 py-4 rounded-full font-semibold text-sm text-white border-2 border-light-accent/30 dark:border-green-400/30 group overflow-hidden bg-gradient-to-r from-light-accent to-light-strong dark:from-green-400 dark:to-blue-500"
                     style={{ 
-                      background: 'linear-gradient(135deg, rgba(34, 197, 94, 0.9) 0%, rgba(59, 130, 246, 0.9) 100%)',
-                      backdropFilter: 'blur(20px)',
-                      boxShadow: '0 10px 30px rgba(34, 197, 94, 0.2)'
+                      backdropFilter: 'blur(20px)'
                     }}
                   >
                     {/* Button glow effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-green-400 to-blue-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-full"></div>
+                    <div className="absolute inset-0 bg-gradient-to-r from-light-accent to-light-strong dark:from-green-400 dark:to-blue-500 opacity-0 group-hover:opacity-20 transition-opacity duration-300 rounded-full"></div>
                     
                     <span className="relative z-10 flex items-center gap-3">
                       <Play className="w-4 h-4" fill="currentColor" />

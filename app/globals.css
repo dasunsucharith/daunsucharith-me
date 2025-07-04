@@ -44,16 +44,32 @@ h6 {
 	width: 8px;
 }
 
+/* Light mode scrollbar */
 ::-webkit-scrollbar-track {
-	background: #242f49;
+	background: #e2e8f0;
 }
 
 ::-webkit-scrollbar-thumb {
-	background: linear-gradient(to bottom, #ffa586, #b51a2b);
+	background: linear-gradient(to bottom, #3b82f6, #1e40af);
 	border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
+	background: linear-gradient(to bottom, #3b82f6, #1e40af);
+	box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+/* Dark mode scrollbar */
+.dark ::-webkit-scrollbar-track {
+	background: #242f49;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+	background: linear-gradient(to bottom, #ffa586, #b51a2b);
+	border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
 	background: linear-gradient(to bottom, #ffa586, #b51a2b);
 	box-shadow: 0 0 10px rgba(255, 165, 134, 0.5);
 }

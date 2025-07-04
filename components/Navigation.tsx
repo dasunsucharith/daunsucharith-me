@@ -1,13 +1,20 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Sun, Moon } from 'lucide-react'
+import { useTheme } from '../contexts/ThemeContext'
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const { theme, toggleTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
 
   const navItems = [
     { href: '#hero', label: 'Home' },
@@ -18,10 +25,10 @@ const Navigation = () => {
 
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-brand-base/80 via-brand-surface/70 to-brand-base/80 backdrop-blur-xl border-b border-white/10 shadow-2xl">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-light-surface/80 via-light-base/70 to-light-surface/80 dark:from-brand-base/80 dark:via-brand-surface/70 dark:to-brand-base/80 backdrop-blur-xl border-b border-gray-200/20 dark:border-white/10 shadow-2xl">
       {/* Animated background glow */}
       <motion.div 
-        className="absolute inset-0 bg-gradient-to-r from-brand-accent/10 via-transparent to-brand-strong/10"
+        className="absolute inset-0 bg-gradient-to-r from-light-accent/10 via-transparent to-light-strong/10 dark:from-brand-accent/10 dark:via-transparent dark:to-brand-strong/10"
         animate={{ opacity: [0.3, 0.6, 0.3] }}
         transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
       />
@@ -30,7 +37,7 @@ const Navigation = () => {
           {/* Logo */}
           <Link href="/">
             <motion.span
-              className="text-xl font-bold text-white font-josefin relative z-10"
+              className="text-xl font-bold text-gray-800 dark:text-white font-josefin relative z-10"
               whileHover={{ 
                 scale: 1.02,
                 textShadow: "0 0 20px rgba(255, 165, 134, 0.6)"
@@ -61,28 +68,87 @@ const Navigation = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className="relative group text-white hover:text-brand-accent text-sm font-medium transition-colors"
+                className="relative group text-gray-700 dark:text-white hover:text-light-accent dark:hover:text-brand-accent text-sm font-medium transition-colors"
               >
                 {item.label}
               </Link>
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="hidden md:block">
+          {/* Theme Toggle & CTA Button */}
+          <div className="hidden md:flex items-center space-x-4">
+            {/* Theme Toggle Button */}
+            <motion.button
+              onClick={toggleTheme}
+              className="relative w-10 h-10 bg-gradient-to-br from-light-muted/50 to-light-surface/50 dark:from-brand-surface/30 dark:to-brand-base/30 backdrop-blur-xl rounded-xl border border-gray-200/20 dark:border-white/10 flex items-center justify-center group overflow-hidden"
+              whileHover={{ 
+                scale: 1.05,
+                boxShadow: "0 0 25px rgba(255, 165, 134, 0.4)",
+                borderColor: "rgba(255, 165, 134, 0.6)"
+              }}
+              whileTap={{ scale: 0.95 }}
+              animate={{
+                boxShadow: [
+                  "0 0 10px rgba(255, 165, 134, 0.2)",
+                  "0 0 20px rgba(255, 165, 134, 0.4)",
+                  "0 0 10px rgba(255, 165, 134, 0.2)"
+                ]
+              }}
+              transition={{
+                boxShadow: { duration: 3, repeat: Infinity, ease: "easeInOut" }
+              }}
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, rgba(255, 255, 255, 0.05) 100%)',
+                backdropFilter: 'blur(20px)'
+              }}
+            >
+              <AnimatePresence mode="wait">
+                {!mounted ? (
+                  <motion.div
+                    key="loading"
+                    initial={{ rotate: 0, opacity: 1 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    className="relative z-10"
+                  >
+                    <Sun className="w-5 h-5 text-gray-700 dark:text-white" />
+                  </motion.div>
+                ) : theme === 'dark' ? (
+                  <motion.div
+                    key="sun"
+                    initial={{ rotate: -90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: 90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Sun className="w-5 h-5 text-gray-700 dark:text-white" />
+                  </motion.div>
+                ) : (
+                  <motion.div
+                    key="moon"
+                    initial={{ rotate: 90, opacity: 0 }}
+                    animate={{ rotate: 0, opacity: 1 }}
+                    exit={{ rotate: -90, opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <Moon className="w-5 h-5 text-gray-700 dark:text-white" />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.button>
+            {/* CTA Button */}
             <Link href="#contact">
               <motion.button
-                className="bg-gradient-to-r from-brand-accent to-brand-strong text-white px-6 py-2 rounded-full font-semibold text-sm backdrop-blur-xl border border-white/20 relative overflow-hidden group"
+                className="bg-gradient-to-r from-light-accent to-light-strong dark:from-brand-accent dark:to-brand-strong text-white px-6 py-2 rounded-full font-semibold text-sm backdrop-blur-xl border border-gray-300/20 dark:border-white/20 relative overflow-hidden group"
                 whileHover={{ 
                   scale: 1.05,
-                  boxShadow: "0 0 25px rgba(255, 165, 134, 0.5)"
+                  boxShadow: "0 0 25px rgba(59, 130, 246, 0.5)"
                 }}
                 whileTap={{ scale: 0.95 }}
                 animate={{
                   boxShadow: [
-                    "0 0 15px rgba(255, 165, 134, 0.3)",
-                    "0 0 25px rgba(255, 165, 134, 0.5)",
-                    "0 0 15px rgba(255, 165, 134, 0.3)"
+                    "0 0 15px rgba(59, 130, 246, 0.3)",
+                    "0 0 25px rgba(59, 130, 246, 0.5)",
+                    "0 0 15px rgba(59, 130, 246, 0.3)"
                   ]
                 }}
                 transition={{
@@ -93,7 +159,6 @@ const Navigation = () => {
                   }
                 }}
                 style={{
-                  background: 'linear-gradient(135deg, rgba(255, 165, 134, 0.9) 0%, rgba(181, 26, 43, 0.9) 100%)',
                   backdropFilter: 'blur(20px)'
                 }}
               >
@@ -116,19 +181,19 @@ const Navigation = () => {
 
           {/* Enhanced Mobile Menu Button */}
           <motion.button
-            className="md:hidden relative w-12 h-12 bg-gradient-to-br from-brand-surface/30 to-brand-base/30 backdrop-blur-xl rounded-xl border border-white/10 flex items-center justify-center group overflow-hidden"
+            className="md:hidden relative w-12 h-12 bg-gradient-to-br from-light-muted/50 to-light-surface/50 dark:from-brand-surface/30 dark:to-brand-base/30 backdrop-blur-xl rounded-xl border border-gray-200/20 dark:border-white/10 flex items-center justify-center group overflow-hidden"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             whileHover={{ 
               scale: 1.05,
-              boxShadow: "0 0 25px rgba(255, 165, 134, 0.4)",
-              borderColor: "rgba(255, 165, 134, 0.6)"
+              boxShadow: "0 0 25px rgba(59, 130, 246, 0.4)",
+              borderColor: "rgba(59, 130, 246, 0.6)"
             }}
             whileTap={{ scale: 0.95 }}
             animate={{
               boxShadow: [
-                "0 0 10px rgba(255, 165, 134, 0.2)",
-                "0 0 20px rgba(255, 165, 134, 0.4)",
-                "0 0 10px rgba(255, 165, 134, 0.2)"
+                "0 0 10px rgba(59, 130, 246, 0.2)",
+                "0 0 20px rgba(59, 130, 246, 0.4)",
+                "0 0 10px rgba(59, 130, 246, 0.2)"
               ]
             }}
             transition={{
@@ -163,7 +228,7 @@ const Navigation = () => {
                   transition={{ duration: 0.2 }}
                   className="relative z-10"
                 >
-                  <X className="w-6 h-6 text-white" />
+                  <X className="w-6 h-6 text-gray-800 dark:text-white" />
                 </motion.div>
               ) : (
                 <motion.div
@@ -174,7 +239,7 @@ const Navigation = () => {
                   transition={{ duration: 0.2 }}
                   className="relative z-10"
                 >
-                  <Menu className="w-6 h-6 text-white" />
+                  <Menu className="w-6 h-6 text-gray-800 dark:text-white" />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -293,6 +358,58 @@ const Navigation = () => {
                   </motion.div>
                 ))}
                 
+                {/* Mobile Theme Toggle */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ 
+                    delay: navItems.length * 0.1 + 0.1,
+                    duration: 0.4,
+                    ease: "easeOut"
+                  }}
+                >
+                  <motion.button
+                    onClick={toggleTheme}
+                    className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-gradient-to-r from-light-muted/50 to-light-surface/50 dark:from-white/5 dark:to-transparent backdrop-blur-sm border border-gray-200/20 dark:border-white/10 hover:from-light-accent/10 hover:to-light-strong/10 dark:hover:from-brand-accent/10 dark:hover:to-brand-strong/10 hover:border-light-accent/20 dark:hover:border-brand-accent/20 transition-all duration-300"
+                    whileHover={{
+                      scale: 1.02,
+                      boxShadow: "0 0 20px rgba(59, 130, 246, 0.2)"
+                    }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="w-8 h-8 bg-gradient-to-br from-light-accent/20 to-light-strong/20 dark:from-brand-accent/20 dark:to-brand-strong/20 rounded-full flex items-center justify-center">
+                      <AnimatePresence mode="wait">
+                        {!mounted ? (
+                          <Sun className="w-4 h-4 text-light-accent dark:text-brand-accent" />
+                        ) : theme === 'dark' ? (
+                          <motion.div
+                            key="sun"
+                            initial={{ rotate: -90, opacity: 0 }}
+                            animate={{ rotate: 0, opacity: 1 }}
+                            exit={{ rotate: 90, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <Sun className="w-4 h-4 text-light-accent dark:text-brand-accent" />
+                          </motion.div>
+                        ) : (
+                          <motion.div
+                            key="moon"
+                            initial={{ rotate: 90, opacity: 0 }}
+                            animate={{ rotate: 0, opacity: 1 }}
+                            exit={{ rotate: -90, opacity: 0 }}
+                            transition={{ duration: 0.2 }}
+                          >
+                            <Moon className="w-4 h-4 text-light-accent dark:text-brand-accent" />
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                    <span className="text-base font-medium text-gray-700 dark:text-white">
+                      {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+                    </span>
+                  </motion.button>
+                </motion.div>
+                
                 {/* Enhanced CTA Button */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
@@ -306,17 +423,17 @@ const Navigation = () => {
                 >
                   <Link href="#contact" onClick={() => setIsMenuOpen(false)}>
                     <motion.button
-                      className="w-full bg-gradient-to-r from-brand-accent to-brand-strong text-white px-6 py-4 rounded-2xl font-semibold text-base backdrop-blur-xl border border-white/20 relative overflow-hidden group shadow-lg"
+                      className="w-full bg-gradient-to-r from-light-accent to-light-strong dark:from-brand-accent dark:to-brand-strong text-white px-6 py-4 rounded-2xl font-semibold text-base backdrop-blur-xl border border-gray-300/20 dark:border-white/20 relative overflow-hidden group shadow-lg"
                       whileHover={{ 
                         scale: 1.02,
-                        boxShadow: "0 0 30px rgba(255, 165, 134, 0.5)"
+                        boxShadow: "0 0 30px rgba(59, 130, 246, 0.5)"
                       }}
                       whileTap={{ scale: 0.98 }}
                       animate={{
                         boxShadow: [
-                          "0 0 20px rgba(255, 165, 134, 0.3)",
-                          "0 0 30px rgba(255, 165, 134, 0.5)",
-                          "0 0 20px rgba(255, 165, 134, 0.3)"
+                          "0 0 20px rgba(59, 130, 246, 0.3)",
+                          "0 0 30px rgba(59, 130, 246, 0.5)",
+                          "0 0 20px rgba(59, 130, 246, 0.3)"
                         ]
                       }}
                       transition={{
@@ -327,7 +444,6 @@ const Navigation = () => {
                         }
                       }}
                       style={{
-                        background: 'linear-gradient(135deg, rgba(255, 165, 134, 0.9) 0%, rgba(181, 26, 43, 0.9) 100%)',
                         backdropFilter: 'blur(20px)'
                       }}
                     >

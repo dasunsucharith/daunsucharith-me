@@ -60,7 +60,7 @@ const AnimatedTitle = () => {
       initial={{ opacity: 0, y: 30 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: 0.1 }}
-      className="text-3xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-white to-brand-strong font-josefin mb-6 leading-tight"
+      className="text-3xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-light-accent via-gray-800 to-light-strong dark:from-brand-accent dark:via-white dark:to-brand-strong font-josefin mb-6 leading-tight"
       style={{
         textShadow: '0 0 30px rgba(255, 165, 134, 0.3)',
         filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))'
@@ -120,9 +120,8 @@ const HeroSection = () => {
       {/* Hero section with Rive background */}
       <section
         id="hero"
-        className="w-full flex items-center justify-center relative overflow-hidden"
+        className="w-full flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-light-base via-light-muted to-light-base dark:bg-gradient-to-br dark:from-brand-base dark:via-brand-surface dark:to-brand-base"
         style={{ 
-          background: 'linear-gradient(135deg, var(--primary-color) 0%, #0f1419 50%, var(--primary-color) 100%)',
           position: 'relative', 
           minHeight: '100vh', 
           paddingTop: '5rem', 
@@ -149,9 +148,9 @@ const HeroSection = () => {
                 fx="50%"
                 fy="50%"
               >
-                <stop offset="0%" stopColor="#ffa586" stopOpacity="0.4" />
-                <stop offset="50%" stopColor="#ff6b4a" stopOpacity="0.2" />
-                <stop offset="100%" stopColor="#161e2f" stopOpacity="0" />
+                <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.4" className="dark:stop-color-[#ffa586]" />
+                <stop offset="50%" stopColor="#1e40af" stopOpacity="0.2" className="dark:stop-color-[#ff6b4a]" />
+                <stop offset="100%" stopColor="#f8fafc" stopOpacity="0" className="dark:stop-color-[#161e2f]" />
               </radialGradient>
               <radialGradient
                 id="bg-grad-2"
@@ -161,9 +160,9 @@ const HeroSection = () => {
                 fx="50%"
                 fy="50%"
               >
-                <stop offset="0%" stopColor="#b51a2b" stopOpacity="0.3" />
-                <stop offset="50%" stopColor="#ff4757" stopOpacity="0.15" />
-                <stop offset="100%" stopColor="#161e2f" stopOpacity="0" />
+                <stop offset="0%" stopColor="#1e3a8a" stopOpacity="0.3" className="dark:stop-color-[#b51a2b]" />
+                <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.15" className="dark:stop-color-[#ff4757]" />
+                <stop offset="100%" stopColor="#f8fafc" stopOpacity="0" className="dark:stop-color-[#161e2f]" />
               </radialGradient>
               <filter id="glow">
                 <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
@@ -201,24 +200,24 @@ const HeroSection = () => {
             
             {/* Animated particles */}
             <g className="animate-pulse">
-              <circle cx="300" cy="200" r="2" fill="#ffa586" opacity="0.6" className="floating-particle">
+              <circle cx="300" cy="200" r="2" fill="#3b82f6" opacity="0.6" className="floating-particle dark:fill-[#ffa586]">
                 <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
               </circle>
-              <circle cx="1500" cy="800" r="1.5" fill="#ff6b4a" opacity="0.7" className="floating-particle">
+              <circle cx="1500" cy="800" r="1.5" fill="#1e40af" opacity="0.7" className="floating-particle dark:fill-[#ff6b4a]">
                 <animate attributeName="opacity" values="0.7;0.3;0.7" dur="4s" repeatCount="indefinite"/>
               </circle>
-              <circle cx="200" cy="700" r="1" fill="#b51a2b" opacity="0.5" className="floating-particle">
+              <circle cx="200" cy="700" r="1" fill="#1e3a8a" opacity="0.5" className="floating-particle dark:fill-[#b51a2b]">
                 <animate attributeName="opacity" values="0.5;0.8;0.5" dur="5s" repeatCount="indefinite"/>
               </circle>
             </g>
           </svg>
           
           {/* Additional floating elements */}
-          <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-gradient-to-r from-brand-accent/10 to-transparent animate-pulse floating-particle" 
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-gradient-to-r from-light-accent/10 to-transparent dark:from-brand-accent/10 dark:to-transparent animate-pulse floating-particle" 
                style={{ animationDuration: '6s', animationDelay: '0s' }}></div>
-          <div className="absolute bottom-1/3 right-1/4 w-24 h-24 rounded-full bg-gradient-to-l from-brand-strong/15 to-transparent animate-pulse floating-particle" 
+          <div className="absolute bottom-1/3 right-1/4 w-24 h-24 rounded-full bg-gradient-to-l from-light-strong/15 to-transparent dark:from-brand-strong/15 dark:to-transparent animate-pulse floating-particle" 
                style={{ animationDuration: '8s', animationDelay: '2s' }}></div>
-          <div className="absolute top-1/2 right-1/3 w-16 h-16 rounded-full bg-gradient-to-t from-brand-accent/8 to-transparent animate-pulse floating-particle" 
+          <div className="absolute top-1/2 right-1/3 w-16 h-16 rounded-full bg-gradient-to-t from-light-accent/8 to-transparent dark:from-brand-accent/8 dark:to-transparent animate-pulse floating-particle" 
                style={{ animationDuration: '7s', animationDelay: '4s' }}></div>
         </div>
         {/* Hero content */}
@@ -238,7 +237,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="text-2xl md:text-3xl font-bold text-white/90 font-josefin mb-4 tracking-wide"
+              className="text-2xl md:text-3xl font-bold text-gray-700 dark:text-white/90 font-josefin mb-4 tracking-wide"
             >
               Hello, I'm Dasun,
             </motion.h2>
@@ -247,7 +246,7 @@ const HeroSection = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-white/80 mb-8 leading-relaxed max-w-3xl mx-auto"
+              className="text-gray-600 dark:text-white/80 mb-8 leading-relaxed max-w-3xl mx-auto"
               style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)', fontSize: '16px' }}
             >
               helping brands grow with smarter SEO, web development, and automation.<br />
@@ -271,7 +270,7 @@ const HeroSection = () => {
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 className="relative group"
               >
-                <div className="relative bg-gradient-to-r from-brand-accent to-brand-strong text-white w-12 h-12 rounded-full border-2 border-white/30 flex items-center justify-center shadow-2xl backdrop-blur-sm">
+                <div className="relative bg-gradient-to-r from-light-accent to-light-strong dark:from-brand-accent dark:to-brand-strong text-white w-12 h-12 rounded-full border-2 border-gray-300/30 dark:border-white/30 flex items-center justify-center shadow-2xl backdrop-blur-sm">
                   <Mail className="w-5 h-5" />
                 </div>
               </motion.a>
@@ -287,7 +286,7 @@ const HeroSection = () => {
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 className="relative group"
               >
-                <div className="relative bg-gradient-to-r from-brand-accent to-brand-strong text-white w-12 h-12 rounded-full border-2 border-white/30 flex items-center justify-center shadow-2xl backdrop-blur-sm">
+                <div className="relative bg-gradient-to-r from-light-accent to-light-strong dark:from-brand-accent dark:to-brand-strong text-white w-12 h-12 rounded-full border-2 border-gray-300/30 dark:border-white/30 flex items-center justify-center shadow-2xl backdrop-blur-sm">
                   <Linkedin className="w-5 h-5" />
                 </div>
               </motion.a>
@@ -303,7 +302,7 @@ const HeroSection = () => {
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
                 className="relative group"
               >
-                <div className="relative bg-gradient-to-r from-brand-accent to-brand-strong text-white w-12 h-12 rounded-full border-2 border-white/30 flex items-center justify-center shadow-2xl backdrop-blur-sm">
+                <div className="relative bg-gradient-to-r from-light-accent to-light-strong dark:from-brand-accent dark:to-brand-strong text-white w-12 h-12 rounded-full border-2 border-gray-300/30 dark:border-white/30 flex items-center justify-center shadow-2xl backdrop-blur-sm">
                   <Github className="w-5 h-5" />
                 </div>
               </motion.a>

@@ -27,13 +27,13 @@ const ContactSection = () => {
   }
 
   return (
-    <section id="contact" className="relative py-24 bg-brand-surface text-white overflow-hidden">
+    <section id="contact" className="relative py-24 bg-light-muted dark:bg-brand-surface text-gray-800 dark:text-white overflow-hidden">
       {/* Enhanced background effects */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         {/* Floating background orbs */}
-        <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-br from-brand-accent/8 to-brand-strong/4 rounded-full blur-3xl animate-pulse" 
+        <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-br from-light-accent/5 to-light-strong/3 dark:from-brand-accent/8 dark:to-brand-strong/4 rounded-full blur-3xl animate-pulse" 
              style={{ animationDuration: '10s', animationDelay: '0s' }}></div>
-        <div className="absolute bottom-20 right-20 w-56 h-56 bg-gradient-to-tl from-brand-strong/6 to-brand-accent/3 rounded-full blur-2xl animate-pulse" 
+        <div className="absolute bottom-20 right-20 w-56 h-56 bg-gradient-to-tl from-light-strong/4 to-light-accent/2 dark:from-brand-strong/6 dark:to-brand-accent/3 rounded-full blur-2xl animate-pulse" 
              style={{ animationDuration: '12s', animationDelay: '4s' }}></div>
              
         {/* Subtle pattern overlay */}
@@ -58,7 +58,7 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-brand-accent via-white to-brand-accent font-josefin mb-4"
+            className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-light-accent via-gray-800 to-light-accent dark:from-brand-accent dark:via-white dark:to-brand-accent font-josefin mb-4"
             style={{ textShadow: '0 0 20px rgba(255, 165, 134, 0.3)' }}
           >
             Let's Work Together
@@ -69,7 +69,7 @@ const ContactSection = () => {
             whileInView={{ width: 120 }}
             viewport={{ once: true }}
             transition={{ duration: 1.2, delay: 0.3 }}
-            className="h-0.5 bg-gradient-to-r from-transparent via-brand-accent to-transparent mx-auto mb-6"
+            className="h-0.5 bg-gradient-to-r from-transparent via-light-accent dark:via-brand-accent to-transparent mx-auto mb-6"
           ></motion.div>
           
           <motion.p
@@ -77,7 +77,7 @@ const ContactSection = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-white/70 max-w-2xl mx-auto"
+            className="text-gray-600 dark:text-white/70 max-w-2xl mx-auto"
             style={{ fontSize: '16px' }}
           >
             Ready to bring your digital vision to life? Let's discuss how we can create something amazing together.
@@ -94,8 +94,8 @@ const ContactSection = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-brand-accent mb-6 font-josefin">Get In Touch</h3>
-              <p className="text-white/80 mb-8 leading-relaxed" style={{ fontSize: '16px' }}>
+              <h3 className="text-2xl font-bold text-light-accent dark:text-brand-accent mb-6 font-josefin">Get In Touch</h3>
+              <p className="text-gray-600 dark:text-white/80 mb-8 leading-relaxed" style={{ fontSize: '16px' }}>
                 Whether you need marketing automation, web development, or digital strategy consulting, 
                 I'm here to help transform your ideas into reality.
               </p>
@@ -110,12 +110,12 @@ const ContactSection = () => {
                 transition={{ duration: 0.6, delay: 0.5 }}
                 className="flex items-center space-x-4 group"
               >
-                <div className="w-12 h-12 bg-gradient-to-r from-brand-accent/20 to-brand-strong/20 rounded-full flex items-center justify-center border border-brand-accent/30 group-hover:border-brand-accent/60 transition-colors duration-300">
-                  <Mail className="w-5 h-5 text-brand-accent" />
+                <div className="w-12 h-12 bg-gradient-to-r from-light-accent/20 to-light-strong/20 dark:from-brand-accent/20 dark:to-brand-strong/20 rounded-full flex items-center justify-center border border-light-accent/30 dark:border-brand-accent/30 group-hover:border-light-accent/60 dark:group-hover:border-brand-accent/60 transition-colors duration-300">
+                  <Mail className="w-5 h-5 text-light-accent dark:text-brand-accent" />
                 </div>
                 <div>
-                  <p className="text-white/60 text-sm">Email</p>
-                  <p className="text-white font-medium">sucharith.dasun@gmail.com</p>
+                  <p className="text-gray-500 dark:text-white/60 text-sm">Email</p>
+                  <p className="text-gray-800 dark:text-white font-medium">sucharith.dasun@gmail.com</p>
                 </div>
               </motion.div>
 
@@ -126,12 +126,12 @@ const ContactSection = () => {
                 transition={{ duration: 0.6, delay: 0.6 }}
                 className="flex items-center space-x-4 group"
               >
-                <div className="w-12 h-12 bg-gradient-to-r from-brand-accent/20 to-brand-strong/20 rounded-full flex items-center justify-center border border-brand-accent/30 group-hover:border-brand-accent/60 transition-colors duration-300">
-                  <MapPin className="w-5 h-5 text-brand-accent" />
+                <div className="w-12 h-12 bg-gradient-to-r from-light-accent/20 to-light-strong/20 dark:from-brand-accent/20 dark:to-brand-strong/20 rounded-full flex items-center justify-center border border-light-accent/30 dark:border-brand-accent/30 group-hover:border-light-accent/60 dark:group-hover:border-brand-accent/60 transition-colors duration-300">
+                  <MapPin className="w-5 h-5 text-light-accent dark:text-brand-accent" />
                 </div>
                 <div>
-                  <p className="text-white/60 text-sm">Location</p>
-                  <p className="text-white font-medium">Sri Lanka</p>
+                  <p className="text-gray-500 dark:text-white/60 text-sm">Location</p>
+                  <p className="text-gray-800 dark:text-white font-medium">Sri Lanka</p>
                 </div>
               </motion.div>
 
@@ -142,12 +142,12 @@ const ContactSection = () => {
                 transition={{ duration: 0.6, delay: 0.7 }}
                 className="flex items-center space-x-4 group"
               >
-                <div className="w-12 h-12 bg-gradient-to-r from-brand-accent/20 to-brand-strong/20 rounded-full flex items-center justify-center border border-brand-accent/30 group-hover:border-brand-accent/60 transition-colors duration-300">
-                  <Phone className="w-5 h-5 text-brand-accent" />
+                <div className="w-12 h-12 bg-gradient-to-r from-light-accent/20 to-light-strong/20 dark:from-brand-accent/20 dark:to-brand-strong/20 rounded-full flex items-center justify-center border border-light-accent/30 dark:border-brand-accent/30 group-hover:border-light-accent/60 dark:group-hover:border-brand-accent/60 transition-colors duration-300">
+                  <Phone className="w-5 h-5 text-light-accent dark:text-brand-accent" />
                 </div>
                 <div>
-                  <p className="text-white/60 text-sm">Response Time</p>
-                  <p className="text-white font-medium">Within 24 hours</p>
+                  <p className="text-gray-500 dark:text-white/60 text-sm">Response Time</p>
+                  <p className="text-gray-800 dark:text-white font-medium">Within 24 hours</p>
                 </div>
               </motion.div>
             </div>
@@ -161,7 +161,7 @@ const ContactSection = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="relative"
           >
-            <div className="bg-gradient-to-br from-brand-base/40 to-brand-surface/60 backdrop-blur-xl rounded-2xl p-8 border border-white/10 shadow-2xl"
+            <div className="bg-gradient-to-br from-light-surface/80 to-light-muted/60 dark:from-brand-base/40 dark:to-brand-surface/60 backdrop-blur-xl rounded-2xl p-8 border border-gray-200/20 dark:border-white/10 shadow-2xl"
                  style={{ backdropFilter: 'blur(20px)' }}>
               
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -179,7 +179,7 @@ const ContactSection = () => {
                       placeholder="Your Name"
                       value={formData.name}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl bg-brand-base/60 backdrop-blur-sm text-white placeholder-white/50 border border-white/20 focus:border-brand-accent/60 focus:outline-none transition-all duration-300"
+                      className="w-full px-4 py-3 rounded-xl bg-light-surface/60 dark:bg-brand-base/60 backdrop-blur-sm text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-white/50 border border-gray-200/30 dark:border-white/20 focus:border-light-accent/60 dark:focus:border-brand-accent/60 focus:outline-none transition-all duration-300"
                       style={{ fontSize: '16px' }}
                     />
                   </motion.div>
@@ -197,7 +197,7 @@ const ContactSection = () => {
                       placeholder="Your Email"
                       value={formData.email}
                       onChange={handleChange}
-                      className="w-full px-4 py-3 rounded-xl bg-brand-base/60 backdrop-blur-sm text-white placeholder-white/50 border border-white/20 focus:border-brand-accent/60 focus:outline-none transition-all duration-300"
+                      className="w-full px-4 py-3 rounded-xl bg-light-surface/60 dark:bg-brand-base/60 backdrop-blur-sm text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-white/50 border border-gray-200/30 dark:border-white/20 focus:border-light-accent/60 dark:focus:border-brand-accent/60 focus:outline-none transition-all duration-300"
                       style={{ fontSize: '16px' }}
                     />
                   </motion.div>
@@ -216,7 +216,7 @@ const ContactSection = () => {
                     rows={5}
                     value={formData.message}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 rounded-xl bg-brand-base/60 backdrop-blur-sm text-white placeholder-white/50 border border-white/20 focus:border-brand-accent/60 focus:outline-none transition-all duration-300 resize-none"
+                    className="w-full px-4 py-3 rounded-xl bg-light-surface/60 dark:bg-brand-base/60 backdrop-blur-sm text-gray-800 dark:text-white placeholder-gray-500 dark:placeholder-white/50 border border-gray-200/30 dark:border-white/20 focus:border-light-accent/60 dark:focus:border-brand-accent/60 focus:outline-none transition-all duration-300 resize-none"
                     style={{ fontSize: '16px' }}
                   />
                 </motion.div>
@@ -230,13 +230,9 @@ const ContactSection = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: 0.9 }}
-                  className="w-full bg-gradient-to-r from-brand-accent to-brand-strong text-white font-semibold py-4 rounded-xl relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed"
-                  style={{ 
-                    background: 'linear-gradient(135deg, rgba(255, 165, 134, 0.9) 0%, rgba(181, 26, 43, 0.9) 100%)',
-                    boxShadow: '0 8px 25px rgba(255, 165, 134, 0.3)'
-                  }}
+                  className="w-full bg-gradient-to-r from-light-accent to-light-strong dark:from-brand-accent dark:to-brand-strong text-white font-semibold py-4 rounded-xl relative overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed shadow-lg"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-r from-brand-accent to-brand-strong opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-light-accent to-light-strong dark:from-brand-accent dark:to-brand-strong opacity-0 group-hover:opacity-20 transition-opacity duration-300"></div>
                   
                   <span className="relative z-10 flex items-center justify-center gap-2">
                     {isLoading ? (
