@@ -1,5 +1,36 @@
 import { NextRequest, NextResponse } from 'next/server';
-import nodemailer from 'nodemailer';
+import * as nodemailer from 'nodemailer';
+
+// Handle preflight requests
+export async function OPTIONS() {
+  return NextResponse.json(
+    {},
+    {
+      status: 200,
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
+    }
+  );
+}
+
+// Add a GET handler for testing
+export async function GET() {
+  return NextResponse.json(
+    { 
+      message: 'Contact API is working',
+      timestamp: new Date().toISOString(),
+      env: {
+        hasSmtpHost: !!process.env.SMTP_HOST,
+        hasSmtpUser: !!process.env.SMTP_USER,
+        nodeEnv: process.env.NODE_ENV
+      }
+    },
+    { status: 200 }
+  );
+}
 
 export async function POST(request: NextRequest) {
   try {
@@ -147,9 +178,22 @@ export async function POST(request: NextRequest) {
     );
   } catch (error) {
     console.error('Error sending email:', error);
+    
+    // Return a proper JSON error response
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+    
     return NextResponse.json(
-      { error: `Failed to send email: ${error instanceof Error ? error.message : 'Unknown error'}` },
-      { status: 500 }
+      { 
+        error: 'Failed to send email', 
+        details: errorMessage,
+        timestamp: new Date().toISOString()
+      },
+      { 
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json',
+        }
+      }
     );
   }
 }

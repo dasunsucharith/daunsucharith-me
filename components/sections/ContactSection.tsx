@@ -30,11 +30,20 @@ const ContactSection = () => {
         body: JSON.stringify(formData),
       })
 
-      const data = await response.json()
-
       if (!response.ok) {
-        throw new Error(data.error || 'Failed to send message')
+        // Handle non-JSON error responses
+        let errorMessage = 'Failed to send message';
+        try {
+          const data = await response.json();
+          errorMessage = data.error || data.details || errorMessage;
+        } catch {
+          // If response is not JSON, use status text
+          errorMessage = `Server error: ${response.status} ${response.statusText}`;
+        }
+        throw new Error(errorMessage);
       }
+
+      const data = await response.json();
 
       setSubmitted(true)
       setFormData({ name: '', email: '', message: '' })
