@@ -42,7 +42,7 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: /dasunsucharith.me/  # adjust this if needed
+          server-dir: / # adjust this if needed
           local-dir: ./
           exclude: |
             **/.git*
