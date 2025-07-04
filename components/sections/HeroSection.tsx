@@ -4,7 +4,6 @@ import React, { useEffect, useState } from 'react'
 import { Mail, Linkedin, Github } from 'lucide-react'
 import { motion } from 'framer-motion'
 import styles from '../../styles/HeroSection.module.css'
-import { SubtleWave } from '../ui/WaveDivider'
 
 const AnimatedTitle = () => {
   const [isExpanded, setIsExpanded] = useState(false);
@@ -312,13 +311,7 @@ const HeroSection = () => {
           </motion.div>
         </motion.div>
       </section>
-      {/* Wave transition from hero to about */}
-      <SubtleWave 
-        fromColor="#0f1419"
-        toColor="#242F49"
-        className="relative -mt-1"
-      />
-    </>
+      </>
   )
 }
 
