@@ -1,0 +1,21 @@
+# .htaccess file
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION BEGIN
+PassengerAppRoot "/home/slvikior/dasunsucharith.me"
+PassengerBaseURI "/"
+PassengerNodejs "/home/slvikior/nodevenv/dasunsucharith.me/20/bin/node"
+PassengerAppType node
+PassengerStartupFile server.js
+# DO NOT REMOVE. CLOUDLINUX PASSENGER CONFIGURATION END
+# Node.js app - placeholder
+# DO NOT REMOVE OR MODIFY. CLOUDLINUX ENV VARS CONFIGURATION BEGIN
+<IfModule Litespeed>
+SetEnv SMTP_PASS Alphadsp@25
+SetEnv SMTP_USER info@dasunsucharith.me
+SetEnv SMTP_PORT 465
+SetEnv SMTP_HOST mail.dasunsucharith.me
+SetEnv EMAIL_FROM info@dasunsucharith.me
+SetEnv EMAIL_TO sucharith.dasun@gmail.com
+SetEnv NODE_ENV production
+SetEnv WORDPRESS_API_URL "https://cms.dasunsucharith.me/graphql"
+</IfModule>
+# DO NOT REMOVE OR MODIFY. CLOUDLINUX ENV VARS CONFIGURATION END
