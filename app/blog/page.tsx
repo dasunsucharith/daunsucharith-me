@@ -2,8 +2,23 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getAllPosts } from '../../lib/wordpress';
 
+interface PostNode {
+  node: {
+    title: string;
+    excerpt: string;
+    slug: string;
+    date: string;
+    featuredImage?: {
+      node: {
+        sourceUrl: string;
+        altText: string;
+      };
+    };
+  };
+}
+
 export default async function BlogPage() {
-  const allPosts = await getAllPosts();
+  const allPosts: { edges: PostNode[] } = await getAllPosts();
 
   return (
     <section className="py-24 bg-light-base dark:bg-brand-base">
@@ -20,8 +35,8 @@ export default async function BlogPage() {
                     <Image
                       src={node.featuredImage.node.sourceUrl}
                       alt={node.featuredImage.node.altText || node.title}
-                      layout="fill"
-                      objectFit="cover"
+                      fill
+                      style={{ objectFit: 'cover' }}
                       className="transition-transform duration-300 group-hover:scale-105"
                     />
                   </div>

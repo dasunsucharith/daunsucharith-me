@@ -1,13 +1,11 @@
 const API_URL = process.env.WORDPRESS_API_URL;
 
 async function fetchAPI(query = '', { variables }: Record<string, any> = {}) {
-  const headers = { 'Content-Type': 'application/json' };
+  const headers: { [key: string]: string } = { 'Content-Type': 'application/json' };
 
   // This part is not needed for public content, but it's good to have for authenticated requests in the future.
   if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
-    headers[
-      'Authorization'
-    ] = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`;
+    headers['Authorization'] = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`;
   }
 
   // Make sure the API URL is set

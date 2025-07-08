@@ -1,8 +1,9 @@
 import { getPostBySlug } from '../../../lib/wordpress';
 import { notFound } from 'next/navigation';
 import Image from 'next/image';
+import { PageProps } from './page.props';
 
-export default async function PostPage({ params }: { params: { slug: string } }) {
+export default async function PostPage({ params }: PageProps) {
   const slug = params.slug;
   const post = await getPostBySlug(slug);
 
@@ -43,3 +44,4 @@ export default async function PostPage({ params }: { params: { slug: string } })
     </section>
   );
 }
+
