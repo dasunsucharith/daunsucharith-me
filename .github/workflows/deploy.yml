@@ -2,7 +2,7 @@ name: 🚀 Deploy Full Next.js App to A2 Hosting
 
 on:
   push:
-    branches: ["main"]
+    branches: ["a2host"]
   workflow_dispatch:
 
 jobs:
