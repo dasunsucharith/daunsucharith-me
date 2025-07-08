@@ -20,6 +20,15 @@ const nextConfig = {
       },
     ]
   },
+  async redirects() {
+    return [
+      {
+        source: '/admin',
+        destination: 'https://cms.dasunsucharith.me/wp-admin/',
+        permanent: true,
+      },
+    ]
+  },
 }
 
 export default nextConfig

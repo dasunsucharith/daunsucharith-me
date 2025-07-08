@@ -111,6 +111,30 @@ heroku config:set EMAIL_TO=sucharith.dasun@gmail.com
 2. Navigate to **App Settings** → **Environment Variables**
 3. Add each variable with the values above
 
+### 7. **GitHub Actions** (For A2 Hosting or other FTP-based deployments)
+
+If you are using the `.github/workflows/deploy.yml` workflow to deploy the application, you must configure secrets in your GitHub repository. The workflow uses these secrets as environment variables during the build process (`npm run build`).
+
+#### Via GitHub Repository Settings:
+1. Go to your repository on [github.com](https://github.com)
+2. Navigate to **Settings** → **Secrets and variables** → **Actions**
+3. Click **New repository secret** for each of the variables below.
+
+**Required Secrets:**
+```
+WORDPRESS_API_URL
+SMTP_HOST
+SMTP_PORT
+SMTP_USER
+SMTP_PASS
+EMAIL_FROM
+EMAIL_TO
+```
+
+The workflow automatically sets `NODE_ENV` to `production`.
+
+After adding the secrets, any push to the `a2host` branch will trigger the deployment workflow with the correct environment variables.
+
 ## 🔧 Environment Variables Reference
 
 Copy these exact values for your production deployment:
@@ -219,3 +243,29 @@ NODE_ENV = production
 ```
 
 This ensures your contact form will work perfectly in production! 🎉
+
+## 🔄 Redirect Configuration
+
+To create a seamless experience between the Next.js frontend and the headless WordPress backend, two redirects are configured.
+
+### 1. Redirect `/admin` to WordPress Admin
+
+To easily access the WordPress admin panel from the main site URL, a redirect is added to the Next.js application.
+
+-   **File:** `next.config.mjs`
+-   **Action:** An `async redirects()` function was added to create a permanent redirect from `dasunsucharith.me/admin` to `https://cms.dasunsucharith.me/wp-admin/`.
+
+This allows you to simply type `/admin` after your domain name to log in to the CMS.
+
+### 2. Redirect "Visit Site" from WordPress to Next.js Site
+
+To ensure the "Visit Site" link in the WordPress admin toolbar points to the live Next.js site instead of the headless CMS URL, the "Site Address" must be updated in WordPress.
+
+**Steps:**
+1.  Log in to your WordPress admin dashboard (`cms.dasunsucharith.me/wp-admin/`).
+2.  Go to **Settings** → **General**.
+3.  Set the **Site Address (URL)** to `https://dasunsucharith.me`.
+4.  **Important:** Do not change the **WordPress Address (URL)**.
+5.  Save the changes.
+
+This ensures that content editors who click "Visit Site" are taken to the correct public-facing website.
