@@ -151,3 +151,6 @@ Thumbs.db
 # Temporary files
 *.tmp
 *.temp
+
+# htaccess file
+# .htaccess
