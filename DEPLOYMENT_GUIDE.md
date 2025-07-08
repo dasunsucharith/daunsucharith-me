@@ -177,6 +177,34 @@ After deployment, test your contact form:
    - Check server logs in hosting platform dashboard
    - Verify all required environment variables are set
 
+### Resolving Next.js 15 Build Error
+
+A significant build error was encountered during deployment, related to a type mismatch in Next.js 15.
+
+**Error:**
+```
+Type error: Type '{ params: { slug: string; }; }' does not satisfy the constraint 'PageProps'.
+Types of property 'params' are incompatible.
+Type '{ slug: string; }' is missing the following properties from type 'Promise<any>': then, catch, finally, [Symbol.toStringTag]
+```
+
+**Resolution Steps:**
+
+1.  **Initial Diagnosis:** The error pointed to a problem with how Next.js was handling page props in dynamic routes, specifically in `app/blog/[slug]/page.tsx`.
+2.  **Troubleshooting Attempts:**
+    *   Explicitly defining prop types for the page component.
+    *   Clearing the build cache (`.next` directory) and reinstalling dependencies (`node_modules`).
+    *   Updating the `tsconfig.json` to use modern ES targets (`"target": "esnext"`).
+    *   None of these standard fixes resolved the issue, suggesting a potential bug in the Next.js version.
+3.  **Solution:** The issue was resolved by downgrading Next.js from version `15.3.3` to `14.2.30`.
+    *   Modified `package.json` to set `"next": "^14.2.0"`.
+    *   Deleted `node_modules` and `package-lock.json` and ran `npm install` for a clean install.
+4.  **Post-Downgrade Fixes:** After downgrading, a few minor TypeScript errors appeared due to stricter type checking in the older version. These were resolved by:
+    *   Adding an explicit type for the `headers` object in `lib/wordpress.ts`.
+    *   Adding a `PostNode` interface in `app/blog/page.tsx` to type the data fetched from WordPress.
+
+After these steps, the project built successfully. If you encounter a similar persistent and unusual build error after a major Next.js upgrade, consider downgrading to a more stable previous version as a viable solution.
+
 ## 📋 Quick Copy-Paste for Hosting Platforms
 
 **Variable Names and Values:**
