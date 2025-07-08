@@ -111,6 +111,30 @@ heroku config:set EMAIL_TO=sucharith.dasun@gmail.com
 2. Navigate to **App Settings** → **Environment Variables**
 3. Add each variable with the values above
 
+### 7. **GitHub Actions** (For A2 Hosting or other FTP-based deployments)
+
+If you are using the `.github/workflows/deploy.yml` workflow to deploy the application, you must configure secrets in your GitHub repository. The workflow uses these secrets as environment variables during the build process (`npm run build`).
+
+#### Via GitHub Repository Settings:
+1. Go to your repository on [github.com](https://github.com)
+2. Navigate to **Settings** → **Secrets and variables** → **Actions**
+3. Click **New repository secret** for each of the variables below.
+
+**Required Secrets:**
+```
+WORDPRESS_API_URL
+SMTP_HOST
+SMTP_PORT
+SMTP_USER
+SMTP_PASS
+EMAIL_FROM
+EMAIL_TO
+```
+
+The workflow automatically sets `NODE_ENV` to `production`.
+
+After adding the secrets, any push to the `a2host` branch will trigger the deployment workflow with the correct environment variables.
+
 ## 🔧 Environment Variables Reference
 
 Copy these exact values for your production deployment:
