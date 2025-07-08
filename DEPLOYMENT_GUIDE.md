@@ -243,3 +243,29 @@ NODE_ENV = production
 ```
 
 This ensures your contact form will work perfectly in production! 🎉
+
+## 🔄 Redirect Configuration
+
+To create a seamless experience between the Next.js frontend and the headless WordPress backend, two redirects are configured.
+
+### 1. Redirect `/admin` to WordPress Admin
+
+To easily access the WordPress admin panel from the main site URL, a redirect is added to the Next.js application.
+
+-   **File:** `next.config.mjs`
+-   **Action:** An `async redirects()` function was added to create a permanent redirect from `dasunsucharith.me/admin` to `https://cms.dasunsucharith.me/wp-admin/`.
+
+This allows you to simply type `/admin` after your domain name to log in to the CMS.
+
+### 2. Redirect "Visit Site" from WordPress to Next.js Site
+
+To ensure the "Visit Site" link in the WordPress admin toolbar points to the live Next.js site instead of the headless CMS URL, the "Site Address" must be updated in WordPress.
+
+**Steps:**
+1.  Log in to your WordPress admin dashboard (`cms.dasunsucharith.me/wp-admin/`).
+2.  Go to **Settings** → **General**.
+3.  Set the **Site Address (URL)** to `https://dasunsucharith.me`.
+4.  **Important:** Do not change the **WordPress Address (URL)**.
+5.  Save the changes.
+
+This ensures that content editors who click "Visit Site" are taken to the correct public-facing website.
