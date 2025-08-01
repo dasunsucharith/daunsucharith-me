@@ -3,6 +3,7 @@ import { Inter, Josefin_Sans } from 'next/font/google'
 import './globals.css'
 import Navigation from '../components/Navigation'
 import { ThemeProvider } from '../contexts/ThemeContext'
+import LenisScroller from '../components/LenisScroller'
 
 const inter = Inter({ subsets: ['latin'] })
 const josefinSans = Josefin_Sans({ subsets: ['latin'] })
@@ -37,6 +38,7 @@ export default function RootLayout({
         style={{'--font-josefin': josefinSans.style.fontFamily, '--font-inter': inter.style.fontFamily} as React.CSSProperties}
       >
         <ThemeProvider>
+          <LenisScroller />
           <Navigation />
           <main className="overflow-x-hidden">
             {children}
