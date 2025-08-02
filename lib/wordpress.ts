@@ -3,12 +3,10 @@ const API_URL = process.env.WORDPRESS_API_URL;
 async function fetchAPI(query = '', { variables }: Record<string, any> = {}) {
   const headers: { [key: string]: string } = { 'Content-Type': 'application/json' };
 
-  // This part is not needed for public content, but it's good to have for authenticated requests in the future.
   if (process.env.WORDPRESS_AUTH_REFRESH_TOKEN) {
     headers['Authorization'] = `Bearer ${process.env.WORDPRESS_AUTH_REFRESH_TOKEN}`;
   }
 
-  // Make sure the API URL is set
   if (!API_URL) {
     throw new Error('WORDPRESS_API_URL is not configured');
   }
@@ -20,9 +18,19 @@ async function fetchAPI(query = '', { variables }: Record<string, any> = {}) {
       query,
       variables,
     }),
-    // Next.js revalidation strategy
     next: { revalidate: 10 },
   });
+
+  if (!res.ok) {
+    const errorText = await res.text();
+    throw new Error(`Failed to fetch API: ${res.status} ${res.statusText}\n${errorText}`);
+  }
+
+  const contentType = res.headers.get('content-type');
+  if (!contentType || !contentType.includes('application/json')) {
+    const errorText = await res.text();
+    throw new Error(`Expected JSON response, but got ${contentType}\n${errorText}`);
+  }
 
   const json = await res.json();
   if (json.errors) {
