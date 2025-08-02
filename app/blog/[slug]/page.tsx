@@ -12,11 +12,11 @@ export default async function PostPage({ params }: PageProps) {
   }
 
   return (
-    <section className="py-24">
+    <section className="py-24 bg-primary-white">
       <div className="container mx-auto px-4">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center">{post.title}</h1>
-          <div className="text-sm text-gray-500 mb-8 text-center">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-center text-primary-black">{post.title}</h1>
+          <div className="text-sm text-primary-gray-dark/70 mb-8 text-center">
             {new Date(post.date).toLocaleDateString('en-US', {
               year: 'numeric',
               month: 'long',
@@ -36,7 +36,7 @@ export default async function PostPage({ params }: PageProps) {
             </div>
           )}
           <div
-            className="prose lg:prose-xl max-w-none dark:prose-invert"
+            className="prose lg:prose-xl max-w-none prose-slate"
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </div>

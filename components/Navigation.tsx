@@ -5,20 +5,28 @@ import Link from 'next/link'
 import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { Flip } from 'gsap/Flip'
-import { Menu, X, Sun, Moon } from 'lucide-react'
-import { useTheme } from '../contexts/ThemeContext'
+import { Menu, X } from 'lucide-react'
 
 gsap.registerPlugin(Flip)
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
-  const { theme, toggleTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const [isScrolled, setIsScrolled] = useState(false)
   const navRef = useRef<HTMLElement>(null)
   const mobileMenuRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     setMounted(true)
+    
+    // Handle scroll for glassmorphism effect
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY
+      setIsScrolled(scrollPosition > 50)
+    }
+    
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const navItems = [
@@ -30,36 +38,13 @@ const Navigation = () => {
   ]
 
   useGSAP(() => {
-    gsap.to('.nav-glow', {
-      opacity: 0.6,
-      duration: 8,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power1.inOut'
-    })
-
-    gsap.to('.logo-shadow', {
-      textShadow: '0 0 15px rgba(255, 165, 134, 0.5)',
-      duration: 4,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power1.inOut'
-    })
-
-    gsap.to('.cta-shadow', {
-      boxShadow: '0 0 25px rgba(59, 130, 246, 0.5)',
-      duration: 3,
-      repeat: -1,
-      yoyo: true,
-      ease: 'power1.inOut'
-    })
-
+    // Simple shine effect for CTA button
     gsap.to('.shine-effect', {
       x: '100%',
-      duration: 2,
+      duration: 2.5,
       repeat: -1,
       ease: 'linear',
-      repeatDelay: 4
+      repeatDelay: 5
     })
   }, { scope: navRef })
 
@@ -79,12 +64,20 @@ const Navigation = () => {
   }, { dependencies: [isMenuOpen], scope: navRef })
 
   return (
-    <nav ref={navRef} className="fixed top-0 left-0 right-0 z-50 bg-gradient-to-r from-light-surface/80 via-light-base/70 to-light-surface/80 dark:from-brand-base/80 dark:via-brand-surface/70 dark:to-brand-base/80 backdrop-blur-xl border-b border-gray-200/20 dark:border-white/10 shadow-2xl">
-      <div className="nav-glow absolute inset-0 bg-gradient-to-r from-light-accent/10 via-transparent to-light-strong/10 dark:from-brand-accent/10 dark:via-transparent dark:to-brand-strong/10 opacity-30" />
+    <nav ref={navRef} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        isScrolled 
+          ? 'bg-black/20 backdrop-blur-xl border-b border-white/10 shadow-2xl' 
+          : 'bg-transparent border-b border-transparent'
+      }`}>
+      {isScrolled && (
+        <div className="nav-glow absolute inset-0 bg-gradient-to-r from-primary-sky/5 via-transparent to-primary-sky/5 opacity-20" />
+      )}
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/">
-            <span className="logo-shadow text-xl font-bold text-gray-800 dark:text-white font-josefin relative z-10">
+            <span className={`nav-logo logo-shadow text-xl font-bold font-josefin relative z-10 transition-colors duration-300 ${
+              isScrolled ? 'text-white' : 'text-white'
+            }`}>
               Dasun Sucharith
             </span>
           </Link>
@@ -94,7 +87,11 @@ const Navigation = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className="relative group text-gray-700 dark:text-white hover:text-light-accent dark:hover:text-brand-accent text-sm font-medium transition-colors"
+                className={`nav-item relative group text-sm font-medium transition-colors duration-300 ${
+                  isScrolled 
+                    ? 'text-white/90 hover:text-primary-sky' 
+                    : 'text-white/90 hover:text-primary-sky'
+                }`}
               >
                 {item.label}
               </Link>
@@ -102,17 +99,13 @@ const Navigation = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            <button
-              onClick={toggleTheme}
-              className="relative w-10 h-10 bg-gradient-to-br from-light-muted/50 to-light-surface/50 dark:from-brand-surface/30 dark:to-brand-base/30 backdrop-blur-xl rounded-xl border border-gray-200/20 dark:border-white/10 flex items-center justify-center group overflow-hidden"
-            >
-              <div className="relative z-10">
-                {mounted && (theme === 'dark' ? <Sun className="w-5 h-5 text-gray-700 dark:text-white" /> : <Moon className="w-5 h-5 text-gray-700 dark:text-white" />)}
-              </div>
-            </button>
             <Link href="#contact">
               <button
-                className="cta-shadow bg-gradient-to-r from-light-accent to-light-strong dark:from-brand-accent dark:to-brand-strong text-white px-6 py-2 rounded-full font-semibold text-sm backdrop-blur-xl border border-gray-300/20 dark:border-white/20 relative overflow-hidden group"
+                className={`nav-cta cta-shadow relative overflow-hidden group transition-all duration-300 px-6 py-2 rounded-full font-semibold text-sm backdrop-blur-xl ${
+                isScrolled 
+                  ? 'bg-white/10 border border-primary-sky/50 shadow-lg text-white hover:bg-white/20' 
+                  : 'bg-white/15 border border-white/40 shadow-xl text-white hover:bg-white/25'
+              }`}
               >
                 <div className="shine-effect absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                 <span className="relative z-10">Let's Talk</span>
@@ -121,12 +114,16 @@ const Navigation = () => {
           </div>
 
           <button
-            className="md:hidden relative w-12 h-12 bg-gradient-to-br from-light-muted/50 to-light-surface/50 dark:from-brand-surface/30 dark:to-brand-base/30 backdrop-blur-xl rounded-xl border border-gray-200/20 dark:border-white/10 flex items-center justify-center group overflow-hidden"
+            className={`md:hidden relative w-12 h-12 backdrop-blur-xl rounded-xl flex items-center justify-center group overflow-hidden transition-all duration-300 ${
+              isScrolled 
+                ? 'bg-black/30 border border-white/20' 
+                : 'bg-white/10 border border-white/30'
+            }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             <div className="shine-effect absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
             <div className="relative z-10">
-              {isMenuOpen ? <X className="w-6 h-6 text-gray-800 dark:text-white" /> : <Menu className="w-6 h-6 text-gray-800 dark:text-white" />}
+              {isMenuOpen ? <X className="w-6 h-6 text-white" /> : <Menu className="w-6 h-6 text-white" />}
             </div>
           </button>
         </div>
@@ -140,16 +137,16 @@ const Navigation = () => {
           />
           <div
             ref={mobileMenuRef}
-            className="md:hidden absolute top-full left-0 right-0 bg-gradient-to-br from-brand-surface/95 via-brand-base/90 to-brand-surface/95 backdrop-blur-2xl border-t border-white/10 shadow-2xl overflow-hidden"
+            className="md:hidden absolute top-full left-0 right-0 bg-black/90 backdrop-blur-2xl border-t border-white/10 shadow-2xl overflow-hidden"
             style={{
-              background: 'linear-gradient(135deg, rgba(36, 47, 73, 0.95) 0%, rgba(36, 47, 73, 0.85) 50%, rgba(36, 47, 73, 0.95) 100%)',
+              background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.8) 50%, rgba(0, 0, 0, 0.9) 100%)',
               backdropFilter: 'blur(30px)',
-              boxShadow: '0 0 40px rgba(255, 165, 134, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+              boxShadow: '0 0 40px rgba(14, 165, 233, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
             }}
           >
             <div className="absolute inset-0 overflow-hidden">
-              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-brand-accent/10 to-brand-strong/10 rounded-full blur-2xl" />
-              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-brand-strong/10 to-brand-accent/10 rounded-full blur-xl" />
+              <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-primary-sky/20 to-primary-sky-light/10 rounded-full blur-2xl" />
+              <div className="absolute bottom-0 left-0 w-24 h-24 bg-gradient-to-tr from-primary-sky-light/10 to-primary-sky/20 rounded-full blur-xl" />
             </div>
             <div className="relative z-10 px-6 py-6 space-y-2">
               {navItems.map((item, index) => (
@@ -159,8 +156,8 @@ const Navigation = () => {
                     className="group relative block"
                     onClick={() => setIsMenuOpen(false)}
                   >
-                    <div className="relative px-4 py-3 rounded-xl bg-gradient-to-r from-white/5 to-transparent backdrop-blur-sm border border-white/10 hover:from-brand-accent/10 hover:to-brand-strong/10 hover:border-brand-accent/20 transition-all duration-300">
-                      <span className="text-base font-medium transition-colors text-white group-hover:text-brand-accent">
+                    <div className="relative px-4 py-3 rounded-xl bg-gradient-to-r from-white/5 to-transparent backdrop-blur-sm border border-white/10 hover:from-primary-sky/20 hover:to-primary-sky-light/10 hover:border-primary-sky/30 transition-all duration-300">
+                      <span className="text-base font-medium transition-colors text-white group-hover:text-primary-sky">
                         {item.label}
                       </span>
                       <div className="shine-effect absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 rounded-xl" />
@@ -169,22 +166,9 @@ const Navigation = () => {
                 </div>
               ))}
               <div className="pt-4">
-                <button
-                  onClick={toggleTheme}
-                  className="w-full flex items-center space-x-3 px-4 py-3 rounded-xl bg-gradient-to-r from-light-muted/50 to-light-surface/50 dark:from-white/5 dark:to-transparent backdrop-blur-sm border border-gray-200/20 dark:border-white/10 hover:from-light-accent/10 hover:to-light-strong/10 dark:hover:from-brand-accent/10 dark:hover:to-brand-strong/10 hover:border-light-accent/20 dark:hover:border-brand-accent/20 transition-all duration-300"
-                >
-                  <div className="w-8 h-8 bg-gradient-to-br from-light-accent/20 to-light-strong/20 dark:from-brand-accent/20 dark:to-brand-strong/20 rounded-full flex items-center justify-center">
-                    {mounted && (theme === 'dark' ? <Sun className="w-4 h-4 text-light-accent dark:text-brand-accent" /> : <Moon className="w-4 h-4 text-light-accent dark:text-brand-accent" />)}
-                  </div>
-                  <span className="text-base font-medium text-gray-700 dark:text-white">
-                    {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
-                  </span>
-                </button>
-              </div>
-              <div className="pt-4">
                 <Link href="#contact" onClick={() => setIsMenuOpen(false)}>
                   <button
-                    className="w-full bg-gradient-to-r from-light-accent to-light-strong dark:from-brand-accent dark:to-brand-strong text-white px-6 py-4 rounded-2xl font-semibold text-base backdrop-blur-xl border border-gray-300/20 dark:border-white/20 relative overflow-hidden group shadow-lg"
+                    className="w-full bg-white/15 text-white px-6 py-4 rounded-2xl font-semibold text-base backdrop-blur-xl border border-primary-sky/40 relative overflow-hidden group shadow-lg hover:bg-white/25 transition-all duration-300"
                   >
                     <div className="shine-effect absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                     <span className="relative z-10">Let's Talk</span>

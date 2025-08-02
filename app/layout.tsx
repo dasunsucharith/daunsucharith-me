@@ -33,7 +33,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body 
-        className={`${inter.className} antialiased bg-light-base dark:bg-brand-base text-gray-800 dark:text-brand-accent overflow-x-hidden`}
+        className={`${inter.className} antialiased bg-primary-white text-primary-black overflow-x-hidden`}
         suppressHydrationWarning={true}
         style={{'--font-josefin': josefinSans.style.fontFamily, '--font-inter': inter.style.fontFamily} as React.CSSProperties}
       >

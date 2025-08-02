@@ -76,7 +76,7 @@ const ContactSection = () => {
   }
 
   return (
-    <section ref={sectionRef} id="contact" className="relative py-24 bg-light-muted dark:bg-brand-surface text-gray-800 dark:text-white overflow-hidden">
+    <section ref={sectionRef} id="contact" className="relative py-24 bg-primary-gray-light text-primary-black overflow-hidden">
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-20 left-20 w-72 h-72 bg-gradient-to-br from-light-accent/5 to-light-strong/3 dark:from-brand-accent/8 dark:to-brand-strong/4 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '10s', animationDelay: '0s' }}></div>
         <div className="absolute bottom-20 right-20 w-56 h-56 bg-gradient-to-tl from-light-strong/4 to-light-accent/2 dark:from-brand-strong/6 dark:to-brand-accent/3 rounded-full blur-2xl animate-pulse" style={{ animationDuration: '12s', animationDelay: '4s' }}></div>
