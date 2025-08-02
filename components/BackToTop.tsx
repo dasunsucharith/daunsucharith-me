@@ -88,11 +88,10 @@ const BackToTop = () => {
       onMouseLeave={handleMouseLeave}
       onMouseDown={handleTap}
       className="fixed bottom-8 right-8 z-50 w-14 h-14 bg-gradient-to-r from-light-accent to-light-strong dark:from-brand-accent dark:to-brand-strong rounded-full flex items-center justify-center shadow-2xl border-2 border-gray-300/20 dark:border-white/20 group"
-      style={{ 
+      style={{
         backdropFilter: 'blur(20px)',
         opacity: 0,
-        scale: 0,
-        y: 20
+        transform: 'scale(0) translateY(20px)'
       }}
       aria-label="Back to top"
     >
