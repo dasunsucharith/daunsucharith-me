@@ -1,316 +1,70 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import { Mail, Linkedin, Github } from 'lucide-react'
-import { motion } from 'framer-motion'
-import styles from '../../styles/HeroSection.module.css'
 
 const AnimatedTitle = () => {
-  const [isExpanded, setIsExpanded] = useState(false);
-  
-  const words = [
-    { initial: 'M', full: 'Marketing' },
-    { initial: 'A', full: 'Automation' },
-    { initial: 'D', full: 'Developer' }
-  ];
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsExpanded(true);
-    }, 1500); // Wait 1.5 seconds before expanding
-
-    return () => clearTimeout(timer);
-  }, []);
-
-  const AnimatedWord = ({ word, index }: { word: { initial: string; full: string }, index: number }) => {
-    const [displayText, setDisplayText] = useState(word.initial);
-    
-    useEffect(() => {
-      if (isExpanded) {
-        const fullText = word.full;
-        let currentIndex = 1; // Start from 1 since we already have the first letter
-        
-        const typeTimer = setInterval(() => {
-          if (currentIndex <= fullText.length) {
-            setDisplayText(fullText.substring(0, currentIndex));
-            currentIndex++;
-          } else {
-            clearInterval(typeTimer);
-          }
-        }, 100); // Typing speed
-        
-        return () => clearInterval(typeTimer);
-      }
-    }, [isExpanded, word.full]);
-
-    return (
-      <motion.span
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: index * 0.1 }}
-        className="inline-block mr-4"
-      >
-        {displayText}
-      </motion.span>
-    );
-  };
-
   return (
-    <motion.h1
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8, delay: 0.1 }}
-      className="text-3xl md:text-5xl lg:text-6xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-light-accent via-gray-800 to-light-strong dark:from-brand-accent dark:via-white dark:to-brand-strong font-josefin mb-6 leading-tight"
-      style={{
-        textShadow: '0 0 30px rgba(255, 165, 134, 0.3)',
-        filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3))'
-      }}
-    >
-      {words.map((word, index) => (
-        <AnimatedWord key={index} word={word} index={index} />
-      ))}
-    </motion.h1>
-  );
-};
+    <h1 className="hero-title heading-hero text-white mb-6 leading-tight" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)', filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5))' }}>
+      Marketing Automation Developer
+    </h1>
+  )
+}
 
 const HeroSection = () => {
-  useEffect(() => {
-    const svg = document.getElementById('hero-bg-svg')
-    const orb = document.getElementById('bg-orb')
-    const orb2 = document.getElementById('bg-orb-2')
-    const particles = document.querySelectorAll('.floating-particle')
-    
-    if (!svg || !orb) return
-    
-    const handleMove = (e: MouseEvent) => {
-      const { innerWidth, innerHeight } = window
-      const x = e.clientX / innerWidth
-      const y = e.clientY / innerHeight
-      
-      // Main orb follows mouse more fluidly
-      const cx = 960 + (x - 0.5) * 400
-      const cy = 540 + (y - 0.5) * 300
-      orb.setAttribute('cx', cx.toString())
-      orb.setAttribute('cy', cy.toString())
-      
-      // Secondary orb moves in opposite direction
-      if (orb2) {
-        const cx2 = 960 - (x - 0.5) * 200
-        const cy2 = 540 - (y - 0.5) * 150
-        orb2.setAttribute('cx', cx2.toString())
-        orb2.setAttribute('cy', cy2.toString())
-      }
-      
-      // Animate floating particles
-      particles.forEach((particle, index) => {
-        const intensity = (index + 1) * 0.1
-        const offsetX = (x - 0.5) * 50 * intensity
-        const offsetY = (y - 0.5) * 30 * intensity
-        const element = particle as HTMLElement
-        element.style.transform = `translate(${offsetX}px, ${offsetY}px)`
-      })
-    }
-    
-    window.addEventListener('mousemove', handleMove)
-    return () => window.removeEventListener('mousemove', handleMove)
-  }, [])
 
   return (
     <>
-      {/* Hero section with Rive background */}
       <section
         id="hero"
-        className="w-full flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-light-base via-light-muted to-light-base dark:bg-gradient-to-br dark:from-brand-base dark:via-brand-surface dark:to-brand-base"
-        style={{ 
-          position: 'relative', 
-          minHeight: '100vh', 
-          paddingTop: '5rem', 
-          paddingBottom: '5rem' 
-        }}
+        className="w-full flex items-center justify-center relative overflow-hidden"
+        style={{ position: 'relative', minHeight: '100vh', paddingTop: '5rem', paddingBottom: '5rem' }}
       >
-        {/* Enhanced animated interactive background */}
-        <div className="absolute inset-0 z-0 pointer-events-none">
-          <svg
-            id="hero-bg-svg"
-            width="100%"
-            height="100%"
-            viewBox="0 0 1920 1080"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            style={{ width: '100%', height: '100%' }}
-          >
-            <defs>
-              <radialGradient
-                id="bg-grad"
-                cx="50%"
-                cy="50%"
-                r="60%"
-                fx="50%"
-                fy="50%"
-              >
-                <stop offset="0%" stopColor="#3b82f6" stopOpacity="0.4" className="dark:stop-color-[#ffa586]" />
-                <stop offset="50%" stopColor="#1e40af" stopOpacity="0.2" className="dark:stop-color-[#ff6b4a]" />
-                <stop offset="100%" stopColor="#f8fafc" stopOpacity="0" className="dark:stop-color-[#161e2f]" />
-              </radialGradient>
-              <radialGradient
-                id="bg-grad-2"
-                cx="50%"
-                cy="50%"
-                r="40%"
-                fx="50%"
-                fy="50%"
-              >
-                <stop offset="0%" stopColor="#1e3a8a" stopOpacity="0.3" className="dark:stop-color-[#b51a2b]" />
-                <stop offset="50%" stopColor="#3b82f6" stopOpacity="0.15" className="dark:stop-color-[#ff4757]" />
-                <stop offset="100%" stopColor="#f8fafc" stopOpacity="0" className="dark:stop-color-[#161e2f]" />
-              </radialGradient>
-              <filter id="glow">
-                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                <feMerge> 
-                  <feMergeNode in="coloredBlur"/>
-                  <feMergeNode in="SourceGraphic"/>
-                </feMerge>
-              </filter>
-            </defs>
-            
-            {/* Primary interactive orb */}
-            <circle
-              id="bg-orb"
-              cx="960"
-              cy="540"
-              r="300"
-              fill="url(#bg-grad)"
-              filter="url(#glow)"
-              style={{
-                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
-              }}
-            />
-            
-            {/* Secondary orb for depth */}
-            <circle
-              id="bg-orb-2"
-              cx="1200"
-              cy="300"
-              r="200"
-              fill="url(#bg-grad-2)"
-              style={{
-                transition: 'all 0.4s cubic-bezier(0.4, 0, 0.2, 1)',
-              }}
-            />
-            
-            {/* Animated particles */}
-            <g className="animate-pulse">
-              <circle cx="300" cy="200" r="2" fill="#3b82f6" opacity="0.6" className="floating-particle dark:fill-[#ffa586]">
-                <animate attributeName="opacity" values="0.6;1;0.6" dur="3s" repeatCount="indefinite"/>
-              </circle>
-              <circle cx="1500" cy="800" r="1.5" fill="#1e40af" opacity="0.7" className="floating-particle dark:fill-[#ff6b4a]">
-                <animate attributeName="opacity" values="0.7;0.3;0.7" dur="4s" repeatCount="indefinite"/>
-              </circle>
-              <circle cx="200" cy="700" r="1" fill="#1e3a8a" opacity="0.5" className="floating-particle dark:fill-[#b51a2b]">
-                <animate attributeName="opacity" values="0.5;0.8;0.5" dur="5s" repeatCount="indefinite"/>
-              </circle>
-            </g>
-          </svg>
-          
-          {/* Additional floating elements */}
-          <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-gradient-to-r from-light-accent/10 to-transparent dark:from-brand-accent/10 dark:to-transparent animate-pulse floating-particle" 
-               style={{ animationDuration: '6s', animationDelay: '0s' }}></div>
-          <div className="absolute bottom-1/3 right-1/4 w-24 h-24 rounded-full bg-gradient-to-l from-light-strong/15 to-transparent dark:from-brand-strong/15 dark:to-transparent animate-pulse floating-particle" 
-               style={{ animationDuration: '8s', animationDelay: '2s' }}></div>
-          <div className="absolute top-1/2 right-1/3 w-16 h-16 rounded-full bg-gradient-to-t from-light-accent/8 to-transparent dark:from-brand-accent/8 dark:to-transparent animate-pulse floating-particle" 
-               style={{ animationDuration: '7s', animationDelay: '4s' }}></div>
-        </div>
-        {/* Hero content */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="max-w-4xl mx-auto px-8 space-y-8 text-center relative z-10 h-full flex flex-col justify-center"
-        >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-            className="relative"
-          >
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6 }}
-              className="text-2xl md:text-3xl font-bold text-gray-700 dark:text-white/90 font-josefin mb-4 tracking-wide"
-            >
+        {/* Background Image */}
+        <div 
+          className="absolute inset-0 z-0 bg-cover bg-no-repeat"
+          style={{
+            backgroundImage: 'url(/assets/Images/night-sky-background.webp)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center bottom' // Align bottom of image with bottom of section
+          }}
+        />
+        {/* Dark overlay for better text readability */}
+        <div className="absolute inset-0 z-10 bg-black/20" />
+        {/* Gradient transition to about section */}
+        <div 
+          className="absolute bottom-0 left-0 right-0 h-32 z-15"
+          style={{
+            background: 'linear-gradient(to bottom, transparent 0%, rgba(12, 10, 14, 0.3) 40%, rgba(12, 10, 14, 0.7) 70%, #0F0D11 100%)'
+          }}
+        />
+        <div className="max-w-4xl mx-auto px-8 space-y-8 text-center relative z-30 h-full flex flex-col justify-center hero-reveal">
+          <div className="relative">
+            <h2 className="hero-greeting text-secondary text-white mb-4 tracking-wide">
               Hello, I'm Dasun,
-            </motion.h2>
+            </h2>
             <AnimatedTitle />
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="text-gray-600 dark:text-white/80 mb-8 leading-relaxed max-w-3xl mx-auto"
-              style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.5)', fontSize: '16px' }}
-            >
+            <p className="hero-description text-body-lg text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)' }}>
               helping brands grow with smarter SEO, web development, and automation.<br />
               Crafting digital experiences that look great and perform even better.
-            </motion.p>
-          </motion.div>
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-            className="mt-12"
-          >
+            </p>
+          </div>
+          <div className="mt-12">
             <div className="flex gap-8 justify-center">
-              <motion.a
-                href="mailto:sucharith.dasun@gmail.com"
-                whileHover={{ 
-                  scale: 1.1, 
-                  rotate: 5
-                }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                className="relative group"
-              >
-                <div className="relative bg-gradient-to-r from-light-accent to-light-strong dark:from-brand-accent dark:to-brand-strong text-white w-12 h-12 rounded-full border-2 border-gray-300/30 dark:border-white/30 flex items-center justify-center shadow-2xl backdrop-blur-sm">
-                  <Mail className="w-5 h-5" />
-                </div>
-              </motion.a>
-              <motion.a
-                href="https://www.linkedin.com/in/dasun-sucharith/"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ 
-                  scale: 1.1, 
-                  rotate: -5
-                }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                className="relative group"
-              >
-                <div className="relative bg-gradient-to-r from-light-accent to-light-strong dark:from-brand-accent dark:to-brand-strong text-white w-12 h-12 rounded-full border-2 border-gray-300/30 dark:border-white/30 flex items-center justify-center shadow-2xl backdrop-blur-sm">
-                  <Linkedin className="w-5 h-5" />
-                </div>
-              </motion.a>
-              <motion.a
-                href="https://github.com/dasunsucharith"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ 
-                  scale: 1.1, 
-                  rotate: 5
-                }}
-                whileTap={{ scale: 0.9 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                className="relative group"
-              >
-                <div className="relative bg-gradient-to-r from-light-accent to-light-strong dark:from-brand-accent dark:to-brand-strong text-white w-12 h-12 rounded-full border-2 border-gray-300/30 dark:border-white/30 flex items-center justify-center shadow-2xl backdrop-blur-sm">
-                  <Github className="w-5 h-5" />
-                </div>
-              </motion.a>
+              <a href="mailto:sucharith.dasun@gmail.com" className="btn-icon btn-glass hero-social bg-white/15 text-white border-2 border-white/30 shadow-2xl group-hover:rotate-6 hover:bg-white/25 hover:border-primary-sky/50">
+                <Mail className="w-5 h-5" />
+              </a>
+              <a href="https://www.linkedin.com/in/dasun-sucharith/" target="_blank" rel="noopener noreferrer" className="btn-icon btn-glass hero-social bg-white/15 text-white border-2 border-white/30 shadow-2xl group-hover:-rotate-6 hover:bg-white/25 hover:border-primary-sky/50">
+                <Linkedin className="w-5 h-5" />
+              </a>
+              <a href="https://github.com/dasunsucharith" target="_blank" rel="noopener noreferrer" className="btn-icon btn-glass hero-social bg-white/15 text-white border-2 border-white/30 shadow-2xl group-hover:rotate-6 hover:bg-white/25 hover:border-primary-sky/50">
+                <Github className="w-5 h-5" />
+              </a>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </section>
-      </>
+    </>
   )
 }
 
