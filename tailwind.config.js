@@ -20,6 +20,23 @@ module.exports = {
           'sky-dark': "#0284C7",
           'gray-light': "#F8FAFC",
           'gray-dark': "#1E293B"
+        },
+        // Legacy colors mapped to primary palette for consistency
+        brand: {
+          base: "#0C0A0E",
+          surface: "#1F1C23",
+          muted: "#6B7280",
+          accent: "#0EA5E9",
+          strong: "#0284C7",
+          primary: "#0EA5E9",
+          secondary: "#0284C7"
+        },
+        light: {
+          base: "#FFFFFF",
+          surface: "#F8FAFC",
+          muted: "#F1F5F9",
+          accent: "#0EA5E9",
+          strong: "#0284C7"
         }
       },
       animation: {

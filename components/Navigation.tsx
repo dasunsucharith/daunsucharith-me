@@ -75,7 +75,7 @@ const Navigation = () => {
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link href="/">
-            <span className={`nav-logo logo-shadow text-xl font-bold font-josefin relative z-10 transition-colors duration-300 ${
+            <span className={`nav-logo logo-shadow text-xl md:text-2xl font-bold font-josefin relative z-10 transition-colors duration-300 ${
               isScrolled ? 'text-white' : 'text-white'
             }`}>
               Dasun Sucharith
@@ -87,7 +87,7 @@ const Navigation = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`nav-item relative group text-sm font-medium transition-colors duration-300 ${
+                className={`nav-item relative group text-base md:text-lg font-medium transition-colors duration-300 ${
                   isScrolled 
                     ? 'text-white/90 hover:text-primary-sky' 
                     : 'text-white/90 hover:text-primary-sky'
@@ -101,10 +101,10 @@ const Navigation = () => {
           <div className="hidden md:flex items-center space-x-4">
             <Link href="#contact">
               <button
-                className={`nav-cta cta-shadow relative overflow-hidden group transition-all duration-300 px-6 py-2 rounded-full font-semibold text-sm backdrop-blur-xl ${
+                className={`btn-primary btn-glass nav-cta cta-shadow relative overflow-hidden group ${
                 isScrolled 
-                  ? 'bg-white/10 border border-primary-sky/50 shadow-lg text-white hover:bg-white/20' 
-                  : 'bg-white/15 border border-white/40 shadow-xl text-white hover:bg-white/25'
+                  ? 'bg-white/10 border-primary-sky/50 shadow-lg text-white hover:bg-white/20' 
+                  : 'bg-white/15 border-white/40 shadow-xl text-white hover:bg-white/25'
               }`}
               >
                 <div className="shine-effect absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
@@ -114,10 +114,10 @@ const Navigation = () => {
           </div>
 
           <button
-            className={`md:hidden relative w-12 h-12 backdrop-blur-xl rounded-xl flex items-center justify-center group overflow-hidden transition-all duration-300 ${
+            className={`btn-icon btn-glass md:hidden relative rounded-xl group overflow-hidden ${
               isScrolled 
-                ? 'bg-black/30 border border-white/20' 
-                : 'bg-white/10 border border-white/30'
+                ? 'bg-black/30 border-white/20' 
+                : 'bg-white/10 border-white/30'
             }`}
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
@@ -157,7 +157,7 @@ const Navigation = () => {
                     onClick={() => setIsMenuOpen(false)}
                   >
                     <div className="relative px-4 py-3 rounded-xl bg-gradient-to-r from-white/5 to-transparent backdrop-blur-sm border border-white/10 hover:from-primary-sky/20 hover:to-primary-sky-light/10 hover:border-primary-sky/30 transition-all duration-300">
-                      <span className="text-base font-medium transition-colors text-white group-hover:text-primary-sky">
+                      <span className="text-body-lg font-medium transition-colors text-white group-hover:text-primary-sky">
                         {item.label}
                       </span>
                       <div className="shine-effect absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 rounded-xl" />
@@ -168,7 +168,7 @@ const Navigation = () => {
               <div className="pt-4">
                 <Link href="#contact" onClick={() => setIsMenuOpen(false)}>
                   <button
-                    className="w-full bg-white/15 text-white px-6 py-4 rounded-2xl font-semibold text-base backdrop-blur-xl border border-primary-sky/40 relative overflow-hidden group shadow-lg hover:bg-white/25 transition-all duration-300"
+                    className="w-full bg-white/15 text-white px-6 py-4 rounded-2xl font-semibold text-body-lg backdrop-blur-xl border border-primary-sky/40 relative overflow-hidden group shadow-lg hover:bg-white/25 transition-all duration-300"
                   >
                     <div className="shine-effect absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent" />
                     <span className="relative z-10">Let's Talk</span>

@@ -98,7 +98,7 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
               </div>
 
               <div className="space-y-4 description-reveal">
-                <h3 className="text-xl font-semibold text-brand-accent font-josefin">About This Project</h3>
+                <h2 className="text-xl font-semibold text-brand-accent font-josefin">About This Project</h2>
                 <div className="prose prose-invert">
                   <p className="text-white/80 leading-relaxed whitespace-pre-line" style={{ fontSize: '16px' }}>
                     {project.description}

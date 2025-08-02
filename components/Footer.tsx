@@ -84,9 +84,9 @@ const Footer = () => {
             {/* Brand section */}
             <div className="lg:col-span-2 footer-reveal">
               <div className="mb-6">
-                <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-light-accent to-light-strong dark:from-brand-accent dark:to-brand-strong font-josefin mb-3">
+                <div className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-light-accent to-light-strong dark:from-brand-accent dark:to-brand-strong font-josefin mb-3">
                   Dasun Sucharith
-                </h3>
+                </div>
                 <p className="text-gray-600 dark:text-white/70 leading-relaxed max-w-md" style={{ fontSize: '16px' }}>
                   Marketing Automation Developer passionate about creating digital experiences that bridge the gap between marketing and technology.
                 </p>
@@ -123,7 +123,7 @@ const Footer = () => {
 
             {/* Quick links */}
             <div className="footer-reveal">
-              <h4 className="text-lg font-semibold text-light-accent dark:text-brand-accent mb-4 font-josefin">Quick Links</h4>
+              <h2 className="text-lg font-semibold text-light-accent dark:text-brand-accent mb-4 font-josefin">Quick Links</h2>
               <ul className="space-y-3">
                 {[
                   { name: 'About', href: '#about' },
@@ -144,7 +144,7 @@ const Footer = () => {
 
             {/* Contact info */}
             <div className="footer-reveal">
-              <h4 className="text-lg font-semibold text-light-accent dark:text-brand-accent mb-4 font-josefin">Get In Touch</h4>
+              <h2 className="text-lg font-semibold text-light-accent dark:text-brand-accent mb-4 font-josefin">Get In Touch</h2>
               <div className="space-y-3">
                 <div className="flex items-center space-x-3">
                   <Mail className="w-4 h-4 text-light-accent dark:text-brand-accent flex-shrink-0" />
