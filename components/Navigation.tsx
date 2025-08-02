@@ -49,27 +49,25 @@ const Navigation = () => {
   }, { scope: navRef })
 
   useGSAP(() => {
-    const state = Flip.getState(mobileMenuRef.current)
     if (isMenuOpen) {
       gsap.fromTo(mobileMenuRef.current, 
         { opacity: 0, y: -20, scale: 0.95 },
         { opacity: 1, y: 0, scale: 1, duration: 0.4, ease: 'power2.out' }
-      )
+      );
     } else {
       gsap.to(mobileMenuRef.current, 
         { opacity: 0, y: -20, scale: 0.95, duration: 0.4, ease: 'power2.in' }
-      )
+      );
     }
-    Flip.from(state, { duration: 0.4, ease: 'power2.inOut' })
-  }, { dependencies: [isMenuOpen], scope: navRef })
+  }, { dependencies: [isMenuOpen], scope: navRef });
 
   return (
     <nav ref={navRef} className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled 
+        isScrolled || isMenuOpen
           ? 'bg-black/20 backdrop-blur-xl border-b border-white/10 shadow-2xl' 
           : 'bg-transparent border-b border-transparent'
       }`}>
-      {isScrolled && (
+      {(isScrolled || isMenuOpen) && (
         <div className="nav-glow absolute inset-0 bg-gradient-to-r from-primary-sky/5 via-transparent to-primary-sky/5 opacity-20" />
       )}
       <div className="max-w-7xl mx-auto px-6 lg:px-8">
@@ -132,7 +130,7 @@ const Navigation = () => {
       {isMenuOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40 md:hidden"
+            className="fixed top-16 inset-x-0 bottom-0 bg-black/40 backdrop-blur-sm z-40 md:hidden"
             onClick={() => setIsMenuOpen(false)}
           />
           <div
