@@ -57,3 +57,14 @@ npm run dev
 ```
 
 Ensure you have created the `.env.local` file with the `WORDPRESS_API_URL` as described in Step 2.
+
+## 4. Vercel Deployment
+
+For the blog to work in production, the `WORDPRESS_API_URL` environment variable must be set in your Vercel project settings.
+
+1.  Go to your project dashboard on Vercel.
+2.  Navigate to **Settings > Environment Variables**.
+3.  Add a new variable with the following details:
+    - **Name:** `WORDPRESS_API_URL`
+    - **Value:** `https://cms.dasunsucharith.me/graphql`
+4.  Save the variable. Vercel will automatically trigger a new deployment with the updated environment.
