@@ -8,6 +8,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased] - 2025-08-02
 
 ### Fixed
+- Resolved issues with the mobile dropdown menu, including incorrect animations, z-index conflicts, and blurred backgrounds.
 - Resolved a TypeScript error in `BackToTop.tsx` by replacing invalid inline style properties (`y` and `scale`) with the correct `transform` property.
 - Fixed a build error in `LenisScroller.tsx` by removing the invalid `smoothTouch` option.
 
