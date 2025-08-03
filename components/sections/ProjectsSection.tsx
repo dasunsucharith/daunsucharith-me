@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { projects } from '../../lib/projects'
+import Image from 'next/image'
 import { useState, useEffect } from 'react'
 
 const ProjectsSection = () => {
@@ -93,9 +94,11 @@ const ProjectsSection = () => {
                               <div className="w-8 h-8 border-2 border-primary-sky border-t-transparent rounded-full animate-spin"></div>
                             </div>
                           )}
-                          <img 
+                          <Image 
                             src={project.image} 
                             alt={project.title}
+                            width={800}
+                            height={600}
                             onLoad={() => handleImageLoad(index)}
                             className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105 ${
                               imageLoaded[index] ? 'opacity-100' : 'opacity-0'

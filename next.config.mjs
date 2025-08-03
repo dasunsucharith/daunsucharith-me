@@ -4,7 +4,7 @@ const nextConfig = {
   // output: process.env.NODE_ENV === 'production' ? 'export' : undefined,
   trailingSlash: true,
   images: {
-    unoptimized: true,
+    unoptimized: process.env.NODE_ENV === 'development',
     domains: ['localhost', 'via.placeholder.com'],
   },
   async headers() {

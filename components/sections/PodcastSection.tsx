@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
+import Image from 'next/image'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { Play, ExternalLink } from 'lucide-react'
 
@@ -87,9 +88,11 @@ const PodcastSection = () => {
                 <div className="flex-shrink-0 image-reveal">
                   <div className="relative group">
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-sky/20 to-primary-sky-dark/20 rounded-3xl blur-xl opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
-                    <img
+                    <Image
                       src="/assets/files/ehema-wenne-ai.jpeg"
                       alt="Ehema Wenne AI Podcast"
+                      width={600}
+                      height={600}
                       className="relative w-64 h-auto md:w-80 md:h-auto object-contain rounded-3xl border border-white/20 shadow-2xl transform transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary-sky rounded-full animate-pulse"></div>
