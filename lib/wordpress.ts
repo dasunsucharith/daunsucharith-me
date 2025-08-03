@@ -51,10 +51,32 @@ export async function getAllPosts() {
             excerpt
             slug
             date
+            modified
             featuredImage {
               node {
                 sourceUrl
                 altText
+              }
+            }
+            seo {
+              title
+              metaDesc
+              opengraphTitle
+              opengraphDescription
+              opengraphImage {
+                sourceUrl
+                altText
+              }
+              twitterTitle
+              twitterDescription
+              twitterImage {
+                sourceUrl
+                altText
+              }
+              canonical
+              metaKeywords
+              schema {
+                raw
               }
             }
           }
@@ -79,11 +101,62 @@ export async function getPostBySlug(slug: string | string[] | undefined) {
           title
           slug
           date
+          modified
           content
+          excerpt
           featuredImage {
             node {
               sourceUrl
               altText
+            }
+          }
+          seo {
+            title
+            metaDesc
+            opengraphTitle
+            opengraphDescription
+            opengraphImage {
+              sourceUrl
+              altText
+            }
+            twitterTitle
+            twitterDescription
+            twitterImage {
+              sourceUrl
+              altText
+            }
+            canonical
+            metaKeywords
+            schema {
+              raw
+            }
+            readingTime
+            breadcrumbs {
+              url
+              text
+            }
+          }
+          author {
+            node {
+              name
+              firstName
+              lastName
+              avatar {
+                url
+              }
+              description
+            }
+          }
+          categories {
+            nodes {
+              name
+              slug
+            }
+          }
+          tags {
+            nodes {
+              name
+              slug
             }
           }
         }
