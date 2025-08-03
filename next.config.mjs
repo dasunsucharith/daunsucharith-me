@@ -5,7 +5,7 @@ const nextConfig = {
   trailingSlash: true,
   images: {
     unoptimized: process.env.NODE_ENV === 'development',
-    domains: ['localhost', 'via.placeholder.com'],
+    domains: ['localhost', 'via.placeholder.com', 'cms.dasunsucharith.me'],
   },
   async headers() {
     return [
