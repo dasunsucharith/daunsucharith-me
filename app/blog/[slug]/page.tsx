@@ -18,12 +18,18 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   }
 
   const seo = post.seo || {};
-  const featuredImage = post.featuredImage?.node?.sourceUrl || seo.opengraphImage?.sourceUrl;
+  const featuredImage = post.featuredImage?.node?.sourceUrl;
 
   return {
-    title: seo.title || post.title,
-    description: seo.metaDesc || post.excerpt?.replace(/<[^>]*>/g, '').substring(0, 160),
-    keywords: seo.metaKeywords?.split(',').map((k: string) => k.trim()) || [],
+    title: post.title,
+    description: post.excerpt?.replace(/<[^>]*>/g, '').substring(0, 160) || `Read about ${post.title} by Dasun Sucharith`,
+    keywords: [
+      'Blog Post',
+      'Web Development',
+      'Marketing Automation',
+      'Digital Strategy',
+      'Dasun Sucharith'
+    ],
     authors: [{ 
       name: post.author?.node?.name || 'Dasun Sucharith', 
       url: 'https://daunsucharith.me' 
@@ -32,11 +38,11 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       type: 'article',
       locale: 'en_US',
       url: `https://daunsucharith.me/blog/${post.slug}`,
-      title: seo.opengraphTitle || seo.title || post.title,
-      description: seo.opengraphDescription || seo.metaDesc || post.excerpt?.replace(/<[^>]*>/g, '').substring(0, 160),
+      title: post.title,
+      description: post.excerpt?.replace(/<[^>]*>/g, '').substring(0, 160) || `Read about ${post.title}`,
       siteName: 'Dasun Sucharith Portfolio',
       publishedTime: post.date,
-      modifiedTime: post.modified,
+      modifiedTime: post.modified || post.date,
       authors: [post.author?.node?.name || 'Dasun Sucharith'],
       section: post.categories?.nodes?.[0]?.name || 'Technology',
       tags: post.tags?.nodes?.map((tag: any) => tag.name) || [],
@@ -51,9 +57,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: 'summary_large_image',
-      title: seo.twitterTitle || seo.opengraphTitle || post.title,
-      description: seo.twitterDescription || seo.opengraphDescription || seo.metaDesc || post.excerpt?.replace(/<[^>]*>/g, '').substring(0, 160),
-      images: [seo.twitterImage?.sourceUrl || featuredImage || 'https://daunsucharith.me/assets/blog-default.webp'],
+      title: post.title,
+      description: post.excerpt?.replace(/<[^>]*>/g, '').substring(0, 160) || `Read about ${post.title}`,
+      images: [featuredImage || 'https://daunsucharith.me/assets/blog-default.webp'],
       creator: '@dasunsucharith',
     },
     robots: {
@@ -68,7 +74,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       },
     },
     alternates: {
-      canonical: seo.canonical || `https://daunsucharith.me/blog/${post.slug}`,
+      canonical: `https://daunsucharith.me/blog/${post.slug}`,
     },
     category: post.categories?.nodes?.[0]?.name || 'technology',
   }
@@ -87,7 +93,7 @@ export default async function PostPage({ params }: PageProps) {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: post.title,
-    description: post.seo?.metaDesc || post.excerpt?.replace(/<[^>]*>/g, '').substring(0, 160),
+    description: post.excerpt?.replace(/<[^>]*>/g, '').substring(0, 160) || `Read about ${post.title}`,
     image: {
       '@type': 'ImageObject',
       url: post.featuredImage?.node?.sourceUrl || 'https://daunsucharith.me/assets/blog-default.webp',
@@ -117,7 +123,7 @@ export default async function PostPage({ params }: PageProps) {
       '@id': `https://daunsucharith.me/blog/${post.slug}`
     },
     articleSection: post.categories?.nodes?.[0]?.name || 'Technology',
-    keywords: post.tags?.nodes?.map((tag: any) => tag.name).join(', ') || '',
+    keywords: post.tags?.nodes?.map((tag: any) => tag.name).join(', ') || 'web development, digital strategy',
     wordCount: post.content?.replace(/<[^>]*>/g, '').split(' ').length || 0,
     inLanguage: 'en-US',
     copyrightYear: new Date(post.date).getFullYear(),
@@ -126,16 +132,6 @@ export default async function PostPage({ params }: PageProps) {
       name: 'Dasun Sucharith'
     }
   };
-
-  // Add custom schema if available from WordPress
-  if (post.seo?.schema?.raw) {
-    try {
-      const customSchema = JSON.parse(post.seo.schema.raw);
-      // Merge or use custom schema if valid
-    } catch (e) {
-      // Fallback to default schema if custom schema is invalid
-    }
-  }
 
   return (
     <div className="min-h-screen" style={{ backgroundColor: '#0C0A0E' }}>
