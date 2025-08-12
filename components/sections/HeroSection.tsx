@@ -2,10 +2,11 @@
 
 import React from 'react'
 import { Mail, Linkedin, Github } from 'lucide-react'
+import { Button } from '../ui/button'
 
 const AnimatedTitle = () => {
   return (
-    <h1 className="hero-title heading-hero text-white mb-6 leading-tight" style={{ textShadow: '0 0 30px rgba(255, 255, 255, 0.3)', filter: 'drop-shadow(0 4px 8px rgba(0, 0, 0, 0.5))' }}>
+    <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
       Marketing Automation Developer
     </h1>
   )
@@ -40,26 +41,32 @@ const HeroSection = () => {
         />
         <div className="max-w-4xl mx-auto px-8 space-y-8 text-center relative z-30 h-full flex flex-col justify-center hero-reveal">
           <div className="relative">
-            <h2 className="hero-greeting text-secondary text-white mb-4 tracking-wide">
+            <h2 className="text-xl md:text-2xl text-white mb-4 tracking-wide">
               Hello, I'm Dasun,
             </h2>
             <AnimatedTitle />
-            <p className="hero-description text-body-lg text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto" style={{ textShadow: '0 2px 4px rgba(0, 0, 0, 0.8)' }}>
+            <p className="text-lg text-white/90 mb-8 leading-relaxed max-w-3xl mx-auto">
               helping brands grow with smarter SEO, web development, and automation.<br />
               Crafting digital experiences that look great and perform even better.
             </p>
           </div>
           <div className="mt-12">
-            <div className="flex gap-8 justify-center">
-              <a href="mailto:sucharith.dasun@gmail.com" className="btn-icon btn-glass hero-social bg-white/15 text-white border-2 border-white/30 shadow-2xl group-hover:rotate-6 hover:bg-white/25 hover:border-primary-sky/50">
-                <Mail className="w-5 h-5" />
-              </a>
-              <a href="https://www.linkedin.com/in/dasun-sucharith/" target="_blank" rel="noopener noreferrer" className="btn-icon btn-glass hero-social bg-white/15 text-white border-2 border-white/30 shadow-2xl group-hover:-rotate-6 hover:bg-white/25 hover:border-primary-sky/50">
-                <Linkedin className="w-5 h-5" />
-              </a>
-              <a href="https://github.com/dasunsucharith" target="_blank" rel="noopener noreferrer" className="btn-icon btn-glass hero-social bg-white/15 text-white border-2 border-white/30 shadow-2xl group-hover:rotate-6 hover:bg-white/25 hover:border-primary-sky/50">
-                <Github className="w-5 h-5" />
-              </a>
+            <div className="flex gap-4 justify-center">
+              <Button variant="outline" size="icon" asChild>
+                <a href="mailto:sucharith.dasun@gmail.com">
+                  <Mail className="h-4 w-4" />
+                </a>
+              </Button>
+              <Button variant="outline" size="icon" asChild>
+                <a href="https://www.linkedin.com/in/dasun-sucharith/" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="h-4 w-4" />
+                </a>
+              </Button>
+              <Button variant="outline" size="icon" asChild>
+                <a href="https://github.com/dasunsucharith" target="_blank" rel="noopener noreferrer">
+                  <Github className="h-4 w-4" />
+                </a>
+              </Button>
             </div>
           </div>
         </div>
