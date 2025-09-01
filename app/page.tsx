@@ -2,6 +2,7 @@ import { Metadata } from 'next'
 import HeroSection from '../components/sections/HeroSection'
 import AboutSection from '../components/sections/AboutSection'
 import PodcastSection from '../components/sections/PodcastSection'
+import AppsHubSection from '../components/sections/AppsHubSection'
 import ProjectsSection from '../components/sections/ProjectsSection'
 import ContactSection from '../components/sections/ContactSection'
 import Footer from '../components/Footer'
@@ -132,6 +133,7 @@ export default function Page() {
       />
       <HeroSection />
       <AboutSection />
+      <AppsHubSection />
       <PodcastSection />
       <ProjectsSection />
       <ContactSection />
