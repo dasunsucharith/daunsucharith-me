@@ -1,6 +1,61 @@
+import { Metadata } from 'next'
 import Link from 'next/link';
 import Image from 'next/image';
 import { getAllPosts } from '../../lib/wordpress';
+
+export const metadata: Metadata = {
+  title: 'The Digital Canvas - Blog by Dasun Sucharith | Web Dev & Tech Insights',
+  description: 'Explore the latest in web development, marketing automation, and digital strategy. Expert insights on HubSpot, WordPress, Webflow, and modern development practices.',
+  keywords: [
+    'Web Development Blog',
+    'Marketing Automation Blog', 
+    'HubSpot Tips',
+    'WordPress Development',
+    'Webflow Tutorials',
+    'Digital Strategy',
+    'Tech Blog',
+    'Development Insights',
+    'Dasun Sucharith Blog'
+  ],
+  authors: [{ name: 'Dasun Sucharith', url: 'https://daunsucharith.me' }],
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://daunsucharith.me/blog',
+    title: 'The Digital Canvas - Blog by Dasun Sucharith',
+    description: 'Expert insights on web development, marketing automation, and digital strategy. Learn about HubSpot, WordPress, Webflow, and modern development practices.',
+    siteName: 'Dasun Sucharith Portfolio',
+    images: [
+      {
+        url: 'https://daunsucharith.me/assets/blog-og-image.webp',
+        width: 1200,
+        height: 630,
+        alt: 'The Digital Canvas - Tech Blog by Dasun Sucharith',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'The Digital Canvas - Blog by Dasun Sucharith',
+    description: 'Expert insights on web development, marketing automation, and digital strategy.',
+    images: ['https://daunsucharith.me/assets/blog-og-image.webp'],
+    creator: '@dasunsucharith',
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
+  alternates: {
+    canonical: 'https://daunsucharith.me/blog',
+  },
+}
 
 interface PostNode {
   node: {
@@ -20,7 +75,46 @@ interface PostNode {
 export default async function BlogPage() {
   const allPosts: { edges: PostNode[] } = await getAllPosts();
 
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Blog',
+    name: 'The Digital Canvas',
+    description: 'Expert insights on web development, marketing automation, and digital strategy by Dasun Sucharith',
+    url: 'https://daunsucharith.me/blog',
+    author: {
+      '@type': 'Person',
+      name: 'Dasun Sucharith',
+      url: 'https://daunsucharith.me',
+      sameAs: [
+        'https://www.linkedin.com/in/dasun-sucharith/',
+        'https://github.com/dasunsucharith',
+        'https://twitter.com/dasunsucharith'
+      ]
+    },
+    publisher: {
+      '@type': 'Person',
+      name: 'Dasun Sucharith',
+      url: 'https://daunsucharith.me'
+    },
+    blogPost: allPosts?.edges?.slice(0, 10).map(({ node }) => ({
+      '@type': 'BlogPosting',
+      headline: node.title,
+      url: `https://daunsucharith.me/blog/${node.slug}`,
+      datePublished: node.date,
+      author: {
+        '@type': 'Person',
+        name: 'Dasun Sucharith'
+      },
+      image: node.featuredImage?.node?.sourceUrl || 'https://daunsucharith.me/assets/blog-default.webp'
+    }))
+  };
+
   return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
         <div
       className="min-h-screen"
       style={{ backgroundColor: '#0C0A0E' }}
@@ -96,5 +190,6 @@ export default async function BlogPage() {
         </div>
       </main>
     </div>
+    </>
   );
 }

@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
+import Image from 'next/image'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -93,9 +94,11 @@ const AboutSection = () => {
                 <div className="p-8 rounded-3xl bg-white/5 backdrop-blur-xl border border-white/10 shadow-2xl hover:bg-white/10 transition-all duration-500">
                   <div className="relative">
                     <div className="absolute inset-0 bg-gradient-to-r from-primary-sky/20 to-primary-sky-dark/20 rounded-2xl blur-xl opacity-30 group-hover:opacity-60 transition-opacity duration-500"></div>
-                    <img
+                    <Image
                       src="/assets/dasun.webp"
                       alt="Dasun Sucharith"
+                      width={320}
+                      height={320}
                       className="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-2xl border border-white/20 shadow-xl transform transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary-sky rounded-full animate-pulse"></div>

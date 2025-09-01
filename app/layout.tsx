@@ -1,12 +1,8 @@
 import type { Metadata } from 'next'
-import { Inter, Josefin_Sans } from 'next/font/google'
 import './globals.css'
 import Navigation from '../components/Navigation'
 import { ThemeProvider } from '../contexts/ThemeContext'
 import LenisScroller from '../components/LenisScroller'
-
-const inter = Inter({ subsets: ['latin'] })
-const josefinSans = Josefin_Sans({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Dasun Sucharith - Portfolio',
@@ -33,9 +29,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <body 
-        className={`${inter.className} antialiased bg-primary-white text-primary-black overflow-x-hidden`}
+        className="antialiased bg-background text-foreground overflow-x-hidden"
         suppressHydrationWarning={true}
-        style={{'--font-josefin': josefinSans.style.fontFamily, '--font-inter': inter.style.fontFamily} as React.CSSProperties}
       >
         <ThemeProvider>
           <LenisScroller />

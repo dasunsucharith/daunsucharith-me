@@ -2,6 +2,7 @@
 
 import { useRef } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { gsap } from 'gsap'
 import { useGSAP } from '@gsap/react'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -23,6 +24,39 @@ interface ProjectPageClientProps {
 
 export default function ProjectPageClient({ project }: ProjectPageClientProps) {
   const pageRef = useRef<HTMLDivElement>(null)
+
+  // Generate schema markup for the project
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'CreativeWork',
+    name: project.title,
+    description: project.description,
+    url: project.url,
+    image: `https://daunsucharith.me${project.image}`,
+    author: {
+      '@type': 'Person',
+      name: 'Dasun Sucharith',
+      url: 'https://daunsucharith.me',
+      sameAs: [
+        'https://www.linkedin.com/in/dasun-sucharith/',
+        'https://github.com/dasunsucharith',
+        'https://twitter.com/dasunsucharith'
+      ]
+    },
+    creator: {
+      '@type': 'Person',
+      name: 'Dasun Sucharith'
+    },
+    genre: 'Web Development',
+    category: 'Technology',
+    inLanguage: 'en-US',
+    isAccessibleForFree: true,
+    license: 'https://creativecommons.org/licenses/by/4.0/',
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `https://daunsucharith.me/projects/${project.slug}`
+    }
+  }
 
   useGSAP(() => {
     const tl = gsap.timeline()
@@ -56,7 +90,12 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
   }, { scope: pageRef })
 
   return (
-    <div ref={pageRef} className="min-h-screen bg-gradient-to-b from-brand-base via-brand-surface to-brand-base text-white overflow-hidden">
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <div ref={pageRef} className="min-h-screen bg-gradient-to-b from-brand-base via-brand-surface to-brand-base text-white overflow-hidden">
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-20 right-20 w-96 h-96 bg-gradient-to-br from-brand-accent/6 to-brand-strong/3 rounded-full blur-3xl animate-pulse" style={{ animationDuration: '15s', animationDelay: '0s' }}></div>
         <div className="absolute bottom-40 left-20 w-80 h-80 bg-gradient-to-tl from-brand-strong/5 to-brand-accent/2 rounded-full blur-2xl animate-pulse" style={{ animationDuration: '18s', animationDelay: '8s' }}></div>
@@ -168,5 +207,6 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
         </div>
       </div>
     </div>
+    </>
   )
 }
