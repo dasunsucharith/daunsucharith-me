@@ -1,8 +1,7 @@
-'use client'
-
 import React from 'react'
 import { Mail, Linkedin, Github } from 'lucide-react'
 import { Button } from '../ui/button'
+import Image from 'next/image'
 
 const AnimatedTitle = () => {
   return (
@@ -22,14 +21,16 @@ const HeroSection = () => {
         style={{ position: 'relative', minHeight: '100vh', paddingTop: '5rem', paddingBottom: '5rem' }}
       >
         {/* Background Image */}
-        <div 
-          className="absolute inset-0 z-0 bg-cover bg-no-repeat"
-          style={{
-            backgroundImage: 'url(/assets/Images/night-sky-background.webp)',
-            backgroundSize: 'cover',
-            backgroundPosition: 'center bottom' // Align bottom of image with bottom of section
-          }}
-        />
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/assets/Images/night-sky-background.webp"
+            alt="Night sky background"
+            fill
+            priority
+            sizes="100vw"
+            style={{ objectFit: 'cover', objectPosition: 'center bottom' }}
+          />
+        </div>
         {/* Dark overlay for better text readability */}
         <div className="absolute inset-0 z-10 bg-black/20" />
         {/* Gradient transition to about section */}

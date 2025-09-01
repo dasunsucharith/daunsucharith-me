@@ -13,6 +13,9 @@ const YouTubeChannelSection = () => {
   const sectionRef = useRef<HTMLElement>(null)
 
   useGSAP(() => {
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
+    }
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
@@ -115,6 +118,7 @@ const YouTubeChannelSection = () => {
                     alt="Dasun Sucharith YouTube Channel"
                     width={600}
                     height={600}
+                    sizes="(max-width: 1024px) 50vw, 400px"
                     className="relative w-64 h-auto md:w-80 md:h-auto object-contain rounded-3xl border border-black/10 shadow-2xl"
                   />
                 </div>

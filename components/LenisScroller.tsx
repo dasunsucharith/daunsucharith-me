@@ -5,19 +5,41 @@ import Lenis from 'lenis'
 
 const LenisScroller = () => {
   useEffect(() => {
-    const lenis = new Lenis({
-      duration: 1.2,
-      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-    })
-
-    function raf(time: number) {
-      lenis.raf(time)
-      requestAnimationFrame(raf)
+    // Respect user motion preferences
+    if (typeof window !== 'undefined' &&
+        window.matchMedia &&
+        window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
     }
 
-    requestAnimationFrame(raf)
+    const lenis = new Lenis({
+      duration: 1.1,
+      easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+    })
+
+    let rafId: number | null = null
+    const raf = (time: number) => {
+      lenis.raf(time)
+      rafId = requestAnimationFrame(raf)
+    }
+
+    rafId = requestAnimationFrame(raf)
+
+    const onVisibility = () => {
+      if (document.hidden) {
+        if (rafId) cancelAnimationFrame(rafId)
+        lenis.stop()
+      } else {
+        lenis.start()
+        rafId = requestAnimationFrame(raf)
+      }
+    }
+    document.addEventListener('visibilitychange', onVisibility, { passive: true } as any)
 
     return () => {
+      document.removeEventListener('visibilitychange', onVisibility as any)
+      if (rafId) cancelAnimationFrame(rafId)
       lenis.destroy()
     }
   }, [])

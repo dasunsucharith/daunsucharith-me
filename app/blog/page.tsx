@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { getAllPosts } from '../../lib/wordpress';
 
+export const revalidate = 60;
+
 export const metadata: Metadata = {
   title: 'The Digital Canvas - Blog by Dasun Sucharith | Web Dev & Tech Insights',
   description: 'Explore the latest in web development, marketing automation, and digital strategy. Expert insights on HubSpot, WordPress, Webflow, and modern development practices.',
@@ -163,6 +165,7 @@ export default async function BlogPage() {
                       src={node.featuredImage.node.sourceUrl}
                       alt={node.featuredImage.node.altText || node.title}
                       fill
+                      sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                       style={{ objectFit: 'cover' }}
                       className="transition-transform duration-500 group-hover:scale-110"
                     />

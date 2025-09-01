@@ -13,6 +13,9 @@ const PodcastSection = () => {
   const sectionRef = useRef<HTMLElement>(null)
 
   useGSAP(() => {
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
+    }
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,

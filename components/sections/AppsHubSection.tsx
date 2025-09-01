@@ -1,6 +1,5 @@
-'use client'
-
 import { ExternalLink } from 'lucide-react'
+import Image from 'next/image'
 
 const AppsHubSection = () => {
   return (
@@ -57,15 +56,17 @@ const AppsHubSection = () => {
             {/* Right: Pixel art image */}
             <div className="relative mx-auto w-full max-w-md">
               <div className="pixel-card rounded-xl border border-border/60 bg-gradient-to-b from-background/80 to-background/40 p-3 md:p-4 overflow-hidden">
-                <div className="relative aspect-[4/3] w-full bg-black rounded-lg overflow-hidden">
-                  <img
-                    src="/assets/Images/superman-pixel.webp"
-                    alt="Pixel art: Superman"
-                    className="w-full h-full object-contain bg-black"
-                    style={{ imageRendering: 'pixelated' }}
-                    loading="lazy"
-                  />
-                </div>
+              <div className="relative aspect-[4/3] w-full bg-black rounded-lg overflow-hidden">
+                <Image
+                  src="/assets/Images/superman-pixel.webp"
+                  alt="Pixel art: Superman"
+                  fill
+                  sizes="(max-width: 768px) 90vw, (max-width: 1024px) 50vw, 400px"
+                  className="object-contain bg-black"
+                  style={{ imageRendering: 'pixelated' }}
+                  priority={false}
+                />
+              </div>
               </div>
               <div className="absolute -top-3 -left-3 size-3 bg-primary-sky rounded-[2px]"></div>
               <div className="absolute -bottom-3 -right-3 size-2 bg-primary-sky/70 rounded-[2px]"></div>

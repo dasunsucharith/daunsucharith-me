@@ -12,6 +12,9 @@ const AboutSection = () => {
   const sectionRef = useRef<HTMLElement>(null)
 
   useGSAP(() => {
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
+    }
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: sectionRef.current,
@@ -99,6 +102,7 @@ const AboutSection = () => {
                       alt="Dasun Sucharith"
                       width={320}
                       height={320}
+                      sizes="(max-width: 768px) 256px, 320px"
                       className="relative w-64 h-64 md:w-80 md:h-80 object-cover rounded-2xl border border-white/20 shadow-xl transform transition-transform duration-300 group-hover:scale-105"
                     />
                     <div className="absolute -top-2 -right-2 w-4 h-4 bg-primary-sky rounded-full animate-pulse"></div>

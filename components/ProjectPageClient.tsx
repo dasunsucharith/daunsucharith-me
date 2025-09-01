@@ -59,6 +59,9 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
   }
 
   useGSAP(() => {
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
+    }
     const tl = gsap.timeline()
 
     tl.from('.nav-reveal', { opacity: 0, y: -20, duration: 0.6 })
@@ -163,7 +166,15 @@ export default function ProjectPageClient({ project }: ProjectPageClientProps) {
             <div className="relative group project-image-reveal">
               <div className="absolute inset-0 bg-gradient-to-r from-brand-accent/20 to-brand-strong/20 rounded-2xl blur-2xl opacity-50 group-hover:opacity-75 transition-opacity duration-500" style={{ transform: 'scale(1.05)' }}></div>
               <div className="relative transform transition-transform duration-500 group-hover:scale-105 group-hover:-translate-y-1">
-                <img src={project.image} alt={project.title} className="relative w-full rounded-2xl shadow-2xl border border-white/10 backdrop-blur-sm" style={{ boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 165, 134, 0.1)' }} />
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  width={1200}
+                  height={800}
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  className="relative w-full h-auto rounded-2xl shadow-2xl border border-white/10 backdrop-blur-sm"
+                  style={{ boxShadow: '0 25px 50px rgba(0, 0, 0, 0.3), 0 0 30px rgba(255, 165, 134, 0.1)' }}
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-brand-base/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl flex items-end p-6">
                   <div className="text-white">
                     <p className="font-semibold mb-1">Click to visit project</p>

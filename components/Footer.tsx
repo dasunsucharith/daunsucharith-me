@@ -14,6 +14,9 @@ const Footer = () => {
   const footerRef = useRef<HTMLElement>(null)
 
   useGSAP(() => {
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
+    }
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: footerRef.current,
