@@ -2,7 +2,10 @@
 const nextConfig = {
   // Removed static export to enable API routes
   // output: process.env.NODE_ENV === 'production' ? 'export' : undefined,
-  trailingSlash: true,
+  // trailingSlash can break Next's app router chunk URLs on some hosts
+  // and cause 404s like main-app.js / app-pages-internals.js
+  // Remove it to keep asset paths intact
+  // trailingSlash: true,
   images: {
     unoptimized: process.env.NODE_ENV === 'development',
     domains: ['localhost', 'via.placeholder.com', 'cms.dasunsucharith.me'],
