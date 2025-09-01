@@ -28,6 +28,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <link rel="preconnect" href="https://cms.dasunsucharith.me" crossOrigin="" />
+      </head>
       <body 
         className="antialiased bg-background text-foreground overflow-x-hidden"
         suppressHydrationWarning={true}

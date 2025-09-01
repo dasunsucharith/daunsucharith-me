@@ -24,6 +24,9 @@ const BackToTop = () => {
   }, [])
 
   useGSAP(() => {
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
+    }
     if (isVisible) {
       gsap.to(buttonRef.current, {
         opacity: 1,
@@ -44,6 +47,9 @@ const BackToTop = () => {
   }, [isVisible])
 
   useGSAP(() => {
+    if (typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      return
+    }
     gsap.to(arrowRef.current, {
       y: -5,
       repeat: -1,

@@ -6,6 +6,8 @@ import Link from 'next/link';
 import Footer from '../../../components/Footer';
 import { PageProps } from './page.props';
 
+export const revalidate = 60;
+
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params
   const post = await getPostBySlug(slug);
@@ -203,6 +205,7 @@ export default async function PostPage({ params }: PageProps) {
                   alt={post.featuredImage.node.altText || post.title}
                   width={1200}
                   height={630}
+                  sizes="100vw"
                   className="w-full h-auto object-cover"
                   priority
                 />

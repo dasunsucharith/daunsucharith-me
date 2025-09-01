@@ -99,6 +99,7 @@ const ProjectsSection = () => {
                             alt={project.title}
                             width={800}
                             height={600}
+                            sizes="(max-width: 1024px) 100vw, 50vw"
                             onLoad={() => handleImageLoad(index)}
                             className={`w-full h-full object-cover transition-all duration-700 group-hover:scale-105 ${
                               imageLoaded[index] ? 'opacity-100' : 'opacity-0'

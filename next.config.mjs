@@ -9,6 +9,7 @@ const nextConfig = {
   images: {
     unoptimized: process.env.NODE_ENV === 'development',
     domains: ['localhost', 'via.placeholder.com', 'cms.dasunsucharith.me'],
+    formats: ['image/avif', 'image/webp'],
   },
   async headers() {
     return [
@@ -31,6 +32,9 @@ const nextConfig = {
         permanent: true,
       },
     ]
+  },
+  experimental: {
+    optimizePackageImports: ['lucide-react'],
   },
 }
 
